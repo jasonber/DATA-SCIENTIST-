@@ -269,7 +269,7 @@ $\alpha$是学习率 learning rate
 
 记得特征缩放，使得特征值有可比性
 
-##6、正则方程
+##6、正规方程
 
 $J(\theta) = a\theta^2 + b\theta +c$ 对其求导$\frac{\partial} {\partial\theta}$ ,并令这个导数为0即 $\frac{\partial} {\partial\theta} = 0$ 这样求出的$\theta$就是使得数最小的值
 
@@ -295,7 +295,7 @@ T代表转置，-1代表逆矩阵
 
 结论：n过大时使用梯度下降，小的时候使用正则，以10000个特征为界限
 
-## 7、正则方程不可逆的情况
+## 7、正规方程不可逆的情况
 
 octave中使用伪逆矩阵来解决，pinv
 
@@ -487,9 +487,9 @@ https://www.zhihu.com/question/27068705
 
 优化目标：$min J(\theta) = \frac{1}{m}\sum_{i=1}^{m}{\frac{1}{2}[(h_\theta(x)^{i}-y^{(i)})^2]}$ 
 
-正则化的代价函数：$J(\theta) = \frac{1}{2m}[\sum_{i=1}^{m}{(h_\theta(x)^{(i)}-y^{(i)})^2}+\lambda\sum_{i=1}^{n}\theta_j^2]$ ，切记不需要从$\theta_0$开始
+正则化的代价函数：$J(\theta) = \frac{1}{2m}[\sum_{i=1}^{m}{(h_\theta(x)^{(i)}-y^{(i)})^2}]+\lambda\sum_{i=1}^{n}\theta_j^2$ ，切记不需要从$\theta_0$开始
 
-$\lambda$正则化参数的两个目标：1、保证$Cost(h_\theta(x),y)$的值最小更好的拟合。2、保证参数最小。通过这两个目标来减少模型的复杂度，避免过拟合
+$\lambda$正则化参数的两个目标：1、保证***$Cost(h_\theta(x)^2,y^2)$***的值最小更好的拟合。2、保证参数最小。通过这两个目标来减少模型的复杂度，避免过拟合
 
 为什么正则项$\lambda\sum_{i=1}^{n}{\theta_j^2}$会起到这两个作用，因为要$min J(\theta)$所以正则项就要接近0,而$\lambda$是我们规定好的正则化参数（常数），所以$\theta$们的和就要接近0。因此达到以上两个目标。
 
@@ -503,10 +503,46 @@ for j in [1....n] 不从0开始了，因为正则化从$\theta_1$开始：
 
 {
 
-​    $\theta_0 := \theta_0 - \alpha\frac{1}{m}\sum_{i=1}^{m}{[(h_\theta(x)^{(i)}-y^{(i)}) x_0^{(i)}]}$
+​    $\theta_0 := \theta_0 - \alpha\frac{1}{m}\sum_{i=1}^{m}{[(h_\theta(x)^{(i)}-y^{(i)}) x_0^{(i)}]}=\theta_0-\alpha \frac{1}{m} \frac{\partial}{\partial\theta_0}J(\theta)$
 
-   $\theta_j := \theta_1 -\alpha[(\frac{1}{m}\sum_{i=1}^{m}{[(h_\theta(x)^{(i)}-y{(i)})x_j^{(i)} )+ \frac{\lambda}{m}\theta_j}]$
+   $\theta_j := \theta_1 -\alpha[(\frac{1}{m}\sum_{i=1}^{m}{[(h_\theta(x)^{(i)}-y{(i)})x_j^{(i)} )+ \lambda\frac{1}{m}\theta_j}] $
+
+   $\theta_j := \theta_j(1-\alpha\lambda\frac{1}{m})-\alpha\frac{1}{m}\sum_{i=1}{m}[{(h_\theta^{(i)}-y^{(i)}x_j^{(i)}}]=\theta_j(1-\alpha\lambda\frac{1}{m})-\alpha\frac{1}{m}\frac{\partial}{\partial\theta_j}J(\theta)$
 
 }
 
-正规方程中的正则项目
+ 与非正则化的梯度下降相比，因为$1-\alpha\lambda\frac{1}{m} < 1$，所以$\theta_j$会先变小一些，在减去$J(\theta)$的偏导，就能更好的下最小值下降和收敛
+
+正规方程中的正则化
+
+正规方程：$\theta = (X^TX)^{-1}X^Ty$ 
+
+正则化的正规方程：
+
+假设： $m(examples)\leq n(features)$ , $\theta = (\theta^TX)^{-1}X^Ty$
+
+如果$\lambda > 0$
+
+​         $\theta = (X^TX+\lambda\begin{bmatrix} 0 &\cdots &0 & \cdots & 0\\ 0 & 1 & 0 & \cdots\\ 0 & 0 & 1 & 0 & \cdots \end{bmatrix})X^Ty$
+
+矩阵为$(n+1)*(n+1)$
+
+## 4 、logistic回归
+
+代价函数：
+
+$$J(\theta) = -[\frac{1}{m}\sum_{i=1}^{m}{y^{(i)}\log h_\theta(x^{(i)})+(1-y^{(i)})\log (1-h_\theta(x^{(i)}))}]$$ 
+
+正则化的代价函数：
+
+$J(\theta) = -[\frac{1}{m}\sum_{i=1}^{m}{y^{(i)} \log h_\theta(x^{(i)})+(1-y^{(i)})\log (1-h_theta(x^{(i)}))}] + \lambda\frac{1}{2m}\sum_{i=1}^{m}{\theta_j^2}$
+
+梯度下降：
+
+for j in [1....n] {
+
+$\theta_0 := \theta_0 - \alpha\frac{1}{m}\sum_{i=1}^{m}{(h_\theta(x{(i)}-y^{(i)})x_0^{(i)})}$
+
+$\theta_j := \theta_j - \alpha[(\frac{1}{m}\sum_{i=1}^{m}{(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)})+\lambda\frac{1}{m}\theta_j}]$
+
+}
