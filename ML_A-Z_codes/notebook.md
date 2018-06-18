@@ -85,7 +85,7 @@ statmodels.formula.api
 
 因为X中包含了多个类型的变量，它属于object
 
-automatic backward elimination
+automatic backward elimination, len(x[0])
 
 2、操作
 
