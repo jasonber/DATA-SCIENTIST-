@@ -1,6 +1,6 @@
-# section 2  part 1 :data preprocessing
+# part 1 :data preprocessing
 
-##1、概念
+**1、概念**
 
 ```python
 pandas  
@@ -34,7 +34,6 @@ object1 = class(parameter)
 method = object.fit(data1)   
 
 object2 =  method.transform(data2)
-
 ```
 
  2、feature scaling: train and test 均适用train的 度量
@@ -48,3 +47,70 @@ dummy variable 是否需要scaling ?
 dependent variable 是否需要scaling？
 
 按照数据的特点选择是需要scaling。表示分类的不用。其他的需要
+
+
+
+# part 2 :regression
+
+##section 4  simple linear regression SLR
+
+**1、概念**
+
+ordinary least square :最小二乘法
+
+**2、操作**
+
+画图
+
+```python
+plt.图的形式(x轴，y轴，颜色)
+plt.plot(x,y, 颜色)在图上增加其他的内容
+plt.title()
+plt.xlabel()
+plt.ylabel()
+plt.show()显示上面的图片 也意味着这次作图结束
+```
+
+**3、疑问**
+
+为什么dependent variable 不需要 scaling ？
+
+## section 5 multiple linear regression
+
+statmodels.formula.api
+
+**3、疑问**
+
+为什么X总是不能查看？
+
+因为X中包含了多个类型的变量，它属于object
+
+automatic backward elimination
+
+2、操作
+
+a、fit的含义
+
+```python
+LabelEncoder
+OneHotEncoder(categorical_features = 变量列index）
+model.fit(data) # fit model(object) to the data
+```
+
+b、np.append的特殊用法
+
+```
+np.append(arr在哪个数据中插入, values插入什么样的值, axis) 在哪个数据的末尾插入什么样的值，append含义就是在末尾悬挂
+```
+
+c、先进行labelencoder 再进行onehotencoder
+
+d、axis = 0 以line加入数据  axis =1 以column加入数据
+
+c、获得模型的统计指标
+
+```
+衡量器（object） = sm.衡量方式（）.fit
+衡量器.
+```
+
