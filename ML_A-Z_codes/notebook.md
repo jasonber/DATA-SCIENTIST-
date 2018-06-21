@@ -107,10 +107,77 @@ c、先进行labelencoder 再进行onehotencoder
 
 d、axis = 0 以line加入数据  axis =1 以column加入数据
 
-c、获得模型的统计指标
+e、获得模型的统计指标
 
 ```
 衡量器（object） = sm.衡量方式（）.fit
 衡量器.
 ```
 
+## section 5 polynomial regression
+
+1、不需要 feature scaling
+
+***f、总结***
+
+```
+读取数据
+
+预处理
+    missing value
+         imputer.fit_transform
+    labelencoder onehotencoder
+    train_test_split
+    standardscale
+            使用train的量纲
+    feature select : BE FS Stepwise
+            statmodel 
+     model
+            model.fit_transform
+            model.fit
+            moeld.predict
+    plt
+          plt.图表（x,y ,color）
+          plt.plot(x,y ,color)
+          plt.tilte()
+          plt.xlabel()
+          plt.xlabel()
+          plt.show()
+
+```
+
+## section 6 SVR
+
+1、框架
+
+先列框架 再coding
+
+```python
+# SVR
+# Import the libraries
+import pandas as pd
+import numpy as np
+
+# Import the dataset
+dataset = pd.read_csv('Position_Salaries.csv')
+X = dataset.iloc[:, 1].values
+y = dataset.iloc[:, 2].values
+
+# spliting
+
+# feature scaling
+
+# fit SVR to the dataset
+
+# create regressor
+
+# predicting 
+
+# visual the SVR results
+
+import matplotlib.pyplot as plt
+plt.scatter(X, y, c = 'green')
+plt.show()
+```
+
+2、must  feature scaling 
