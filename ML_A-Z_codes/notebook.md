@@ -114,7 +114,7 @@ e、获得模型的统计指标
 衡量器.
 ```
 
-## section 5 polynomial regression
+## section 6 polynomial regression
 
 1、不需要 feature scaling
 
@@ -146,7 +146,7 @@ e、获得模型的统计指标
 
 ```
 
-## section 6 SVR
+## section 7 SVR
 
 1、框架
 
@@ -181,3 +181,13 @@ plt.show()
 ```
 
 2、must  feature scaling 
+
+## section 8 Decision Tree Regression
+
+model 需要 x，y同维度
+
+```python
+X_grid = np.arange(min(x), max(x), step)
+X_grid = X_grid.reshape((len(X_grid),1))
+```
+
