@@ -191,3 +191,20 @@ X_grid = np.arange(min(x), max(x), step)
 X_grid = X_grid.reshape((len(X_grid),1))
 ```
 
+## section 9 Random Forest Regression 
+
+.values:Return Series as ndarray or ndarray-like depending on the dtype
+
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.values.html?highlight=values#pandas.Series.values
+
+不是树越多越平缓，而是在某个树的数目上，RF会收敛
+
+这几中模型是啥？
+
+linear regression
+
+non-linear  regression
+
+non-linear regression non-continuous regression
+
+non-linear or non-continuous regression
