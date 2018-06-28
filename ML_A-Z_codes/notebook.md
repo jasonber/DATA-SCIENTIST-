@@ -208,3 +208,24 @@ non-linear  regression
 non-linear regression non-continuous regression
 
 non-linear or non-continuous regression
+
+## section 10 Evaluating Regression Models Performance
+
+1、$$R^2$$是什么
+
+$$SS_{rest} = \sum{(y_i - \hat{y_i})}^2$$  $$SS_{tot} = \sum{(y_i - y_{avg})}^2$$  $$R^2 = 1 - \frac{SS_{rest}}{SS_{tot}}=\frac{SS_{tot}-SS_{rest}}{SS_{tot}}$$
+
+$$R^2\leq1$$ 越接近1说明预测值与真实值的差距越小，模型拟合的越好。可以为负，模型极其差。所以$$R^2$$ 越大越好
+
+2、调整的$$R^2$$ 是什么
+
+更为全面的指标
+
+多元回归（多个x）。
+
+ $$R^2$$不会下降是固定的，不能很好的指示模型的拟合度
+
+调整$$R^2$$更为敏感，对样本数和X个数均敏感，因为增加了惩罚项
+
+
+
