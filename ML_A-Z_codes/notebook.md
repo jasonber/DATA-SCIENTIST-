@@ -201,9 +201,9 @@ http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.values.html?
 
 这几中模型是啥？
 
-linear regression
+linear regression simple linear  multiple linear
 
-non-linear  regression
+non-linear  regression  polynomial SVR DT RF
 
 non-linear regression non-continuous regression
 
@@ -226,6 +226,75 @@ $$R^2\leq1$$ 越接近1说明预测值与真实值的差距越小，模型拟合
  $$R^2$$不会下降是固定的，不能很好的指示模型的拟合度
 
 调整$$R^2$$更为敏感，对样本数和X个数均敏感，因为增加了惩罚项
+
+3、***如何区分线性非线性***
+
+# Part 3 Classification
+
+## section 11 classification
+
+##section 12 Logistics Regression
+
+1、visualising the training set results
+
+```python
+from matplotlib.colors import ListedColormap # this library colorize all the data points
+X_set, y_set = X_test, y_test # get the features and the value of label. Do this for plotting.
+# meshgrid get the frame of my coordinate
+# X1 and X2 are the axes. Minus 1 and plus 1 make sure the coordinate don`t lost points
+# step means the scale of axes. This makes sure we can get every pixel. 
+X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
+                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01))
+# contour function = contourf get the points between the two prediction regions with two features
+# If the probility of point support 0 is red, else is green
+plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+             alpha = 0.25, cmap = ListedColormap(('red', 'green')))
+# limits the age and salary
+plt.xlim(X1.min(), X1.max())
+plt.ylim(X2.min(), X2.max())
+# use loop plot all points on the graph 
+for i, j in enumerate(np.unique(y_test)):
+    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
+                c = ListedColormap(('red', 'green'))(i), label = j)
+plt.title('Logistic Regression (Test set)')
+plt.xlabel('Age')
+plt.ylabel('Estimated Salary')
+plt.legend() # illustrate the colors of points
+plt.show()
+```
+
+classification作图步骤：
+
+a、设计坐标的框架 （两个轴的截距、格子的大小（step））。meshgrid mesh：网状  gird：格子 网状格子。  
+
+b、设计图形的轮廓（点，透明度，各类点颜色（ListedColormap））。contourf  contour：轮廓   f：function
+
+c、图形的大小
+
+d、画上点
+
+e、图例 legend
+
+2、classification 模板
+
+```python
+# import libraries
+# import dataset
+# split dataset into train and test
+from sklearn.cross_validation import train_test_split
+# feature scaling
+from sklearn.preprocessing import StandardScaler
+# fit the model of train set
+# predict the test set
+# making confusion matrix
+from sklearn.metrics import confusion_matrix
+# visualising the result
+from matplotlib.pyplot import plt
+from matplotlib.colors import ListedColormap
+np.meshgrid
+plt.contorf
+plt.legend()
+```
 
 
 
