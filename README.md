@@ -1,14 +1,13 @@
-# ML_DL
+# DATA SICENTIST TOOL
 **1、3 blue 1 brown 数学笔记** 
 
   线性代数
   微积分  
   
-**2、邹博ML**  
+**2、MySQL**  
 
-**3、Hands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems**  
+**3、Hands-On Machine Learning A-Z**  
 
-    代码
-    笔记  
+    code 笔记   
     
-**4、NG ML**
+    
