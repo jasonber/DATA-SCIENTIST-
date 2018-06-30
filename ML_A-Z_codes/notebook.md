@@ -243,12 +243,11 @@ X_set, y_set = X_test, y_test # get the features and the value of label. Do this
 # meshgrid get the frame of my coordinate
 # X1 and X2 are the axes. Minus 1 and plus 1 make sure the coordinate don`t lost points
 # step means the scale of axes. This makes sure we can get every pixel. 
-X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
-                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01))
+X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01))
 # contour function = contourf get the points between the two prediction regions with two features
 # If the probility of point support 0 is red, else is green
-plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-             alpha = 0.25, cmap = ListedColormap(('red', 'green')))
+# make the X of predictor to be matrix. This matrix must same as X_train.
+plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(),  X2.ravel()]).T).reshape(X1.shape), alpha = 0.25, cmap = ListedColormap(('red', 'green')))
 # limits the age and salary
 plt.xlim(X1.min(), X1.max())
 plt.ylim(X2.min(), X2.max())
@@ -296,5 +295,12 @@ plt.contorf
 plt.legend()
 ```
 
+3、ravel 和 flatten
 
+首先声明两者所要实现的功能是一致的（将多维数组降位一维）。这点从两个单词的意也可以看出来，ravel(散开，解开)，flatten（变平）。两者的区别在于返回拷贝（copy）还是返回视图（view），numpy.flatten()返回一份拷贝，对拷贝所做的修改不会影响（reflects）原始矩阵，而numpy.ravel()返回的是视图（view，也颇有几分C/C++引用reference的意味），会影响（reflects）原始矩阵。
 
+## section 13 K - nearest -neighbors KNN
+
+KNN 可选择L1 L2
+
+线性与否 与图形有关
