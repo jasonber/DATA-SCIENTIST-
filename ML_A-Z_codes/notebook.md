@@ -299,8 +299,16 @@ plt.legend()
 
 首先声明两者所要实现的功能是一致的（将多维数组降位一维）。这点从两个单词的意也可以看出来，ravel(散开，解开)，flatten（变平）。两者的区别在于返回拷贝（copy）还是返回视图（view），numpy.flatten()返回一份拷贝，对拷贝所做的修改不会影响（reflects）原始矩阵，而numpy.ravel()返回的是视图（view，也颇有几分C/C++引用reference的意味），会影响（reflects）原始矩阵。
 
+4、什么时候需要特征缩放
+
 ## section 13 K - nearest -neighbors KNN
 
 KNN 可选择L1 L2
 
 线性与否 与图形有关
+
+##section 14 SVM support vector machine
+
+linear 效果是不好。。。。。
+
+有很多kernel
