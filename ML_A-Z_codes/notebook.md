@@ -312,3 +312,17 @@ KNN 可选择L1 L2
 linear 效果是不好。。。。。
 
 有很多kernel
+
+## section 15 Kernel SVM
+
+Kernel 意味着landmark的选取方式和距离计算方式不同。分类方法K是否大于0
+
+Kernel Trick指的就是 Kernel的通过landmark和距离分类的方法
+
+Kernel ： RBF 高斯分布，sigmoid sigmoid函数， polynomial函数 多项式分布
+
+ http://mlkernels.readthedocs.io/en/latest/
+
+## section 16 Naive Bayes
+
+取样方法很重要
