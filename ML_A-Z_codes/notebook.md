@@ -326,3 +326,21 @@ Kernel ： RBF 高斯分布，sigmoid sigmoid函数， polynomial函数 多项�
 ## section 16 Naive Bayes
 
 取样方法很重要
+
+## section 17 Decision Tree Classifier
+
+```python
+plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+             alpha = 0.25, cmap = ListedColormap(('red', 'green')))
+
+T1, T2 = X1.ravel(), X2.ravel() # 将matrix变成一维数组（横向量）
+A1 = np.array([T1, T2]) # 将两个一维数组，拼成二维数组（2行）
+A2 = A1.T               # 转置成2列
+R = classifier.predict(A2)
+R2 = R.reshape(X1.shape) # 调整为X1的矩阵样子，这样才能plot
+R3 = R.reshape(X2.shape)
+```
+
+y只能是1维数组，否则plot会出错
+
+保证数据的样子是一致的
