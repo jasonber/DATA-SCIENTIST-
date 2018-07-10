@@ -344,3 +344,83 @@ R3 = R.reshape(X2.shape)
 y只能是1维数组，否则plot会出错
 
 保证数据的样子是一致的
+
+## section 18 Random Forest 
+
+Real-time Human Pose Recognition in parts Single Depth Images
+
+np.arange
+
+np.array
+
+== 表示左右两个值是否相等，相等返回True，不等返回False
+
+出现多余的分类，可判定为overfitting
+
+## section 19 evaluating classificaiton performance
+
+1、阳性、阴性：概率的投影。大于0.5为1， 小于0.5为0
+
+false positive： 1 error，预测是阳性的但真实值是阴性的。 采纳错了
+
+false negative： 2 error， 预测是阴性的但真实值是阳性。 拒绝错了
+
+2、正确率 accuracy rate = correct / total
+
+错误率 error rate = wrong / total
+
+3、正确率悖论
+
+数据不平衡：阳性和阴性的比例相差太多
+
+4、CAP cumulative accuracy profile  
+
+如果curve 接近平均概率（随机样本）的直线就是不好，离平均概率越远越好。如果在直线下方就是非常差
+
+crystal ball
+
+roc = Receiver Operating Characteristic 竟然不讲。。。
+
+1) ROC(Receiver Operating Characteristic Curve):接受者操作特征曲线。ROC曲线及AUC系数主要用来检验模型对客户进行正确排序的能力。ROC曲线描述了在一定累计好客户比例下的累计坏客户的比例，模型的分别能力越强，ROC曲线越往左上角靠近。AUC系数表示ROC曲线下方的面积。AUC系数越高，模型的风险区分能力越强。  
+2)CAP(Cumulative Accuracy Profile):累积准确曲线。CAP曲线及准确性比率/AR描绘了每个可能的点上累计违约排除百分比。为了画出CAP曲线，需要首先自高风险至低风险排列模型的分数，然后对于横坐标客户总数中特定的比例，CAP曲线的纵坐标描述风险评级分数小于或等于横坐标x中的违约个数百分比。一个有效的模型应当在样本客户处于同一排除率的情况下，排除更高百分比的坏客户。  
+
+3)KS（Kolmogorov-Smirnov）检验:K－S检验主要是验证模型对违约对象的区分能力，通常是在模型预测全体样本的信用评分后，将全体样本按违约与非违约分为两部分，然后用KS统计量来检验这两组样本信用评分的分布是否有显著差异。
+
+5、cap curve analysis
+
+AR = model curve/ crystal curve
+
+AR<60% rubbish     
+
+60%<AR<70% poor    
+
+70%<AR<80% good    
+
+80%<AR<90% very good    
+
+90%<AR<100% Too good  容易overfitting 
+
+总结
+
+1、利弊
+
+2、模型选择
+
+linear Logistic Regression、SVM。
+
+non-linear K-NN ， Naive Bayes， Decision Tree， Random Forest。
+
+使用概率预测 LR（线性） NB（非线性）  如何判断线性与否？   
+
+多类别预测 SVM   
+
+有清晰的解释（特征） DT
+
+好的分类模型 RF
+
+# part 4 clustering
+
+## section 12 K-means
+
+
+
