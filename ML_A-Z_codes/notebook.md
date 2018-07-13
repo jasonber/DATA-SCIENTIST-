@@ -307,6 +307,8 @@ KNN 可选择L1 L2
 
 线性与否 与图形有关
 
+已经分好类别，随机抽取样本，计算样本中各类别比例，以此为出发点，找到最好的分类抽样。当有新样本出现时，按照训练集抽样的比例，判定新数据的类别。
+
 ##section 14 SVM support vector machine
 
 linear 效果是不好。。。。。
@@ -422,5 +424,94 @@ non-linear K-NN ， Naive Bayes， Decision Tree， Random Forest。
 
 ## section 12 K-means
 
+一、如何实现
 
+1、选择簇的K个数  
+
+2、随机选择K个中心，任意值不局限在数据中的点
+
+3、选择个数据点到中心的距离  #这3项构建出了K个簇
+
+4、计算新的中心
+
+5、找距中心最近的点，直到不再计算新的中心。没有点在各个中心的中点线上时收敛。  
+
+二、随机初始化陷阱
+
+不好的初始点
+
+K-mean ++算法 避免该陷阱
+
+三、簇的个数 elbow method
+
+降低 各个簇的MSE的和的和，WCSS组内平方和最小是的簇数就是最佳簇数。
+
+碎石图 可以帮忙确定，类似降维
+
+elbow method
+
+四、模板
+
+```python
+# -*- coding: utf-8 -*-
+
+# K-mean
+# import libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+# import dataset 无分类 无因变量所以不用split
+dataset = pd.read_csv("Mall_Customers.csv")
+X = dataset.iloc[:, [3, 4]].values
+
+# useing the elbow method find the optimal number of clusters 尝试不同的
+from sklearn.cluster import KMeans
+wcss = []
+for i in range(1, 11):
+    kmeans = KMeans(n_clusters = i, init = 'k-means++', n_init = 10, max_iter = 300, random_state = 0)
+    kmeans.fit(X)
+    wcss.append(kmeans.inertia_)
+plt.plot(range(1, 11), wcss)
+plt.title('The Elbow Method')
+plt.xlabel('Number of Clusters')
+plt.ylabel('Wcss')
+plt.show()
+
+# split datasets 为什么不划分训练集和测试集
+# feature scaling 在同一个数量级上
+# fit model
+kmeans = KMeans(n_clusters = 5, init = 'k-means++', n_init = 10, max_iter = 300, random_state = 0)
+y_kmeans = kmeans.fit_predict(X)
+
+# predict
+# confusion matrix
+# visualising 
+plt.scatter(X[y_kmeans == 0, 0], X[y_kmeans == 0, 1], s = 100, c = 'red', label = 'Cluster 1') 
+# what`s the meaning of y == 0. S is the size of dot
+plt.scatter(X[y_kmeans == 1, 0], X[y_kmeans == 1, 1], s = 100, c = 'blue', label = 'Cluster 2')
+plt.scatter(X[y_kmeans == 2, 0], X[y_kmeans == 2, 1], s = 100, c = 'green', label = 'Cluster 3')
+plt.scatter(X[y_kmeans == 3, 0], X[y_kmeans == 3, 1], s = 100, c = 'cyan', label = 'Cluster 4')
+plt.scatter(X[y_kmeans == 4, 0], X[y_kmeans == 4, 1], s = 100, c = 'magenta', label = 'Cluster 5')
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s = 300, c = 'yellow', label = 'centroids')
+plt.title('Cluster of clients')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel("Spending Score(1-100)")
+plt.legend()
+plt.show()
+
+# name the cluster 
+plt.scatter(X[y_kmeans == 0, 0], X[y_kmeans == 0, 1], s = 100, c = 'red', label = 'Careful') 
+plt.scatter(X[y_kmeans == 1, 0], X[y_kmeans == 1, 1], s = 100, c = 'blue', label = 'Standard')
+plt.scatter(X[y_kmeans == 2, 0], X[y_kmeans == 2, 1], s = 100, c = 'green', label = 'Target')
+plt.scatter(X[y_kmeans == 3, 0], X[y_kmeans == 3, 1], s = 100, c = 'cyan', label = 'Careless')
+plt.scatter(X[y_kmeans == 4, 0], X[y_kmeans == 4, 1], s = 100, c = 'magenta', label = 'Sensible')
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s = 300, c = 'yellow', label = 'centroids')
+plt.title('Cluster of clients')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel("Spending Score(1-100)")
+plt.legend()
+plt.show()
+```
 
