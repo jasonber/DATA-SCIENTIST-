@@ -422,9 +422,15 @@ non-linear K-NN ， Naive Bayes， Decision Tree， Random Forest。
 
 # part 4 clustering
 
+对未知的知识，先用无监督模型进行聚类，打上标记，然后再用监督学习建立模型，去找到知识的规律
+
+正好是两种认知模式，自上而下（k均值），自下而上（层聚类）
+
+聚类与降维的异同？
+
 ## section 12 K-means
 
-一、如何实现
+一、算法过程（由上到下）
 
 1、选择簇的K个数  
 
@@ -487,7 +493,7 @@ y_kmeans = kmeans.fit_predict(X)
 
 # predict
 # confusion matrix
-# visualising 
+# visualising 只适用于二维数据 那三维的怎么办？
 plt.scatter(X[y_kmeans == 0, 0], X[y_kmeans == 0, 1], s = 100, c = 'red', label = 'Cluster 1') 
 # what`s the meaning of y == 0. S is the size of dot
 plt.scatter(X[y_kmeans == 1, 0], X[y_kmeans == 1, 1], s = 100, c = 'blue', label = 'Cluster 2')
@@ -515,3 +521,102 @@ plt.legend()
 plt.show()
 ```
 
+##section 22 Hierarchical Clustering
+
+一、算法过程（由下到上）
+
+1、将每个数据点看做一个簇
+
+2、将距离最近的两个点合并为一个簇，剩下N-1个簇
+
+3、将距离最近的两个簇（数据点）合并成一个簇，剩下N-2个簇
+
+4、重复第3步，直到形成一个簇
+
+簇之间的距离计算会影响算法 欧式距离
+
+二、测量两个簇的距离：
+
+1、最近的点的距离
+
+2、最远的点的距离
+
+3、两个簇中所有点的距离的平均距离
+
+3、两个簇的中心的距离
+
+三、dendrograms 密度图
+
+记录HC聚类的过程
+
+横轴为数据点、竖轴为数据点的距离距离
+
+四、确定层数
+
+簇距离的最后阈限
+
+dissimilarity thresholds 不相似阈限
+
+在最接近阈限的下方有几个竖线 就有几个簇。
+
+阈限直线与最长距离的交点个数就是簇的个数
+
+五、模板
+
+```python
+# -*- coding: utf-8 -*-
+
+# hieracrchical clusetring
+# import libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# import dataset
+dataset = pd.read_csv('Mall_Customers.csv')
+X = dataset.iloc[:, [3, 4]].values
+
+# prprocessing
+# split dataset
+# feature scaling
+# find the optimal number of clusters dendorgrams
+import scipy.cluster.hierarchy as sch
+dendrogram = sch.dendrogram(sch.linkage(X, method = 'ward'))
+plt.title('Dendrogram')
+plt.xlabel('Customer')
+plt.ylabel('Euclidean distance')
+
+# fit model
+hc = AgglomerativeClustering(n_clusters = 5, affinity = 'euclidean', linkage = 'ward')
+
+# predict
+y_hc = hc.fit_predict(X)
+
+# visualising
+plt.scatter(X[y_hc == 0, 0], X[y_hc == 0, 1], s = 100, c = 'red', label = 'Cluster 0')
+plt.scatter(X[y_hc == 1, 0], X[y_hc == 1, 1], s = 100, c = 'blue', label = 'Cluster 1')
+plt.scatter(X[y_hc == 2, 0], X[y_hc == 2, 1], s = 100, c = 'green', label = 'Cluster 2')
+plt.scatter(X[y_hc == 3, 0], X[y_hc == 3, 1], s = 100, c = 'cyan', label = 'Cluster 3')
+plt.scatter(X[y_hc == 4, 0], X[y_hc == 4, 1], s = 100, c = 'magenta', label = 'Cluster 4')
+plt.title('Cluster of customers')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score (1-100)')
+plt.legend()
+plt.show()
+
+# name the cluster
+plt.scatter(X[y_hc == 0, 0], X[y_hc == 0, 1], s = 100, c = 'red', label = 'Careful')
+plt.scatter(X[y_hc == 1, 0], X[y_hc == 1, 1], s = 100, c = 'blue', label = 'Standard')
+plt.scatter(X[y_hc == 2, 0], X[y_hc == 2, 1], s = 100, c = 'green', label = 'Target')
+plt.scatter(X[y_hc == 3, 0], X[y_hc == 3, 1], s = 100, c = 'cyan', label = 'Careless')
+plt.scatter(X[y_hc == 4, 0], X[y_hc == 4, 1], s = 100, c = 'magenta', label = 'Sensibel')
+plt.title('Cluster of customers')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score (1-100)')
+plt.legend()
+plt.show()
+```
+
+
+
+ 
