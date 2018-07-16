@@ -619,4 +619,56 @@ plt.show()
 
 
 
- 
+ # Part 5  Association Rule Learning
+
+关联法则学习，买了这个东西那么又买那个。推荐系统
+
+## section 4 Apriori learning
+
+同时买两样东西
+
+步骤: 朴素贝叶斯
+
+1、设置最小支持和最小 confidence
+
+support(M) = 用户的交易中包含某件商品M/所有交易（概率）
+
+confidence(M1-M2) = 用户购买了M1又购买了M2/所有购买M1的交易（概率）
+
+2、在所有交易中选取高于最小支持的子集合交易 
+
+3、在所有子交易集合中选取高于最小confidence的confidence
+
+4、通过降低lift 将规则分类
+
+lift(M1-M2) = confidence(M1-M2)/support(M2) （值）
+
+对lift降序得到分类结果。规则越强lift越高，关联性越强，所以就能推荐
+
+```python
+# Apriori
+
+# Importing the libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Data Preprocessing
+dataset = pd.read_csv('Market_Basket_Optimisation.csv', header = None)
+transactions = []
+for i in range(0, 7501):
+    transactions.append([str(dataset.values[i,j]) for j in range(0, 20)])
+
+# Training Apriori on the dataset
+from apyori import apriori
+rules = apriori(transactions, min_support = 0.003, min_confidence = 0.2, min_lift = 3, min_length = 2)
+
+# Visualising the results
+results = list(rules)
+results_list = []
+for k in range(0, len(results)):
+    results_list.append('Rule:\t' + str(results[i][0]) + '\nSupport:\t' + str(results[i][1]) +
+                        '\nCONF:\t' + str(results[i][2][0][2]) + '\nLIFT:\t' + str(results[i][2][0][3]))
+    
+```
+
