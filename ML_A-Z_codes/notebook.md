@@ -623,11 +623,11 @@ plt.show()
 
 关联法则学习，买了这个东西那么又买那个。推荐系统
 
-## section 4 Apriori learning
+## section 24 Apriori learning
 
 同时买两样东西
 
-步骤: 朴素贝叶斯
+一、步骤: 朴素贝叶斯
 
 1、设置最小支持和最小 confidence
 
@@ -644,6 +644,8 @@ confidence(M1-M2) = 用户购买了M1又购买了M2/所有购买M1的交易（�
 lift(M1-M2) = confidence(M1-M2)/support(M2) （值）
 
 对lift降序得到分类结果。规则越强lift越高，关联性越强，所以就能推荐
+
+二、代码
 
 ```python
 # Apriori
@@ -665,10 +667,55 @@ rules = apriori(transactions, min_support = 0.003, min_confidence = 0.2, min_lif
 
 # Visualising the results
 results = list(rules)
-results_list = []
-for k in range(0, len(results)):
-    results_list.append('Rule:\t' + str(results[i][0]) + '\nSupport:\t' + str(results[i][1]) +
-                        '\nCONF:\t' + str(results[i][2][0][2]) + '\nLIFT:\t' + str(results[i][2][0][3]))
+
     
 ```
 
+## section 25 eclat 
+
+一、步骤
+
+1、设置最小支持
+
+support(M) = 用户的交易中包含某件商品M/所有交易（概率）
+
+2、在所有交易中选取高于最小支持的子集合交易 
+
+3、在所有子交易集合中选取高于最小confidence的confidence
+
+4、通过降序排列support 将规则分类
+
+对support降序得到分类结果。规则越强lift越高，关联性越强，所以就能推荐 
+
+# Part 6 Reinforcement Learning
+
+online learning  
+
+对了就奖励，错了就惩罚
+
+## section 27 upper confidence bound(UCB)
+
+ The multi-armed bandit problem 多臂老虎机
+
+  
+
+# Part 10 Model Selection & Boostin
+
+## Section 38 Model Selection
+
+1、K-fold Cross Validation
+
+用于选择超参数
+
+用K-folds的准确率平均值和方差。来评估模型的准确率以及准确率的稳定性。
+
+```python
+from sklearn.model_selection import cross_val_score
+accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
+accuracies.mean()
+accuracies.std()
+```
+
+auc 用于选择模型
+
+偏差和方差权衡
