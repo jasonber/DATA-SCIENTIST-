@@ -148,6 +148,9 @@ Python2.6 开始，新增了一种格式化字符串的函数 str.format()，它
  
 >>> "{1} {0} {1}".format("hello", "world")  # 设置指定位置
 'world hello world'
+
+>>> print("{:.2f}".format(3.1415926))   # 指定格式
+3.14
 ```
 
 
@@ -172,3 +175,12 @@ get_dummies的优势：
 pandas.DataFrame.align
 
 需要仔细研究
+
+# [plt.style](http://nbviewer.jupyter.org/github/lijin-THU/notes-python/blob/master/06-matplotlib/06.02-customizing-plots-with-style-sheets.ipynb)
+
+作图时使用什么风格
+
+```python
+plt.style.available # 查询哪些风格可用
+```
+
