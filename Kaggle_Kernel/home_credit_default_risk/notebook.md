@@ -184,3 +184,26 @@ pandas.DataFrame.align
 plt.style.available # 查询哪些风格可用
 ```
 
+
+
+# [KDE](http://www.dataivy.cn/blog/%E6%A0%B8%E5%AF%86%E5%BA%A6%E4%BC%B0%E8%AE%A1kernel-density-estimation_kde/)
+
+kernel density estimation plot 核密度估计
+
+非参数估计
+
+由于核密度估计方法不利用有关数据分布的先验知识，对数据分布不附加任何假定，是一种从数据样本本身出发研究数据分布特征的方法，因而，在统计学理论和应用领域均受到高度的重视。
+
+# [pd.cut](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.cut.html)
+
+```python
+pandas.cut(x, bins, right=True, labels=None, retbins=False, precision=3, include_lowest=False, duplicates='raise')
+```
+
+# [np.linsapce](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html)
+
+创建等差数列
+
+# [plt.xticks](https://blog.csdn.net/henni_719/article/details/77374422)
+
+pyplot的xstick、ystick函数指定坐标轴刻度操作
