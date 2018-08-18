@@ -194,6 +194,8 @@ kernel density estimation plot 核密度估计
 
 由于核密度估计方法不利用有关数据分布的先验知识，对数据分布不附加任何假定，是一种从数据样本本身出发研究数据分布特征的方法，因而，在统计学理论和应用领域均受到高度的重视。
 
+**如何解释图形**
+
 # [pd.cut](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.cut.html)
 
 ```python
@@ -207,3 +209,69 @@ pandas.cut(x, bins, right=True, labels=None, retbins=False, precision=3, include
 # [plt.xticks](https://blog.csdn.net/henni_719/article/details/77374422)
 
 pyplot的xstick、ystick函数指定坐标轴刻度操作
+
+# [seaborn.heatmap](http://seaborn.pydata.org/generated/seaborn.heatmap.html)
+
+```python
+seaborn.heatmap(data, vmin=None, vmax=None, cmap=None, center=None, robust=False, annot=None, fmt='.2g', annot_kws=None, linewidths=0, linecolor='white', cbar=True, cbar_kws=None, cbar_ax=None, square=False, xticklabels='auto', yticklabels='auto', mask=None, ax=None, **kwargs)
+```
+
+# [plt.subplot](https://blog.csdn.net/gt11799/article/details/39103855?locationNum=13)
+
+```python
+subplot(nrows, ncols, index, **kwargs)
+```
+
+ 第一位是行数，第二位是列数，第三位（或者三四位）则是第几个子图。
+
+# [enumerate](http://www.runoob.com/python/python-func-enumerate.html)
+
+enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。
+
+```python
+enumerate(sequence, [start=0])
+```
+
+参数
+sequence -- 一个序列、迭代器或其他支持迭代对象。
+start -- 下标起始位置。
+
+```python
+>>>seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+>>> list(enumerate(seasons))
+[(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
+>>> list(enumerate(seasons, start=1))       # 小标从 1 开始
+[(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]
+```
+
+# [plt.tight_layout](https://www.cnblogs.com/nju2014/p/5707980.html)
+
+https://www.jianshu.com/p/91eb0d616adb
+
+tight_layout会自动调整子图参数，使之填充整个图像区域。
+
+# [merge](https://blog.csdn.net/starter_____/article/details/79198137)
+
+与 SQL join的作用和用法相同
+
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.merge.html
+
+```python
+DataFrame.merge(right, how='inner', on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False, suffixes=('_x', '_y'), copy=True, indicator=False, validate=None)
+```
+
+# [sklearn.preprocessing.MinMaxScaler](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html)
+
+```python
+min, max = feature_range
+X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
+X_scaled = X_std * (max - min) + min
+```
+
+归一到 [0, 1]之间
+
+# [sklearn.linear_model.LogisticRegression](https://blog.csdn.net/jark_/article/details/78342644)
+
+http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+
+c是正则项的系数的倒数
