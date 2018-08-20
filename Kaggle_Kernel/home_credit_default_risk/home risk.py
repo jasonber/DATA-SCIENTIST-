@@ -276,13 +276,84 @@ submit['TARGET'] = log_reg_pred
 
 submit.head()
 
-predict = log_reg.predict(train)
-from sklearn.metrics import confusion_matrix
-confusion_matrix(app_train["TARGET"], predict)
 
-# performance of Logistic
-data = app_train.copy()
+# model selection
+X = train.copy()
+y = train_labels.copy()
 from sklearn.cross_validation import train_test_split
-data_train, data_test = train_test_split(data, test_size = 0.2, random_state = 42)
-data_train_y = data_train['TARGET']
-data_tran_x = data_train.drop(['TARGET'])
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
+
+from sklearn.linear_model import LogisticRegression
+classifier_LR = LogisticRegression(C = 0.0001, class_weight = 'balanced')
+classifier_LR.fit(X_train, y_train)
+
+def model_score(model, X = X_test, y = y_test):
+    from sklearn.model_selection import cross_val_score
+    score = cross_val_score(model, X, y, scoring='neg_mean_squared_error', cv=10)
+    return print('The score of {} is {}'.format(model, np.sqrt(-score).mean()))
+
+
+# LR_score = cross_val_score(classifier_LR, X_train, y_train, scoring = 'neg_mean_squared_', cv = 10)
+#
+from sklearn.ensemble import RandomForestClassifier
+classifier_RF = RandomForestClassifier(n_estimators = 100, class_weight = 'balanced')
+classifier_RF.fit(X_train, y_train)
+
+model_score(classifier_LR)
+model_score(classifier_RF)
+
+# confusion matrix
+LR_y = classifier_LR.predict(X_test)
+RF_y = classifier_RF.predict(X_test)
+
+from sklearn.metrics import confusion_matrix
+confusion_matrix(y_test, LR_y)
+confusion_matrix(y_test, RF_y)
+
+from sklearn.metrics import precision_score, recall_score
+precision_score(y_test, LR_y)
+recall_score(y_test, LR_y)
+
+precision_score(y_test, RF_y)
+recall_score(y_test,RF_y)
+
+from sklearn.metrics import f1_score
+f1_score(y_test, RF_y)
+f1_score(y_test, LR_y)
+
+from sklearn.metrics import precision_recall_curve
+precisions, recalls, thresholds = precision_recall_curve(y_test, RF_y)
+precision_LR, recall_LR, threshold_LR = precision_recall_curve(y_test, LR_y)
+
+
+def plot_precision_recall_vs_threshold(precisions, recalls, thresholds):
+    plt.plot(thresholds, precisions[:-1], "b--", label="Precision")
+    plt.plot(thresholds, recalls[:-1], "g-", label="Recall")
+    plt.xlabel("Threshold")
+    plt.legend(loc="upper left")
+    plt.ylim([0, 1])
+
+plot_precision_recall_vs_threshold(precisions, recalls, thresholds)
+plt.show()
+
+plt.plot(precision_LR, recall_LR, label = 'LR')
+plt.xlabel('Recalls')
+plt.ylabel('Precision')
+plt.plot(precisions, recalls, label ='RF')
+plt.legend()
+plt.show()
+
+from sklearn.metrics import roc_curve
+fpr, tpr, thresholds = roc_curve(y_test, RF_y)
+fpr_LR, tpr_LR, threshold_LR = roc_curve(y_test, LR_y)
+plt.plot(fpr, tpr,label = "RF")
+plt.plot(fpr_LR, tpr_LR, label = "LR")
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.legend()
+plt.show()
+
+# # imbalance smaples
+# from imblearn.over_sampling import SMOTE
+# model_smote = SMOTE()
+# X_somte, y_somte = model_smote.fit_sample(X, y)
