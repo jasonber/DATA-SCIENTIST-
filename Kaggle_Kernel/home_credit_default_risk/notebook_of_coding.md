@@ -275,3 +275,111 @@ X_scaled = X_std * (max - min) + min
 http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
 
 c是正则项的系数的倒数
+
+# [np.reshape(-1,)](https://blog.csdn.net/wld914674505/article/details/80460042)
+
+数组新的shape属性应该要与原来的配套，如果等于-1的话，那么Numpy会根据剩下的维度计算出数组的另外一个shape属性值。
+
+-1表示行/列不知道值，由已知的列/行来计算出
+
+```python
+z = np.array([[1, 2, 3, 4],
+          [5, 6, 7, 8],
+          [9, 10, 11, 12],
+          [13, 14, 15, 16]])
+z.shape
+(4, 4)
+
+z.reshape(-1)
+array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16])
+
+```
+
+# [raise](https://blog.csdn.net/u014148798/article/details/52288326/)
+
+用raise语句来引发一个异常。异常/错误对象必须有一个名字，且它们应是Error或Exception类的子类。
+
+抛出异常，或定义自己认为详细的异常
+
+# [sklearn.KFold()](https://blog.csdn.net/kancy110/article/details/74910185)
+
+shuffle：在每次划分时，是否进行洗牌
+
+若为Falses时，其效果等同于random_state等于整数，每次划分的结果相同
+
+若为True时，每次划分的结果都不一样，表示经过洗牌，随机取样的
+
+True每次划分时，都将样本打乱，在划分训练集和验证集
+
+# [pd.shape[0]](http://blog.sina.com.cn/s/blog_4c9dc2a10102vkhd.html)
+
+获取dataFrame的行数和列数，使用的命令是：dataframe.shape[0]和dataframe.shape[1]
+
+# [gc](https://www.cnblogs.com/pinganzi/p/6646742.html)
+
+http://python.jobbole.com/87064/
+
+释放内存
+
+# [Light Gradient Boosting Machine](http://lightgbm.apachecn.org/cn/latest/)
+
+https://www.jianshu.com/p/b4ac0596e5ef 
+
+LGBM sklearn api
+
+```python
+lightgbm.LGBMModel(boosting_type='gbdt', num_leaves=31, max_depth=-1, learning_rate=0.1, n_estimators=10, max_bin=255, subsample_for_bin=200000, objective=None, min_split_gain=0.0, min_child_weight=0.001, min_child_samples=20, subsample=1.0, subsample_freq=1, colsample_bytree=1.0, reg_alpha=0.0, reg_lambda=0.0, random_state=None, n_jobs=-1, silent=True, **kwargs)
+```
+
+```python
+fit(X, y, sample_weight=None, init_score=None, group=None, eval_set=None, eval_names=None, eval_sample_weight=None, eval_init_score=None, eval_group=None, eval_metric=None, early_stopping_rounds=None, verbose=True, feature_name='auto', categorical_feature='auto', callbacks=None)
+```
+
+
+
+
+
+##针对更快的训练速度
+
+通过设置 bagging_fraction 和 bagging_freq 参数来使用 bagging 方法
+通过设置 feature_fraction 参数来使用特征的子抽样
+使用较小的 max_bin
+使用 save_binary 在未来的学习过程对数据加载进行加速
+使用并行学习, 可参考 并行学习指南
+
+##针对更好的准确率
+
+使用较大的 max_bin （学习速度可能变慢）
+使用较小的 learning_rate 和较大的 num_iterations
+使用较大的 num_leaves （可能导致过拟合）
+使用更大的训练数据
+尝试 dart
+
+##处理过拟合
+
+使用较小的 max_bin
+使用较小的 num_leaves
+使用 min_data_in_leaf 和 min_sum_hessian_in_leaf
+通过设置 bagging_fraction 和 bagging_freq 来使用 bagging
+通过设置 feature_fraction 来使用特征子抽样
+使用更大的训练数据
+使用 lambda_l1, lambda_l2 和 min_gain_to_split 来使用正则
+尝试 max_depth 来避免生成过深的树
+
+# [hyperopt](https://www.e-learn.cn/content/python/736527)
+
+TypeError: 'generator' object is not subscriptable
+
+https://blog.csdn.net/FontThrone/article/details/79012616
+
+# [reset_index](http://www.30daydo.com/article/257)
+
+ 可以看到，原来的一列index现在变成了columns之一，新的index为[0,1,2,3,4,5]
+如果添加参数 reset_index(drop=True) 那么原index会被丢弃，不会显示为一个新列。
+
+```python
+result2 = result.reset_index(drop=True)
+```
+
+
+

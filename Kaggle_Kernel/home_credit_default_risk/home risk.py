@@ -181,6 +181,7 @@ plt.tight_layout(h_pad = 2.5)
 #
 #
 
+# polynomial feature
 poly_features = app_train[['EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'DAYS_BIRTH', 'TARGET']]
 poly_features_test = app_test[['EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'DAYS_BIRTH']]
 from sklearn.preprocessing import Imputer
@@ -220,6 +221,7 @@ app_train_poly, app_test_poly = app_train_poly.align(app_test_poly, join = 'inne
 print('Training data with polynomial features shape: ', app_train_poly.shape)
 print('Testing data with polynomial features shape: ', app_test_poly.shape)
 
+# domain knowledge
 app_train_domain = app_train.copy()
 app_test_domain = app_test.copy()
 
@@ -228,7 +230,7 @@ app_train_domain['ANNUITY_INCOME_PERCENT'] = app_train_domain['AMT_ANNUITY'] / a
 app_train_domain['CREDIT_TERM'] = app_train_domain['AMT_ANNUITY'] / app_train_domain['AMT_CREDIT']
 app_train_domain['DAYS_EMPLOYED_PERCENT'] = app_train_domain['DAYS_EMPLOYED'] / app_train_domain['DAYS_BIRTH']
 
-app_test_domain['CREDIT_INCOME_REPCENT'] = app_test_domain['AMT_CREDIT'] / app_test_domain['AMT_INCOME_TOTAL']
+app_test_domain['CREDIT_INCOME_PERCENT'] = app_test_domain['AMT_CREDIT'] / app_test_domain['AMT_INCOME_TOTAL']
 app_test_domain['ANNUITY_INCOME_PERCENT'] = app_test_domain['AMT_ANNUITY'] / app_test_domain['AMT_INCOME_TOTAL']
 app_test_domain['CREDIT_TERM'] = app_test_domain['AMT_ANNUITY'] / app_test_domain['AMT_CREDIT']
 app_test_domain['DAYS_EMPLOYED_PERCENT'] = app_test_domain['DAYS_EMPLOYED'] / app_test_domain['DAYS_BIRTH']
@@ -357,3 +359,113 @@ plt.show()
 # from imblearn.over_sampling import SMOTE
 # model_smote = SMOTE()
 # X_somte, y_somte = model_smote.fit_sample(X, y)
+
+# LGBM
+from sklearn.model_selection import KFold
+from sklearn.metrics import roc_auc_score
+import lightgbm as lgb
+import gc
+
+def model(features, test_features, encoding = 'ohe', n_folds = 5):
+    train_ids = features['SK_ID_CURR']
+    test_ids = test_features['SK_ID_CURR']
+
+    labels = features['TARGET']
+
+    features = features.drop(columns = ['SK_ID_CURR', 'TARGET'])
+    test_features = test_features.drop(columns = ['SK_ID_CURR'])
+
+    if encoding == 'ohe':
+        features = pd.get_dummies(features)
+        test_features = pd.get_dummies(test_features)
+
+        fetaures, test_features = features.align(test_features, join = 'inner', axis = 1)
+        cat_indeices = 'auto'
+
+    elif encoding == 'le':
+        label_encoder = LabelEncoder()
+        cat_indeices = []
+        for i, col in enumerate(features):
+            if features[col].dtype == 'object':
+                features[col] = label_encoder.fit_transform(np.array(features[col].astype(str)).reshape((-1,)))
+                test_features[col] = label_encoder.transform(np.array(test_features[col].astype(str)).reshape((-1,)))
+                cat_indeices.append(i)
+
+    else:
+        raise ValueError("Encoding must be either 'ohe' or 'le' ")
+
+    print('Trianing Data Shape: ', features.shape)
+    print('Testing Data Shape: ', test_features.shape)
+
+    feature_names = list(features.columns)
+
+    features = np.array(features)
+    test_features = np.array(test_features)
+
+    k_fold = KFold(n_splits = n_folds, shuffle = True, random_state =50)
+    feature_importance_value = np.zeros(len(feature_names))
+    test_predictions = np.zeros(test_features.shape[0])
+
+    valid_score = []
+    train_score = []
+
+    for train_indices, valid_indices in k_fold.split(features):
+        train_features, train_labels = features[train_indices], labels[train_indices]
+        valid_features, valid_labels = features[valid_indices], labels[valid_indices]
+        
+        model = lgb.LGBMClassifier(n_estimators = 10000, objective = 'binary',
+                                   class_weight = 'balanced', learning_rate = 0.05,
+                                   reg_alpha = 0.1, reg_lambda = 0.1,
+                                   subsample = 0.8, n_jobs = -1, random_state = 50)
+        
+        model.fit(train_features, train_labels, eval_metric = 'auc',
+                  eval_set = [(valid_features, valid_labels), (train_features, train_labels)],
+                  eval_names = ['valid', 'train'], categorical_feature = cat_indeices,
+                  early_stopping_rounds = 100, verbose = 200)
+
+        best_iteration = model.best_iteration_
+
+        feature_importance_value += model.feature_importances_ / k_fold.n_splits
+
+        test_predictions += model.predict_proba(test_features, num_iteration = best_iteration)[:, 1] / k_fold.n_splits
+
+        out_of_fold[valid_indices] = model.predict_roba(valid_features, num_iteration = best_iteration)[:, 1]
+
+        valid_score = model.best_score_['valid']['auc']
+        train_score = model.best_score_['train']['auc']
+
+        valid_score.append(valid_score)
+        train_score.append(train_score)
+
+        gc.enable()
+        del model, train_features, valid_features
+        gc.collect()
+
+    submission = pd.DataFrame({'SK_ID_CURR': test_ids, 'TARGET': test_predictions})
+
+    feature_importances = pd.DataFrame({'feature': feature_names, 'importance': feature_importance})
+
+    valid_auc = roc_auc_score(labels, out_of_fold)
+
+    valid_scores.append(valid_auc)
+    train_scores.append(np.mean(train_score))
+
+    fold_names = list(range(n_folds))
+    fold_names.append('overall')
+
+    metrics = pd.DataFrame({'fold': fold_names,
+                            'train': train_score,
+                            'valid': valid_score})
+
+    return submission, feature_importances, metrics
+
+submission, fi, metrics = model(app_train, app_test)
+print('Baseline metrics')
+print(metrics)
+
+# domain knowledge feature
+app_train_domain['TARGET'] = train_labels
+
+submission_domain, fi_domain, metrics_domain = model(app_train_domain, app_test_domain)
+print('Baseline with domain knowledge features metrics')
+print(metrics_domain)
