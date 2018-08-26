@@ -94,28 +94,88 @@ app_train_domain['TARGET'] = train_labels
 
 import lightgbm as lgb
 X = app_train_domain.copy().drop(columns = ['TARGET', 'SK_ID_CURR'])
-y = train_labels.copy()
-X = pd.get_dummies(X)
+y = app_train_domain.copy()['TARGET'].values
+y = pd.DataFrame({'TARGET':y})
 
 predict_X = app_test_domain.copy()
-predict_X = pd.get_dummies(predict_X).drop(columns  = ['SK_ID_CURR'])
+predict_X = predict_X.drop(columns  = ['SK_ID_CURR'])
 
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
 
 
-model_domian =lgb.LGBMClassifier(n_estimators=10000, objective='binary', class_weight='balanced', learning_rate=0.05,
-                                 reg_alpha=0.1, reg_lambda=0.1, subsample=0.8, n_jobs=4, random_state=50)
-model_domian.fit(X_train, y_train, eval_metric='auc', eval_set=[(X_test, y_test), (X_train, y_train)],
-                 eval_names=['valid', 'train'], early_stopping_rounds=100, verbose=200)
+model_domain =lgb.LGBMClassifier(n_estimators=10000, objective='binary', class_weight='balanced', learning_rate=0.05,
+                                 reg_alpha=0.1, reg_lambda=0.1, subsample=0.8, n_jobs=-1, random_state=50)
 
 from hyperopt import tpe
-from hpsklearn import HyperoptEstimator
-X_train_reindex = X_train.copy().reset_index(drop = True)
-y_train_reindex = y_train.copy().reset_index(drop = True)
+from hpsklearn import HyperoptEstimator, any_preprocessing
+# X_train_reindex = X_train.copy().reset_index(drop = True)
+# y_train_reindex = y_train.copy().reset_index(drop = True)
 
 
-estim = HyperoptEstimator(classifier=model_domian, algo=tpe.suggest, max_evals=100, trial_timeout=120)
-estim.fit(X_train_reindex, y_train_reindex, random_state=50)
-y_pred_te = estim.predict(X_test)
-print(estim.best_model())
+# estim = HyperoptEstimator(classifier=model_domain, preprocessing=any_preprocessing('one_hot_encoder'), algo=tpe.suggest,
+#                           max_evals=100, trial_timeout=120)
+# estim.fit(X_train, y_train, random_state=50)
+# estim.fit()
+
+# don`t use hpsklearn
+from hyperopt import hp, fmin, rand, tpe, space_eval,
+from sklearn.cross_validation import cross_val_score
+from sklearn.metrics import accuracy_score
+
+def model_tune (args):
+    model_domain = lgb.LGBMClassifier(n_estimators=10000, objective='binary', class_weight='balanced',
+                                      learning_rate=0.05,
+                                      reg_alpha=0.1, reg_lambda=0.1, subsample=0.8, n_jobs=-1, random_state=50)
+    model_domain.fit(X_train, y_train, verbose=3)
+    predict = model_domain.predict(X_test)
+    score = accuracy_score(y_test, predict)
+    print(score)
+    return -score
+
+
+space = {'n_estimators':hp.uniform('n_estimators', 0, 20000),
+         'learning_rate':hp.uniform('learning_rate', 0, 1),
+         'reg_alpha':hp.uniform('reg_alpha', 0, 1),
+         'reg_lambda':hp.uniform('reg_lambda', 0, 1),
+         'subsample':hp.uniform('subsample', 0, 1)
+         }
+best = fmin(model_tune, space, algo=tpe.suggest, max_evals=3)
+
+from sklearn.externals import joblib
+joblib.dump(best, "LGB_hp.pkl")
+LGB_hp = joblib.load('LGB_hp.pkl')
+
+
+best.
+y_pred_te = best.predict(X_test)
+print(best.)
+
+
+
+
+
+print(space_eval(space, best))
+
+model_best = lgb.LGBMClassifier(n_estimators=1655, objective='binary', class_weight='balanced',
+                                  learning_rate=0.49637306466316566,
+                                  reg_alpha= 0.2180451659755328, reg_lambda= 0.4496755142995127,
+                                subsample=0.02267574289056462, n_jobs=-1, random_state=50)
+
+model_domain =lgb.LGBMClassifier(n_estimators=10000, objective='binary', class_weight='balanced', learning_rate=0.05,
+                                 reg_alpha=0.1, reg_lambda=0.1, subsample=0.8, n_jobs=-1, random_state=50)
+
+
+model_best.fit(X_train, y_train, eval_metric='auc', eval_set=[(X_test, y_test), (X_train, y_train)],
+                 eval_names=['valid', 'train'], early_stopping_rounds=100, verbose=5)
+best_y = model_best.predict(X_test)
+
+model_domain.fit(X_train, y_train, eval_metric='auc', eval_set=[(X_test, y_test), (X_train, y_train)],
+                 eval_names=['valid', 'train'], early_stopping_rounds=100, verbose=5)
+domain_y = model_domain.predict(X_test)
+
+from sklearn.metrics import accuracy_score
+score_best = accuracy_score(y_test, best_y)
+score_domain = accuracy_score(y_test, domain_y)
+
+print('auc of best model:{:.2f} \nauc of domain model:{:.2f} \n'.format(score_best, score_domain))

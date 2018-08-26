@@ -335,7 +335,9 @@ lightgbm.LGBMModel(boosting_type='gbdt', num_leaves=31, max_depth=-1, learning_r
 fit(X, y, sample_weight=None, init_score=None, group=None, eval_set=None, eval_names=None, eval_sample_weight=None, eval_init_score=None, eval_group=None, eval_metric=None, early_stopping_rounds=None, verbose=True, feature_name='auto', categorical_feature='auto', callbacks=None)
 ```
 
+verbose: 输出训练内容，在开始实验的时候一般看看训练内容更容易帮助找到改进方法。
 
+verbose_eval输出评估信息，如果设置为True输出评估信息，设置为数字，如5则每5次评估输出一次。
 
 
 
@@ -366,11 +368,44 @@ fit(X, y, sample_weight=None, init_score=None, group=None, eval_set=None, eval_n
 使用 lambda_l1, lambda_l2 和 min_gain_to_split 来使用正则
 尝试 max_depth 来避免生成过深的树
 
-# [hyperopt](https://www.e-learn.cn/content/python/736527)
+# [XGBOOST](https://xgboost.readthedocs.io/en/latest/index.html)
+
+```python
+ class xgboost.XGBRegressor(max_depth=3, learning_rate=0.1, n_estimators=100, silent=True, objective='reg:linear', booster='gbtree', n_jobs=1, nthread=None, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5, random_state=0, seed=None, missing=None, **kwargs)
+```
+
+```python
+ fit(X, y, sample_weight=None, eval_set=None, eval_metric=None, early_stopping_rounds=None, verbose=True, xgb_model=None, sample_weight_eval_set=None)
+```
+
+## 原生LGB、XGB 与 sklearn 接口的关系
+
+https://blog.csdn.net/PIPIXIU/article/details/80463565
+
+原生版本更灵活，而sklearn版本能够使用sklearn的Gridsearch
+
+对比预测结果，原生xgb与sklearn接口的训练过程相同，结果也相同。   不同之处在于：     
+
+1. 原生采用`xgb.train()`训练，sklearn接口采用`model.fit()`  。     
+
+2. sklearn接口中的参数n_estimators在原生xgb中定义在`xgb.train()`的`num_boost_round`     
+
+3. sklearn`watchlist`为`[(xtrain,ytrain),(xtest,ytest)]`形式，而原生则是`ain,'train'),(dtest,'test')]`,在数据和标签都在DMatrix中，元组里可以定位输出时的名字
+各有利弊 如果是为了快速得到模型还是用sklearn API，如果是为了模型更好就用原生
+
+# [hyperopt调参](https://www.e-learn.cn/content/python/736527)
 
 TypeError: 'generator' object is not subscriptable
 
-https://blog.csdn.net/FontThrone/article/details/79012616
+[Hyperopt TypeError: 'generator' object is not subscriptable](https://blog.csdn.net/FontThrone/article/details/79012616)
+
+[SVC hyperopt调参](https://blog.csdn.net/gg_18826075157/article/details/78068086)
+
+[XGB hyperopt调参](https://www.cnblogs.com/gczr/p/7156270.html)
+
+# 其他调参
+
+
 
 # [reset_index](http://www.30daydo.com/article/257)
 
