@@ -58,7 +58,23 @@ class_weight 惩罚权重的方法
 
 # [调参Hperpot](https://blog.csdn.net/gg_18826075157/article/details/78068086)
 
+# [KDE](http://www.dataivy.cn/blog/%E6%A0%B8%E5%AF%86%E5%BA%A6%E4%BC%B0%E8%AE%A1kernel-density-estimation_kde/)
 
+kernel density estimation plot 核密度估计
+
+非参数估计
+
+由于核密度估计方法不利用有关数据分布的先验知识，对数据分布不附加任何假定，是一种从数据样本本身出发研究数据分布特征的方法，因而，在统计学理论和应用领域均受到高度的重视。
+
+**如何解释图形**
+
+一个变量在另一个变量下的密度分布情况
+
+x轴表示自变量
+
+y轴表示某一变量在自变量的影响下的概率情况
+
+曲线下面的面积表示，在自变量为某值的情况下，因变量的概率
 
 
 

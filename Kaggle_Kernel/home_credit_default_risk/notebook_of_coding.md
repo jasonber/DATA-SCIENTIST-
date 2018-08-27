@@ -26,7 +26,21 @@ df.sort_values(by=['col1'])
 
 ```
 
-与sort的区别 没有sort
+[sorted的参数reverse](http://www.runoob.com/python/python-func-sorted.html)
+
+[sorted sort reverse reversed](https://www.jb51.net/article/78451.htm)
+
+reverse -- 排序规则，reverse = True 降序 ， reverse = False 升序（默认）。
+
+key -- 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。用什么样的值进行排列
+
+# [pandas.select_dtypes()](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.select_dtypes.html)
+
+```python
+DataFrame.select_dtypes(include=None, exclude=None)
+```
+
+
 
 # iloc loc ix
 
@@ -168,13 +182,15 @@ get_dummies的优势：
 
 注意: get_dummies 不像 sklearn 的 transformer一样，有 transform方法，所以一旦测试集中出现了训练集未曾出现过的特征取值，简单地对测试集、训练集都用 get_dummies 方法将导致数据错误。 
 
-
-
 # [align](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.align.html)
 
 pandas.DataFrame.align
 
 需要仔细研究
+
+# pandas levels
+
+levels表示dataframe中多重索引的层次
 
 # [plt.style](http://nbviewer.jupyter.org/github/lijin-THU/notes-python/blob/master/06-matplotlib/06.02-customizing-plots-with-style-sheets.ipynb)
 
@@ -190,11 +206,15 @@ plt.style.available # 查询哪些风格可用
 
 kernel density estimation plot 核密度估计
 
+http://seaborn.pydata.org/generated/seaborn.kdeplot.html
+
 非参数估计
 
 由于核密度估计方法不利用有关数据分布的先验知识，对数据分布不附加任何假定，是一种从数据样本本身出发研究数据分布特征的方法，因而，在统计学理论和应用领域均受到高度的重视。
 
 **如何解释图形**
+
+一个变量在另一个变量下的分布情况
 
 # [pd.cut](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.cut.html)
 
@@ -321,6 +341,14 @@ http://python.jobbole.com/87064/
 
 释放内存
 
+# [lambda](https://blog.csdn.net/zjuxsl/article/details/79437563) 
+
+ lambda argument_list: expression
+
+```python
+new_corrs = sorted(new_corrs, key = lambda x: abs(x[1]), reverse = True)
+```
+
 # [Light Gradient Boosting Machine](http://lightgbm.apachecn.org/cn/latest/)
 
 https://www.jianshu.com/p/b4ac0596e5ef 
@@ -380,7 +408,7 @@ verbose_eval输出评估信息，如果设置为True输出评估信息，设置�
 
 ## 原生LGB、XGB 与 sklearn 接口的关系
 
-https://blog.csdn.net/PIPIXIU/article/details/80463565
+https://blog.csdn.net/PIPIXIU/article/details/80463565   
 
 原生版本更灵活，而sklearn版本能够使用sklearn的Gridsearch
 
