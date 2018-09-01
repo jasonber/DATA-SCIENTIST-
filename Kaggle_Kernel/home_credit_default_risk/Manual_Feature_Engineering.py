@@ -178,3 +178,97 @@ bureau_by_loan = pd.merge(bureau_by_loan, bureau[['SK_ID_BUREAU', 'SK_ID_CURR']]
 # get the features of loan with every clients by SK_ID_CURR and named client_XX_XX
 bureau_balance_by_client = agg_numeric(bureau_by_loan.drop(columns = ['SK_ID_BUREAU']), group_var = 'SK_ID_CURR',
                                        df_name = 'client')
+
+# free up memory
+import gc
+gc.enable()
+del train, bureau, bureau_balance, bureau_agg, bureau_agg_new, bureau_balance_agg, bureau_balance_counts, bureau_by_loan,
+bureau_balance_by_client, bureau_counts
+gc.collect()
+
+# putting the functions together
+train = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/application_train.csv")
+bureau = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/bureau.csv")
+bureau_balance = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/bureau_balance.csv")
+
+bureau_counts = count_categorical(bureau, group_var = 'SK_ID_CURR', df_name = 'bureau')
+bureau_agg = agg_numeric(bureau.drop(columns = ['SK_ID_BUREAU']), group_var = 'SK_ID_CURR', df_name = 'bureau')
+
+bureau_balance_counts = count_categorical(bureau_balance, group_var = 'SK_ID_BUREAU', df_name = 'bureau_balance')
+bureau_balance_agg = agg_numeric(bureau_balance, group_var = 'SK_ID_BUREAU', df_name = 'bureau_balance')
+
+bureau_by_loan = pd.merge(bureau_balance_agg, bureau_balance_counts, right_index = True, how = 'outer',
+                          on ='SK_ID_BUREAU')
+bureau_by_loan = pd.merge(bureau[['SK_ID_BUREAU', 'SK_ID_CURR']], bureau_by_loan, on = 'SK_ID_BUREAU', how = 'left')
+bureau_balance_by_client = agg_numeric(bureau_by_loan.drop(columns = ['SK_ID_BUREAU']), group_var = 'SK_ID_CURR',
+                                       df_name = 'client')
+# merge above table into train table
+original_features = list(train.columns)
+print('Original Number of Features: ', len(original_features))
+
+train = pd.merge(train, bureau_counts, on = 'SK_ID_CURR', how = 'left')
+train = pd.merge(train, bureau_agg, on = 'SK_ID_CURR', how = 'left')
+train = train.merge(bureau_balance_by_client, on = 'SK_ID_CURR', how = 'left')
+
+new_features = list(train.columns)
+print('Number of features using previous loans from other institutions data: ', len(new_features))
+
+
+# feature selction
+# drop the columns with too many missing values
+def missing_values_table(df):
+    mis_val = df.isnull().sum()
+    mis_val_percent = 100 * df.isnull().sum() / len(df)
+    mis_val_table = pd.concat([mis_val, mis_val_percent], axis = 1)
+
+    mis_val_table_ren_columns = mis_val_table.rename(columns = {0: 'Missing Values', 1: '% of Total Values'})
+
+    mis_val_table_ren_columns = mis_val_table_ren_columns[mis_val_table_ren_columns.iloc[:, 1] !=0].sort_values(
+        "% of Total Values", ascending = False).round(1)
+
+    print("Your Selected dataframe has " + str(df.shape[1]) + " columns.\n"
+          "There are " + str(mis_val_table_ren_columns.shape[0]) + " columns that have missing values")
+    return mis_val_table_ren_columns
+
+missing_train = missing_values_table(train)
+
+# find the features which the missing percent greater than 90%
+# these features should be drop
+missing_train_vars = list(missing_train.index[missing_train['% of Total Values'] > 90])
+
+# calculate information for testing data and merge the other institution information datas
+test = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/application_test.csv")
+test = pd.merge(test, bureau_counts, on = 'SK_ID_CURR', how = 'left')
+test = pd.merge(test, bureau_agg, on = 'SK_ID_CURR', how = 'left')
+test = pd.merge(test, bureau_balance_by_client, on = 'SK_ID_CURR', how = 'left')
+print('Shape of Testing Data: {}'.format(test.shape))
+
+# make the columns name same
+train_labels = train['TARGET']
+train, test = train.align(test, join = 'inner', axis = 1)
+train['TARGET'] = train_labels
+
+print('Training Data Shape: ', train.shape)
+print('Testing Data Shape: ', test.shape)
+
+missing_test = missing_values_table(test)
+missing_test_vars = list(missing_test.index[missing_test['% of Total Values'] > 90])
+len(missing_test_vars)
+
+missing_columns = list(set(missing_test_vars + missing_train_vars))
+print("There are {:d} columns with more than 90% missing in either the train or testing data.".format(len(missing_columns)))
+
+# drop the missing columns
+train = train.drop(columns = missing_columns)
+test = test.drop(columns = missing_columns)
+
+train.to_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/train_bureau_raw.csv", index = False)
+test.to_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/test_bureau_raw.csv", index = False)
+
+corrs = train.corr()
+corrs = corrs.sort_values('TARGET', ascending = False)
+pd.DataFrame(corrs['TARGET'].head(10))
+pd.DataFrame(corrs['TARGET'].dropna().tail(10))
+
+kde_target(var_name = 'bureau_CREDIT_ACTIVE_Active_count_norm', df = train)
+

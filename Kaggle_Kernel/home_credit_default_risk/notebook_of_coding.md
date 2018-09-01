@@ -186,7 +186,136 @@ get_dummies的优势：
 
 pandas.DataFrame.align
 
+https://blog.csdn.net/maymay_/article/details/80253068
+
+DataFrame.align(other, join='outer', axis=None, level=None, copy=True, fill_value=None, method=None, limit=None, fill_axis=0, broadcast_axis=None)
+
 需要仔细研究
+
+```python
+>>> data1 = pd.DataFrame(np.ones((6, 3), dtype = float), columns = ['a', 'b', 'c'], index = pd.date_range('6/12/2012', periods = 6))
+>>> data2
+              d    e    f
+2012-06-12  2.0  2.0  2.0
+2012-06-13  2.0  2.0  2.0
+2012-06-14  2.0  2.0  2.0
+2012-06-15  2.0  2.0  2.0
+2012-06-16  2.0  2.0  2.0
+2012-06-17  2.0  2.0  2.0
+
+
+>>> data2 = pd.DataFrame(np.ones((6, 3), dtype = float) * 2, columns = ['d', 'e', 'f'], index = pd.date_range('6/12/2012', periods = 6))
+>>> data2
+              d    e    f
+2012-06-12  2.0  2.0  2.0
+2012-06-13  2.0  2.0  2.0
+2012-06-14  2.0  2.0  2.0
+2012-06-15  2.0  2.0  2.0
+2012-06-16  2.0  2.0  2.0
+2012-06-17  2.0  2.0  2.0
+
+>>> data1.align(data2, join = "outer")
+(              a    b    c   d   e   f
+2012-06-12  1.0  1.0  1.0 NaN NaN NaN
+2012-06-13  1.0  1.0  1.0 NaN NaN NaN
+2012-06-14  1.0  1.0  1.0 NaN NaN NaN
+2012-06-15  1.0  1.0  1.0 NaN NaN NaN
+2012-06-16  1.0  1.0  1.0 NaN NaN NaN
+2012-06-17  1.0  1.0  1.0 NaN NaN NaN,              a   b   c    d    e    f
+2012-06-12 NaN NaN NaN  2.0  2.0  2.0
+2012-06-13 NaN NaN NaN  2.0  2.0  2.0
+2012-06-14 NaN NaN NaN  2.0  2.0  2.0
+2012-06-15 NaN NaN NaN  2.0  2.0  2.0
+2012-06-16 NaN NaN NaN  2.0  2.0  2.0
+2012-06-17 NaN NaN NaN  2.0  2.0  2.0)
+
+>>> data1.align(data2, join = "inner")
+(Empty DataFrame
+Columns: []
+Index: [2012-06-12 00:00:00, 2012-06-13 00:00:00, 2012-06-14 00:00:00, 2012-06-15 00:00:00, 2012-06-16 00:00:00, 2012-06-17 00:00:00], Empty DataFrame
+Columns: []
+Index: [2012-06-12 00:00:00, 2012-06-13 00:00:00, 2012-06-14 00:00:00, 2012-06-15 00:00:00, 2012-06-16 00:00:00, 2012-06-17 00:00:00])
+
+>>> data1.align(data2, join = "left")
+(              a    b    c
+2012-06-12  1.0  1.0  1.0
+2012-06-13  1.0  1.0  1.0
+2012-06-14  1.0  1.0  1.0
+2012-06-15  1.0  1.0  1.0
+2012-06-16  1.0  1.0  1.0
+2012-06-17  1.0  1.0  1.0,              a   b   c
+2012-06-12 NaN NaN NaN
+2012-06-13 NaN NaN NaN
+2012-06-14 NaN NaN NaN
+2012-06-15 NaN NaN NaN
+2012-06-16 NaN NaN NaN
+2012-06-17 NaN NaN NaN)
+
+>>> data1.align(data2, join = "right")
+(             d   e   f
+2012-06-12 NaN NaN NaN
+2012-06-13 NaN NaN NaN
+2012-06-14 NaN NaN NaN
+2012-06-15 NaN NaN NaN
+2012-06-16 NaN NaN NaN
+2012-06-17 NaN NaN NaN,               d    e    f
+2012-06-12  2.0  2.0  2.0
+2012-06-13  2.0  2.0  2.0
+2012-06-14  2.0  2.0  2.0
+2012-06-15  2.0  2.0  2.0
+2012-06-16  2.0  2.0  2.0
+2012-06-17  2.0  2.0  2.0)
+
+# 返回结果会自动将结果分为两个表。两个表的行是一样的。起到了对齐行名的功能
+# axis 1 列
+# 因为列名不同，所以无交集，所以empty
+>>> left, right = data1.align(data2, join = "inner", axis = 1)
+>>> left
+Empty DataFrame
+Columns: []
+Index: [2012-06-12 00:00:00, 2012-06-13 00:00:00, 2012-06-14 00:00:00, 2012-06-15 00:00:00, 2012-06-16 00:00:00, 2012-06-17 00:00:00]
+>>> right
+Empty DataFrame
+Columns: []
+Index: [2012-06-12 00:00:00, 2012-06-13 00:00:00, 2012-06-14 00:00:00, 2012-06-15 00:00:00, 2012-06-16 00:00:00, 2012-06-17 00:00:00]
+
+
+>>> left, right = data1.align(data2, join = "inner", axis = 0)
+>>> left
+              a    b    c
+2012-06-12  1.0  1.0  1.0
+2012-06-13  1.0  1.0  1.0
+2012-06-14  1.0  1.0  1.0
+2012-06-15  1.0  1.0  1.0
+2012-06-16  1.0  1.0  1.0
+2012-06-17  1.0  1.0  1.0
+>>> right
+              d    e    f
+2012-06-12  2.0  2.0  2.0
+2012-06-13  2.0  2.0  2.0
+2012-06-14  2.0  2.0  2.0
+2012-06-15  2.0  2.0  2.0
+2012-06-16  2.0  2.0  2.0
+2012-06-17  2.0  2.0  2.0
+
+>>> data1.align(data2, join = "inner", axis = 0)
+(              a    b    c
+2012-06-12  1.0  1.0  1.0
+2012-06-13  1.0  1.0  1.0
+2012-06-14  1.0  1.0  1.0
+2012-06-15  1.0  1.0  1.0
+2012-06-16  1.0  1.0  1.0
+2012-06-17  1.0  1.0  1.0,               d    e    f
+2012-06-12  2.0  2.0  2.0
+2012-06-13  2.0  2.0  2.0
+2012-06-14  2.0  2.0  2.0
+2012-06-15  2.0  2.0  2.0
+2012-06-16  2.0  2.0  2.0
+2012-06-17  2.0  2.0  2.0)
+
+```
+
+
 
 # pandas levels
 
@@ -453,3 +582,13 @@ result2 = result.reset_index(drop=True)
 
 
 
+# [pandas.concat](https://blog.csdn.net/stevenkwong/article/details/52528616)
+
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.concat.html
+
+参数说明 
+objs: series，dataframe或者是panel构成的序列lsit 
+axis： 需要合并链接的轴，0是行，1是列 
+join：连接的方式 inner，或者outer
+
+其他一些参数不常用，用的时候再补上说明。

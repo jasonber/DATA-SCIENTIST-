@@ -2,6 +2,8 @@
 
 相关性：探索特征与目标的相关性，进行特征的简单选取
 
+多个来源的数据要通过某个关键key来合并到一个表中。
+
 # [特征工程](https://www.cnblogs.com/wxquare/p/5484636.html)
 
 https://jakevdp.github.io/PythonDataScienceHandbook/05.04-feature-engineering.html
@@ -9,6 +11,12 @@ https://jakevdp.github.io/PythonDataScienceHandbook/05.04-feature-engineering.ht
 特征构建：增加现有数据的特征
 
 特征选择：选择最有影响的特征或降维得到特征
+
+降低数据的维度，减少冗余的信息。降低计算量
+
+1. 去掉缺失值多的不重要的特征(90%以上的缺失率，人为规定）
+2. 不相关的特征
+3. 
 
 ## 特征构建--多项式特征
 
