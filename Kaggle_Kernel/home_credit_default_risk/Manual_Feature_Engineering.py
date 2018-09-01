@@ -5,11 +5,12 @@ import seaborn as sns
 
 plt.style.use('fivethirtyeight')
 
-bureau = pd.read_csv("/home/hungery/Documents/Kaggle_competion/home_credit/bureau.csv")
+bureau = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/bureau.csv")
 bureau.head()
 previous_loan_counts = bureau.groupby('SK_ID_CURR', as_index=False)['SK_ID_BUREAU'].count().rename(columns = {'SK_ID_BUREAU':'previous_loan_counts'})
 
-train = pd.read_csv("/home/hungery/Documents/Kaggle_competion/home_credit/application_train.csv")
+# make a function to instead of above works
+train = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/application_train.csv")
 train = pd.merge(train, previous_loan_counts, on="SK_ID_CURR", how='left')
 train['previous_loan_counts'] = train['previous_loan_counts'].fillna(0)
 
@@ -32,6 +33,7 @@ def kde_target(var_name, df):
 kde_target('EXT_SOURCE_3', train)
 kde_target('previous_loan_counts', train)
 
+# explorate the numeric feature and merge application.csv with bureau.csv
 bureau_agg = bureau.drop(columns = ['SK_ID_BUREAU']).groupby('SK_ID_CURR', as_index = False).agg(['count', 'mean', 'max',
                                                                                                   'min', 'sum']).reset_index()
 columns = ['SK_ID_CURR']
@@ -54,7 +56,6 @@ new_corrs = sorted(new_corrs, key = lambda x: abs(x[1]), reverse = True)
 
 kde_target('bureau_DAYS_CREDIT_mean', train)
 
-# make a function to instead of above works
 def agg_numeric(df, group_var, df_name):
     """Aggregates the numeric values in a dataframe. This can
     be used to create features for each instance of the grouping variable.
@@ -107,3 +108,73 @@ def target_corrs(df):
 
     corrs = sorted(corrs, key = lambda x: abs(x[1]), reverse = True)
     return corrs
+
+# explorate the category features
+categorical = pd.get_dummies(bureau.select_dtypes('object'))
+categorical['SK_ID_CURR'] = bureau['SK_ID_CURR']
+categorical_grouped = categorical.groupby('SK_ID_CURR').agg(['sum', 'mean'])
+
+# from multi-level columns to one-level
+group_var = 'SK_ID_CURR'
+columns = []
+for var in categorical_grouped.columns.levels[0]:
+    if var != group_var:
+        for stat in ['count', 'count_norm']:
+            # make the new name
+            columns.append('{}_{}'.format(var, stat))
+
+categorical_grouped.columns = columns
+
+train = pd.merge(train, categorical_grouped, on = 'SK_ID_CURR', how = 'left', right_index = True)
+
+# make a function to replace above codes
+def count_categorical(df, group_var, df_name):
+    """Computes counts and normalized counts for each observation
+       of `group_var` of each unique category in every categorical variable
+
+       Parameters
+       --------
+       df : dataframe
+           The dataframe to calculate the value counts for.
+
+       group_var : string
+           The variable by which to group the dataframe. For each unique
+           value of this variable, the final dataframe will have one row
+
+       df_name : string
+           Variable added to the front of column names to keep track of columns
+
+
+       Return
+       --------
+       categorical : dataframe
+           A dataframe with counts and normalized counts of each unique category in every categorical variable
+           with one row for every unique value of the `group_var`.
+
+       """
+    categorical = pd.get_dummies(df.select_dtypes('object'))
+    categorical[group_var] = df[group_var]
+    categorical = categorical.groupby(group_var).agg(['sum', 'mean'])
+    columns_names = []
+    for var in categorical.columns.levels[0]:
+        for stat in ['count', 'count_norm']:
+            columns_names.append("{}_{}_{}".format(df_name, var, stat))
+    categorical.columns = columns_names
+
+    return categorical
+
+bureau_counts = count_categorical(bureau, group_var = 'SK_ID_CURR', df_name = 'bureau')
+
+# handle the bureau_balance.csv
+bureau_balance = pd.read_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/bureau_balance.csv')
+# category features
+bureau_balance_counts = count_categorical(bureau_balance, group_var = 'SK_ID_BUREAU', df_name = 'bureau_balance')
+# numerical features
+bureau_balance_agg = agg_numeric(bureau_balance, group_var = 'SK_ID_BUREAU', df_name = 'bureau_balance')
+# merge counts and agg
+bureau_by_loan = pd.merge(bureau_balance_agg, bureau_balance_counts, how = 'outer', on = 'SK_ID_BUREAU')
+bureau_by_loan = pd.merge(bureau_by_loan, bureau[['SK_ID_BUREAU', 'SK_ID_CURR']], on = 'SK_ID_BUREAU', how = 'left')
+
+# get the features of loan with every clients by SK_ID_CURR and named client_XX_XX
+bureau_balance_by_client = agg_numeric(bureau_by_loan.drop(columns = ['SK_ID_BUREAU']), group_var = 'SK_ID_CURR',
+                                       df_name = 'client')

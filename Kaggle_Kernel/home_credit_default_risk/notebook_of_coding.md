@@ -270,7 +270,7 @@ https://www.jianshu.com/p/91eb0d616adb
 
 tight_layout会自动调整子图参数，使之填充整个图像区域。
 
-# [merge](https://blog.csdn.net/starter_____/article/details/79198137)
+# [pd.merge](https://blog.csdn.net/starter_____/article/details/79198137)
 
 与 SQL join的作用和用法相同
 
@@ -279,6 +279,13 @@ http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.merge.htm
 ```python
 DataFrame.merge(right, how='inner', on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False, suffixes=('_x', '_y'), copy=True, indicator=False, validate=None)
 ```
+
+**how** : {‘left’, ‘right’, ‘outer’, ‘inner’}, default ‘inner’
+
+> - left: use only keys from left frame, similar to a SQL left outer join; preserve key order
+> - right: use only keys from right frame, similar to a SQL right outer join; preserve key order
+> - outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically
+> - inner: use intersection of keys from both frames, similar to a SQL inner join; preserve the order of the left keys
 
 # [sklearn.preprocessing.MinMaxScaler](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html)
 
