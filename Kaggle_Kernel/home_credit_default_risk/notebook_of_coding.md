@@ -566,6 +566,7 @@ TypeError: 'generator' object is not subscriptable
 [SVC hyperopt调参](https://blog.csdn.net/gg_18826075157/article/details/78068086)
 
 [XGB hyperopt调参](https://www.cnblogs.com/gczr/p/7156270.html)
+[Hyperopt sklearn API](https://github.com/hyperopt/hyperopt-sklearn)
 
 # 其他调参
 
