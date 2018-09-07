@@ -272,3 +272,209 @@ pd.DataFrame(corrs['TARGET'].dropna().tail(10))
 
 kde_target(var_name = 'bureau_CREDIT_ACTIVE_Active_count_norm', df = train)
 
+# drop the collinear variable
+# if the correlation of pair variables >0.8, we see them as collinear
+# key表示一个变量，value表示与key共线且>0.8的变量。所以与key不同的value就是共线性变量
+threshold =0.8
+above_threshold_vars = {}
+for col in corrs:
+    above_threshold_vars[col] = list(corrs.index[corrs[col] > threshold])
+
+cols_to_remove = []
+cols_seen = []
+cols_to_remove_pair = []
+
+for key, value in above_threshold_vars.items():
+    cols_seen.append(key)
+    for x in value:
+        if x == key:
+            next
+        else:
+            if x not in cols_seen:
+                cols_to_remove.append(x)
+                cols_to_remove_pair.append(key)
+
+cols_to_remove = list(set(cols_to_remove))
+print('Number of columns to remove: ', len(cols_to_remove))
+
+train_corrs_removed = train.drop(columns = cols_to_remove)
+test_corrs_removed = test.drop(columns = cols_to_remove)
+
+print("Training Corrs Removed Shape: ", train_corrs_removed.shape)
+print("Testing Corrs Removed Shape: ", test_corrs_removed.shape)
+
+train_corrs_removed.to_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/train_bureau_corrs_removed.csv', index = False)
+test_corrs_removed.to_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/test_bureau_corrs_removed.csv', index = False)
+
+# free up memory
+import gc
+gc.enable()
+del bureau_balance_by_client, bureau_counts, above_threshold_vars, categorical, cols_seen, cols_to_remove, cols_to_remove_pair,
+corr, corrs, missing_columns, missing_test, missing_test_vars, missing_train, missing_train_vars, test, train_corrs_removed,
+missing_train, train_corrs_removed, test_corrs_removed
+gc.collect()
+
+# model and model seletion
+import pandas as pd
+import numpy as np
+import gc
+import matplotlib.pyplot as plt
+train_corrs_removed = pd.read_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/train_bureau_corrs_removed.csv')
+test_corrs_removed = pd.read_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/test_bureau_corrs_removed.csv')
+
+import lightgbm as lgb
+from sklearn.model_selection import KFold
+from sklearn.metrics import roc_auc_score
+from sklearn.preprocessing import LabelEncoder
+
+def model(features, test_features, encoding = 'ohe', n_folds = 5):
+    """Train and test a light gradient boosting model using
+        cross validation.
+
+        Parameters
+        --------
+            features (pd.DataFrame):
+                dataframe of training features to use
+                for training a model. Must include the TARGET column.
+            test_features (pd.DataFrame):
+                dataframe of testing features to use
+                for making predictions with the model.
+            encoding (str, default = 'ohe'):
+                method for encoding categorical variables. Either 'ohe' for one-hot encoding or 'le' for integer label encoding
+                n_folds (int, default = 5): number of folds to use for cross validation
+
+        Return
+        --------
+            submission (pd.DataFrame):
+                dataframe with `SK_ID_CURR` and `TARGET` probabilities
+                predicted by the model.
+            feature_importances (pd.DataFrame):
+                dataframe with the feature importances from the model.
+            valid_metrics (pd.DataFrame):
+                dataframe with training and validation metrics (ROC AUC) for each fold and overall.
+
+        """
+    train_ids = features['SK_ID_CURR']
+    test_ids = test_features['SK_ID_CURR']
+    labels = features['TARGET']
+    features = features.drop(columns = ['SK_ID_CURR', 'TARGET'])
+    test_features = test_features.drop(columns = ['SK_ID_CURR'])
+    print("train original: {}\ntest original: {}".format(features.shape, test_features.shape))
+
+    if encoding == 'ohe':
+        features = pd.get_dummies(features)
+        test_features = pd.get_dummies(test_features)
+
+        features, test_features = features.align(test_features, join = 'inner', axis = 1)
+        cat_indices = 'auto'
+        print("train dummies: {}\ntest dummies: {}".format(features.shape, test_features.shape))
+
+    elif encodeing == 'le':
+        label_encoder = LabelEncoder()
+        cat_indices = []
+
+        for i, col in enumerate(features):
+            if features[col].dtype == 'object':
+                features[col] = label_encoder.fit_transform(np.array(features[col].astype(str)).reshape((-1,)))
+                test_features[col] = label_encoder.transform(np.array(test_features[col].astype(str)).reshape((-1,)))
+                cat_indices.append(i)
+
+    else:
+        raise ValueError("Encoding must be either 'ohe' or 'le'")
+
+    print('Training Data Shape: ', features.shape)
+    print('Testing Data Shape: ', test_features.shape)
+
+    feature_names = list(features.columns)
+    features = np.array(features)
+    test_features = np.array(test_features)
+    k_fold = KFold(n_splits = n_folds, shuffle = False, random_state = 50)
+    feature_importance_values = np.zeros(len(feature_names))
+    test_predictions = np.zeros(test_features.shape[0])
+    out_of_fold = np.zeros(features.shape[0])
+    valid_scores = []
+    train_scores = []
+
+    for train_indices, valid_indices in k_fold.split(features):
+        train_features, train_labels = features[train_indices], labels[train_indices]
+        valid_features, valid_labels = features[valid_indices], labels[valid_indices]
+
+        # model
+        model = lgb.LGBMClassifier(n_estimators=10000, objective = 'binary', class_weight = 'balanced',
+                                   learning_rate = 0.05, reg_alpha = 0.1, reg_lambda = 0.1, subsample = 0.8,
+                                   n_jobs = -1, random_state = 50)
+
+        model.fit(train_features, train_labels, eval_metric = 'auc',
+                  eval_set = [(valid_features, valid_labels), (train_features, train_labels)],
+                  eval_names = ['valid', 'train'], categorical_feature = cat_indices,
+                  early_stopping_rounds = 100, verbose = 10)
+
+        best_iteration = model.best_iteration_
+
+        feature_importance_values += model.feature_importances_ / k_fold.n_splits
+        test_predictions += model.predict_proba(test_features, num_iteration = best_iteration)[:, 1] / k_fold.n_splits
+        out_of_fold[valid_indices] = model.predict_proba(valid_features, num_iteration = best_iteration)[:,1]
+
+        valid_score = model.best_score_['valid']['auc']
+        train_score = model.best_score_['train']['auc']
+
+        valid_scores.append(valid_score)
+        train_scores.append(train_score)
+
+        gc.enable()
+        del model, train_features, valid_features
+        gc.collect()
+
+    submission = pd.DataFrame({'SK_ID_CURR': test_ids, 'TARGET': test_predictions})
+    feature_importance = pd.DataFrame({'feature': feature_names, 'importance':feature_importance_values})
+
+    valid_auc = roc_auc_score(labels, out_of_fold)
+    valid_scores.append(valid_auc)
+    train_scores.append(np.mean(train_scores))
+
+    fold_names = list(range(n_folds))
+    fold_names.append('overall')
+
+    print('train {}, valid {}'.format(train_scores, valid_scores))
+
+    metrics = pd.DataFrame({'fold': fold_names, 'train': train_scores, 'valid': valid_scores})
+
+    return submission, feature_importance, metrics
+
+# plot the importance of features
+def plot_feature_importances(df):
+    """
+       Plot importances returned by a model. This can work with any measure of
+       feature importance provided that higher importance is better.
+
+       Args:
+           df (dataframe): feature importances. Must have the features in a column
+           called `features` and the importances in a column called `importance
+
+       Returns:
+           shows a plot of the 15 most importance features
+
+           df (dataframe): feature importances sorted by importance (highest to lowest)
+           with a column for normalized importance
+           """
+
+    df = df.sort_values('importance', ascending = False).reset_index()
+    df['importance_normalized'] = df['importance'] / df['importance'].sum()
+
+    plt.figure(figsize = (10, 6))
+    ax = plt.subplot()
+
+    ax.barh(list(reversed(list(df.index[:15]))), df['importance_normalized'].head(15), align = 'center', edgecolor = 'k')
+    ax.set_yticks(list(reversed(list(df.index[:15]))))
+    ax.set_yticklabels(df['feature'].head(15))
+
+    plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
+    plt.show()
+
+    return df
+
+submission_corrs, fi_corrs, metrics_corr = model(train_corrs_removed, test_corrs_removed)
+
+fi_corrs_sorted = plot_feature_importances(fi_corrs)
+
+submission_corrs.to_csv('test_two.csv', index = False)

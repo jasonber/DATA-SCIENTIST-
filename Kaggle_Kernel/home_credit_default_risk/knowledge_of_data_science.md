@@ -28,9 +28,11 @@ Adding interaction terms to a regression model can greatly expand understanding 
 
 增加回归模型的交互项能极好模型中各变量之间的相关性。
 
-# 特征构建--Domain Knowledge Features
+# #特征构建--Domain Knowledge Features
 
 领域知识特征：指的是数据所属领域的专业知识。需要有专业知识背景
+## feature importance 待解决
+## lgb rf 的特征工程 待解决
 
 # minmax归一化
 
@@ -83,8 +85,5 @@ x轴表示自变量
 y轴表示某一变量在自变量的影响下的概率情况
 
 曲线下面的面积表示，在自变量为某值的情况下，因变量的概率
-
-
-
 
 
