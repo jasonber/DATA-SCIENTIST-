@@ -92,7 +92,9 @@ df.iloc[1:3,[1,2]	#第1行到第3行（不包含第3行），第1列和第2列�
 
 ```
 
-
+总结一下:
+data = data['盈利'].copy()得到的data是series,对应的sort_values方法只需要指定axis;
+data = data[['盈利']].copy()得到的data是dataframe,对应的sort_values方法只需要指定cols
 
 # apply
 
@@ -594,3 +596,11 @@ axis： 需要合并链接的轴，0是行，1是列
 join：连接的方式 inner，或者outer
 
 其他一些参数不常用，用的时候再补上说明。
+
+# [any 和 all](https://blog.csdn.net/cython22/article/details/78829288)
+
+本质上讲，any()实现了或(OR)运算，而all()实现了与(AND)运算。
+对于any(iterables)，如果可迭代对象iterables（至于什么是可迭代对象，可关注我的下篇文章）中任意存在每一个元素为True则返回True。特例：若可迭代对象为空，比如空列表[]，则返回False。 
+
+对于all(iterables)，如果可迭代对象iterables中所有元素都为True则返回True。特例：若可迭代对象为空，比如空列表[]，则返回True。 
+

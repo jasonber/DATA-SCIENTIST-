@@ -183,16 +183,16 @@ def remove_missing_columns(train, test, threshold = 90):
     train_miss['percent'] = 100 * train_miss[0] / len(train)
 
     test_miss = pd.DataFrame(test.isnull().sum())
-    print("test_miss 1", test_miss)
+    # print("test_miss 1", test_miss)
     test_miss['percent'] = 100 * test_miss[0] / len(test)
 
     missing_train_columns = list(train_miss.index[train_miss['percent'] > threshold])
     missing_test_columns = list(test_miss.index[test_miss['percent'] > threshold])
-    print(train_miss)
-    print(test_miss)
+    # print(train_miss)
+    # print(test_miss)
 
     missing_columns = list(set(missing_train_columns + missing_test_columns))
-    print(missing_test_columns)
+    # print(missing_test_columns)
 
     print('There are {} columns with greater than {}% missing values.'.format(len(missing_columns), threshold))
 
@@ -202,3 +202,59 @@ def remove_missing_columns(train, test, threshold = 90):
     return train, test
 
 train, test = remove_missing_columns(train, test)
+train.to_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/features_engineer/train_FE2_missing_remove.csv', index = False)
+test.to_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/features_engineer/test_FE2_missing_remove.csv', index = False)
+
+gc.enable()
+del test, train
+gc.collect()
+
+
+def aggregate_client(df, group_vars, df_names):
+    """Aggregate a dataframe with data at the loan level
+       at the client level
+
+       Args:
+           df (dataframe): data at the loan level
+           group_vars (list of two strings): grouping variables for the loan
+           and then the client (example ['SK_ID_PREV', 'SK_ID_CURR'])
+           names (list of two strings): names to call the resulting columns
+           (example ['cash', 'client'])
+
+       Returns:
+           df_client (dataframe): aggregated numeric stats at the client level.
+           Each client will have a single row with all the numeric data aggregated
+       """
+    df_agg = agg_numerical(df, parent_var = group_vars[0], df_name = df_names[0])
+    if any(df.dtypes == 'category'):
+        df_counts = agg_categorical(df, parent_var = group_vars[0], df_name = df_names[0])
+        df_by_loan = pd.merge(df_counts, df_agg, on = group_vars[0], how = 'outer')
+
+        gc.enable()
+        del df_agg, df_counts
+        gc.collect()
+
+        df_by_loan = pd.merge(df_by_loan, df[[group_vars[0], group_vars[1]]], on = group_vars[0], how = 'left')
+        df_by_client = agg_numerical(df_by_loan, parent_var = group_vars[1], df_name = df_names[1])
+
+    else:
+        df_by_loan = pd.merge(df_agg, df[[group_vars[0], group_vars[1]]], on = group_vars[0], how = 'left')
+
+        gc.enable()
+        del df_agg
+        gc.collect()
+
+        df_by_loan = df_by_loan.drop(columns = [group_vars[0]])
+
+        df_by_client = agg_numerical(df_by_loan, parent_var = group_vars[1], df_name = df_names[1])
+
+        gc.enabel()
+        del df, df_by_loan
+        gc.collect()
+
+        return df_by_client
+
+cash = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/POS_CASH_balance.csv")
+cash = convert_types(cash, print_info = True)
+
+cash_by_client = aggregate_client(cash, group_vars = ['SK_ID_PREV', 'SK_ID_CURR'], df_names = ['cash', 'client'])

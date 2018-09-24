@@ -10,13 +10,13 @@ warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-print(os.listdir("/home/hungery/Documents/Kaggle_competion/home_credit/"))
+print(os.listdir("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/"))
 
-app_train = pd.read_csv("/home/hungery/Documents/Kaggle_competion/home_credit/application_train.csv")
+app_train = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/application_train.csv")
 print('Training data shape:', app_train.shape)
 app_train.head()
 
-app_test = pd.read_csv("/home/hungery/Documents/Kaggle_competion/home_credit/application_test.csv")
+app_test = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/application_test.csv")
 print('Testing data shape:', app_test.shape)
 app_test.head()
 
