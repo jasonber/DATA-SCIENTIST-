@@ -604,3 +604,37 @@ join：连接的方式 inner，或者outer
 
 对于all(iterables)，如果可迭代对象iterables中所有元素都为True则返回True。特例：若可迭代对象为空，比如空列表[]，则返回True。 
 
+
+
+# [map](http://www.runoob.com/python/python-func-map.html)
+
+只有series能调用map的api
+
+# [value_counts(), count, size](https://blog.csdn.net/qq_20412595/article/details/79921849)
+
+pandas.Series.value_counts
+
+```python
+Series.value_counts(normalize=False, sort=True, ascending=False, bins=None, dropna=True)
+```
+
+Returns object containing counts of unique values.
+
+count pandas
+
+pandas.DataFrame.count
+
+```python
+pandas.DataFrame.count(*axis=0*, *level=None*, *numeric_only=False*)
+```
+
+Count non-NA cells for each column or row.
+
+[count python](http://www.runoob.com/python/att-string-count.html)
+
+```python
+str.count(sub, start= 0,end=len(string))
+```
+
+[size numpy](https://blog.csdn.net/qq_25436597/article/details/79079435)
+
