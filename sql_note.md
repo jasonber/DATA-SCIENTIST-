@@ -138,3 +138,58 @@ SELECT column_name(s) FROM table_name2
 ```
 
 ()的作用是啥？
+
+# ORDER BY
+
+```mysql
+SELECT column_name,column_name
+FROM table_name
+ORDER BY column_name,column_name ASC|DESC;
+```
+
+# 找出所有的1970获奖者，按照subject和获奖者姓名排序，其中Economic和Chemistry 按照升序排列在最后
+
+```mysql
+SELECT *
+FROM nobel_win
+WHERE year=1970 
+ORDER BY
+ CASE
+    WHEN subject IN ('Economics','Chemistry') THEN 1
+    ELSE 0
+ END ASC,
+ subject,
+ winner;
+
+```
+
+[case](https://www.cnblogs.com/4littleProgrammer/p/4820006.html)
+
+1、case表达式会从最初的when子句中的 判断表达式进行判断。如果为真，就返回then子句中的表达式，case表达式的执行到此结束
+
+2、else null，指定了不满足when子句条件的操作
+
+3、end 必须写，end后面可加入表达式，表示对case的操作
+
+# [聚合函数](https://www.cnblogs.com/ghost-xyx/p/3811036.html)
+
+SQL中提供的聚合函数可以用来统计、求和、求最值等等。
+
+分类：
+
+–COUNT：统计行数量
+–SUM：获取单个列的合计值
+–AVG：计算某个列的平均值
+–MAX：计算列的最大值
+–MIN：计算列的最小值
+
+# 查找最便宜的商品
+
+```mysql
+SELECT pro_name, pro_price
+   FROM item_mast
+   WHERE pro_price = 
+    (SELECT MIN(pro_price) FROM item_mast);
+```
+
+sql的赋值方式？
