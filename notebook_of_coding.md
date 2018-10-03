@@ -638,3 +638,16 @@ str.count(sub, start= 0,end=len(string))
 
 [size numpy](https://blog.csdn.net/qq_25436597/article/details/79079435)
 
+# [pandas.Series.str.split](https://pandas.pydata.org/pandas-docs/version/0.23.3/generated/pandas.Series.str.split.html)
+
+```python
+Series.str.split(pat=None, n=-1, expand=False)
+```
+
+# [pandas.to_numeric](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_numeric.html)
+
+```python
+pandas.to_numeric(arg, errors='raise', downcast=None)
+```
+
+pandas.DataFrame.astype 感觉这个好用

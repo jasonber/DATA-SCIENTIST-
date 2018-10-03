@@ -80,3 +80,25 @@ users["gender_n"] = users["gender"].apply(gender_to_numberic)
 male_pct_occu = users.groupby("occupation").gender_n.sum() / users.occupation.value_counts() * 100
 male_pct_occu.sort_values(ascending=False)
 
+# get the min and max of user age
+users.groupby("occupation").age.agg(["max", "min"])
+
+import pandas as pd
+import numpy as np
+
+chipo = pd.read_csv("/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-/python基础/chipotle.csv", sep ="\t")
+
+# how many items` price beyond 10 $?
+''' hwo to eliminate the $'''
+# method 1  use type transform
+# prices = [float(value[1: -1]) for value in chipo.item_price]
+# method 2 use split
+chipo["item_price"] = chipo["item_price"].str.split("$").str[1]
+chipo["item_price"] = pd.to_numeric(chipo["item_price"])
+(chipo["item_price"] > 10).value_counts()
+
+# how much every project
+chipo_filltered = chipo.drop_duplicates(['item_name', 'quantity'])
+chipo_one_prod = chipo_filltered[chipo_filltered.quantity == 1]
+price_per_item = chipo_one_prod[["item_name", "item_price"]]
+price_per_item.sort_values(by = "item_price", ascending = False)
