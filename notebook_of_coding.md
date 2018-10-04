@@ -96,6 +96,16 @@ df.iloc[1:3,[1,2]	#第1行到第3行（不包含第3行），第1列和第2列�
 data = data['盈利'].copy()得到的data是series,对应的sort_values方法只需要指定axis;
 data = data[['盈利']].copy()得到的data是dataframe,对应的sort_values方法只需要指定cols
 
+对列操作
+
+```python
+chipo['itme_price'].sum()
+# 结果相同，等价，均为series
+chipo.item_price.sum()
+```
+
+
+
 # apply
 
 函数格式为：apply(func,*args,**kwargs)
@@ -630,6 +640,10 @@ pandas.DataFrame.count(*axis=0*, *level=None*, *numeric_only=False*)
 
 Count non-NA cells for each column or row.
 
+[pandas.Series.count](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.count.html)
+
+Return number of non-NA/null observations in the Series
+
 [count python](http://www.runoob.com/python/att-string-count.html)
 
 ```python
@@ -651,3 +665,12 @@ pandas.to_numeric(arg, errors='raise', downcast=None)
 ```
 
 pandas.DataFrame.astype 感觉这个好用
+
+# [pandas.DataFrame.describe](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.describe.html)
+
+```python
+DataFrame.describe(percentiles=None, include=None, exclude=None)
+```
+
+Generates descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding `NaN` values.
+

@@ -345,3 +345,22 @@ WHERE col1 LIKE '%/_%' ESCAPE '/';
 [escape](https://blog.csdn.net/david_520042/article/details/6909230) 转义符 把通配符 转换成 普通符
 
 /只是一个记号，标识escape起转换作用的位置。只转换标识后的通配符。
+
+# IS NULL 
+
+否定式
+
+```mysql
+col IS NOT NULL
+NOT col IS NULL
+```
+
+# Write a SQL statement to find the number of salesmen currently listing for all of their customers
+
+```mysql
+SELECT COUNT (DISTINCT salesman_id) 
+FROM orders;
+```
+
+
+
