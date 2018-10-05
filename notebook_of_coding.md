@@ -16,6 +16,8 @@ print "round(-100.000056, 3) : ", round(-100.000056, 3)
 
 # [sort_values](https://blog.csdn.net/qq_24753293/article/details/80692679)
 
+[pandas.DataFrame.sort_values](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.sort_values.html)
+
 ```python
 df = pd.DataFrame({
  'col1' : ['A', 'A', 'B', np.nan, 'D', 'C'],
@@ -25,6 +27,16 @@ print(df)
 df.sort_values(by=['col1'])
 
 ```
+
+使用场景：
+
+1、sort sorted 均为python的内置函数
+
+sort 只应用list
+
+sorted应用与所有可迭代的对象
+
+2、sort_values 是pandas的函数 只应用与dataframe
 
 [sorted的参数reverse](http://www.runoob.com/python/python-func-sorted.html)
 
@@ -40,7 +52,11 @@ key -- 主要是用来进行比较的元素，只有一个参数，具体的函�
 DataFrame.select_dtypes(include=None, exclude=None)
 ```
 
+type() 查看数据结构
 
+dytpe查看数据类型 适用于series
+
+dtyps查看数据类型 适用于dataframe
 
 # iloc loc ix
 
@@ -674,3 +690,18 @@ DataFrame.describe(percentiles=None, include=None, exclude=None)
 
 Generates descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding `NaN` values.
 
+
+
+# [pandas.DataFrame.values](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.values.html)
+
+返回一个n维数组，先行后列
+
+
+
+# [str.startswith](https://docs.python.org/3/library/stdtypes.html?highlight=startswith#str.startswith)
+
+```python
+str.startswith(prefix[, start[, end]])
+```
+
+python的内置函数，是str类型数据的方法之一。

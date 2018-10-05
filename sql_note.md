@@ -183,6 +183,17 @@ SQL中提供的聚合函数可以用来统计、求和、求最值等等。
 –MAX：计算列的最大值
 –MIN：计算列的最小值
 
+[count](http://www.w3school.com.cn/sql/sql_func_count.asp)
+
+SQL COUNT(\*) 语法
+COUNT(\*) 函数返回表中的记录数
+
+```sql
+SELECT COUNT(*) FROM table_name
+```
+
+
+
 # 查找最便宜的商品
 
 ```mysql
@@ -334,6 +345,19 @@ WHERE name BETWEEN 'A' and 'L';
 
 # *SQL的 ""和''的作用*
 
+https://blog.csdn.net/u010566813/article/details/51864375
+
+标准sql中不存在双引号。如果字符中有单引号，那么sql中用两个单引号来表示。
+
+双引号“ ”表示输入的字符，比如别名
+
+```sql
+SELECT AVG(pro_price) AS "Average Price"
+FROM item_mast;
+```
+
+
+
 # Write a SQL statement to find those rows from the table testtable which contain the escape character underscore ( _ ) in its column 'col1'.
 
 ```mysql
@@ -363,4 +387,58 @@ FROM orders;
 ```
 
 
+
+# [having 和 where的区别](https://blog.csdn.net/qmhball/article/details/7941638)
+
+Where 是一个约束声明，使用Where约束来自数据库的数据，Where是在结果返回之前起作用的，Where中不能使用聚合函数。
+Having是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。
+在查询过程中聚合语句(sum,min,max,avg,count)要比having子句优先执行。
+
+而where子句在查询过程中执行优先级高于聚合语句。
+
+having的用处
+
+http://www.w3school.com.cn/sql/sql_having.asp
+
+having的用法：前面必须有group by
+
+https://www.dofactory.com/sql/having
+
+```mysql
+SELECT column-names
+  FROM table-name
+ WHERE condition
+ GROUP BY column-names
+HAVING condition
+```
+
+HAVING filters records that work on summarized GROUP BY results.
+HAVING applies to summarized group records, whereas WHERE applies to individual records.
+Only the groups that meet the HAVING criteria will be returned.
+HAVING requires that a GROUP BY clause is present.
+WHERE and HAVING can be in the same query.
+
+
+
+# Write a SQL statement to find the highest purchase amount with their ID and order date, for those customers who have a higher purchase amount in a day is within the range 2000 and 6000.
+
+```mysql
+SELECT customer_id,ord_date,MAX(purch_amt) 
+FROM orders 
+GROUP BY customer_id,ord_date 
+HAVING MAX(purch_amt) BETWEEN 2000 AND 6000;
+```
+
+
+
+如何选出某一极值的所有信息？
+
+# [GROUP BY](http://www.w3school.com.cn/sql/sql_groupby.asp)
+
+```sql
+SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name
+```
 

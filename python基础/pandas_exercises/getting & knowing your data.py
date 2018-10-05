@@ -106,3 +106,33 @@ round(users['age'].mean(), 2)
 
 # 使用最少的年龄是
 users['age'].value_counts(ascending=True)
+
+# World Food Facts
+import pandas as pd
+import numpy as np
+
+# get data
+food = pd.read_csv('/home/zhangzhiliang/Documents/Book/coding/pandas_exercises/en.openfoodfacts.org.products.tsv', sep='\t')
+# 前五行
+food.head(5)
+# 有多少观测值
+food.shape[0]
+
+# 有多少列
+food.shape[1]
+food.info()
+
+# 列名
+food.columns
+
+# 第105列的列名
+food.columns[104]
+
+# 第105列值的类型
+food[food.columns[104]]
+
+# 索引方式
+food.index
+
+# 第十九个观测值的物品名称
+food['product_name'][18]
