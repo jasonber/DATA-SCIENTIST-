@@ -442,3 +442,52 @@ WHERE column_name operator value
 GROUP BY column_name
 ```
 
+# Write a SQL statement to make a report with customer ID in such a manner that, the largest number of orders booked by the customer will come first along with their highest purchase amount.
+
+```sql
+SELECT customer_id, COUNT(DISTINCT ord_no), 
+MAX(purch_amt) 
+FROM orders 
+GROUP BY customer_id 
+ORDER BY 2 DESC;
+```
+
+2代表第二列？
+
+# [多表取数](https://www.w3resource.com/sql-exercises/sql-exercises-quering-on-multiple-table.php)
+
+https://blog.csdn.net/wmz545546/article/details/77921550
+
+# Write a query to find those customers with their name and those salesmen with their name and city who lives in the same city.
+
+```sql
+SELECT customer.cust_name,
+salesman.name, salesman.city
+FROM salesman, customer
+WHERE salesman.city = customer.city;
+```
+
+# Write a SQL statement to display all those orders by the customers not located in the same cities where their salesmen live.
+
+```sql
+SELECT ord_no, cust_name, orders.customer_id, orders.salesman_id
+FROM salesman, customer, orders
+WHERE customer.city <> salesman.city
+AND orders.customer_id = customer.customer_id
+AND orders.salesman_id = salesman.salesman_id;
+```
+
+不等号<>
+
+# Write a SQL statement that shorts out the customer and their grade who made an order. Each of the customers must have a grade and served by at least a salesman, who belongs to a city.
+
+```sql
+SELECT customer.cust_name AS "Customer",
+customer.grade AS "Grade"
+FROM orders, salesman, customer
+WHERE orders.customer_id = customer.customer_id
+AND orders.salesman_id = salesman.salesman_id
+AND salesman.city IS NOT NULL
+AND customer.grade IS NOT NULL;
+```
+

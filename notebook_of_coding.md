@@ -36,8 +36,6 @@ sort 只应用list
 
 sorted应用与所有可迭代的对象
 
-2、sort_values 是pandas的函数 只应用与dataframe
-
 [sorted的参数reverse](http://www.runoob.com/python/python-func-sorted.html)
 
 [sorted sort reverse reversed](https://www.jb51.net/article/78451.htm)
@@ -45,6 +43,8 @@ sorted应用与所有可迭代的对象
 reverse -- 排序规则，reverse = True 降序 ， reverse = False 升序（默认）。
 
 key -- 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。用什么样的值进行排列
+
+2、sort_values 是pandas的函数 只应用与dataframe
 
 # [pandas.select_dtypes()](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.select_dtypes.html)
 
@@ -60,8 +60,10 @@ dtyps查看数据类型 适用于dataframe
 
 # iloc loc ix
 
-loc——通过行标签索引行数据 
-iloc——通过行号索引行数据
+[前闭后开](https://blog.csdn.net/slvher/article/details/44703185)：前闭后开区间（即begin <= idx < end）
+
+loc——通过行标签索引行数据
+iloc——通过行号索引行数据，只能是数字
 
 ix——通过行标签或者行号索引行数据（基于loc和iloc 的混合）
 
@@ -705,3 +707,20 @@ str.startswith(prefix[, start[, end]])
 ```
 
 python的内置函数，是str类型数据的方法之一。
+
+
+
+# [pandas.DataFrame](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html)
+
+要注意列名、索引的顺序
+
+# set_index
+
+设定dataframe的索引名字
+
+# [逻辑运算与位运算](http://www.runoob.com/python3/python3-basic-operators.html#ysf4)
+
+or and是逻辑运算符， 均返回的为真的表达式，而不是 1,0
+
+| & 是位运算符，是按照二进制各个位置的数来对比的。
+

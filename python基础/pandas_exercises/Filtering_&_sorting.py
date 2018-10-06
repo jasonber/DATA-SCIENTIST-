@@ -74,3 +74,68 @@ euro12.iloc[:, 0: -3]
 euro12[euro12.Team.isin(['England', 'Italy', 'Russia'])][['Team', 'Shooting Accuracy']]
 euro12.loc[euro12["Team"].isin(["England", "Italy", "Russia"]), ["Team", "Shooting Accuracy"]]
 
+# Fictional Army
+import pandas as pd
+# 使用字典创建数据
+raw_data = {'regiment': ['Nighthawks', 'Nighthawks', 'Nighthawks', 'Nighthawks', 'Dragoons', 'Dragoons', 'Dragoons',
+                         'Dragoons', 'Scouts', 'Scouts', 'Scouts', 'Scouts'],
+            'company': ['1st', '1st', '2nd', '2nd', '1st', '1st', '2nd', '2nd','1st', '1st', '2nd', '2nd'],
+            'deaths': [523, 52, 25, 616, 43, 234, 523, 62, 62, 73, 37, 35],
+            'battles': [5, 42, 2, 2, 4, 7, 8, 3, 4, 7, 8, 9],
+            'size': [1045, 957, 1099, 1400, 1592, 1006, 987, 849, 973, 1005, 1099, 1523],
+            'veterans': [1, 5, 62, 26, 73, 37, 949, 48, 48, 435, 63, 345],
+            'readiness': [1, 2, 3, 3, 2, 1, 2, 3, 2, 1, 2, 3],
+            'armored': [1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1],
+            'deserters': [4, 24, 31, 2, 3, 4, 24, 31, 2, 3, 2, 3],
+            'origin': ['Arizona', 'California', 'Texas', 'Florida', 'Maine', 'Iowa', 'Alaska', 'Washington',
+                       'Oregon', 'Wyoming', 'Louisana', 'Georgia']}
+
+# 创建一个dataframe ，并命名为army
+'''按照字典的顺序写入列名，这样才能保证与字典的列索引保持一致。否则pandas会用字母代替列名'''
+army2 = pd.DataFrame(raw_data)
+army = pd.DataFrame(raw_data, columns=['regiment', 'company', 'deaths', 'battles', 'size', 'veterans', 'readiness',
+                                        'armored', 'deserters', 'origin'])
+
+# 使用‘origin'为索引
+army = army.set_index('origin')
+
+# 输出veterans列
+army['veterans']
+
+# 输出vetrans 和 deaths两列
+army[['veterans', 'deaths']]
+
+# 输出所有的列名
+army.columns
+
+# 选出 Maine Alaska 中 deaths size deserters数据
+army.loc[['Maine', 'Alaska'], ['deaths', 'size', 'deserters']]
+
+# 选择row3到7行，column3到6列的数据
+army.iloc[3:7, 3:6]
+
+# 选择第4行以后的数据
+army.iloc[3:]
+
+# 选择第4行以前的数据
+army.iloc[:3]
+
+# 选择第3列和第7列之间的数据
+army.iloc[:, 4: 7]
+
+# 选择deaths大于50的数据
+army[army['deaths'] > 50]
+
+# 选择deaths 大于500 或 小于50
+'''注意位运算与逻辑运算'''
+# army[(army['deaths'] > 500) or (army['deaths'] < 50)] 逻辑运算报错
+army[(army['deaths'] > 500) | (army['deaths'] < 50)]
+
+# 选择 Texas 和 Arizona两行的值
+army.loc[['Texas', 'Arizona']]
+
+# 选择Arizona行的第三个cell
+army.ix[['Arizona'], 2]
+
+# 选择deaths列的第三个cell
+army.ix[2, ['deaths']]
