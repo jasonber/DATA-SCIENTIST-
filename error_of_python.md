@@ -48,3 +48,6 @@ users.groupby('occupation')['age'].mean()
 
 
 
+# TypeError: reduction operation 'argmax' not allowed for this dtype
+
+说明值的数据类型不是数值

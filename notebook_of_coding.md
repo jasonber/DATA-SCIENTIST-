@@ -124,12 +124,22 @@ chipo.item_price.sum()
 
 
 
-# apply
+# [pandas.DataFrame.applymap](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.applymap.html)
+
+```python
+DataFrame.applymap(func)
+```
+
+在数据框的每个元素上使用func
+
+# [apply](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html)
 
 函数格式为：apply(func,*args,**kwargs)
-用途：当一个函数的参数存在于一个元组或者一个字典中时，用来间接的调用这个函数，并肩元组或者字典中的参数按照顺序传递给参数
+用途：当一个函数的参数存在于一个元组或者一个字典中时，用来间接的调用这个函数，并肩元组或者字典中的参数按照顺序传递给参数。应用于数据框的一行或一列。
 
+# [map](http://www.runoob.com/python/python-func-map.html)
 
+只有series能调用map的api， python的内置函数
 
 # [nunique](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.nunique.html)
 
@@ -612,7 +622,13 @@ TypeError: 'generator' object is not subscriptable
 result2 = result.reset_index(drop=True)
 ```
 
+# [pandas.DataFrame.set_index](https://pandas.pydata.org/pandas-docs/version/0.22/generated/pandas.DataFrame.set_index.html)
 
+```python
+DataFrame.set_index(keys, drop=True, append=False, inplace=False, verify_integrity=False)
+```
+
+drop 真假的作用？
 
 # [pandas.concat](https://blog.csdn.net/stevenkwong/article/details/52528616)
 
@@ -631,12 +647,6 @@ join：连接的方式 inner，或者outer
 对于any(iterables)，如果可迭代对象iterables（至于什么是可迭代对象，可关注我的下篇文章）中任意存在每一个元素为True则返回True。特例：若可迭代对象为空，比如空列表[]，则返回False。 
 
 对于all(iterables)，如果可迭代对象iterables中所有元素都为True则返回True。特例：若可迭代对象为空，比如空列表[]，则返回True。 
-
-
-
-# [map](http://www.runoob.com/python/python-func-map.html)
-
-只有series能调用map的api
 
 # [value_counts(), count, size](https://blog.csdn.net/qq_20412595/article/details/79921849)
 
@@ -669,6 +679,27 @@ str.count(sub, start= 0,end=len(string))
 ```
 
 [size numpy](https://blog.csdn.net/qq_25436597/article/details/79079435)
+
+# [pandas.DataFrame.size](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.size.html)
+
+DataFrame.size
+Return an int representing the number of elements in this object.
+
+Return the number of rows if Series. Otherwise return the number of rows times number of columns if DataFrame.
+
+返回数据框中所有的数据个数
+
+```python
+>>> s = pd.Series({'a': 1, 'b': 2, 'c': 3})
+>>> s.size
+3
+
+>>> df = pd.DataFrame({'col1': [1, 2], 'col2': [3, 4]})
+>>> df.size
+4
+```
+
+
 
 # [pandas.Series.str.split](https://pandas.pydata.org/pandas-docs/version/0.23.3/generated/pandas.Series.str.split.html)
 
@@ -724,3 +755,52 @@ or and是逻辑运算符， 均返回的为真的表达式，而不是 1,0
 
 | & 是位运算符，是按照二进制各个位置的数来对比的。
 
+
+
+# [*pandas.DataFrame.unstack*](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.unstack.html)
+
+https://www.cnblogs.com/bambipai/p/7658311.html
+
+不会也不懂。。。。。
+
+# [upper](http://www.runoob.com/python/att-string-upper.html)
+
+# [is 和 ==的区别](http://www.iplaypy.com/jinjie/is.html)
+
+==对比的是值
+
+is 对比的是内存地址
+
+id() 函数用于获取对象的内存地址。
+
+
+
+# [pandas.to_datetime](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.to_datetime.html)
+
+```python
+pandas.to_datetime(arg, errors='raise', dayfirst=False, yearfirst=False, utc=None, box=True, format=None, exact=True, unit=None, infer_datetime_format=False, origin='unix', cache=False)
+```
+
+# [pandas.DataFrame.resample](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.resample.html)
+
+```python
+DataFrame.resample(rule, how=None, axis=0, fill_method=None, closed=None, label=None, convention='start', kind=None, loffset=None, limit=None, base=0, on=None, level=None)
+```
+
+对时间索引进行频次转换
+
+[offset—aliases](http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases)
+
+AS 年份开始的频次， 10AS表示每10年分一组
+
+# [pandas.DataFrame.idxmax](https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.DataFrame.idxmax.html)
+
+```python
+DataFrame.idxmax(axis=0, skipna=True)
+```
+
+idxmax在dataframe中返回的是一个series， 在series中返回的是个列的标签
+
+idxmax返回的最大值中第一次出现的label
+
+skipna = False 返回的是nan空值

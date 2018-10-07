@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="533ca2fe-db86-45ac-bd39-1298b869dbb0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/03Grouping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../error_of_python.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../error_of_python.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/04_apply.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../notebook_of_coding.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Filtering_&amp;_sorting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Filtering_&amp;_sorting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03Grouping.py" beforeDir="false" afterPath="$PROJECT_DIR$/03Grouping.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,35 +17,36 @@
     <session id="-1460228037">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="4" />
+          <entry key="py" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="4" />
+          <entry key="Python" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="875" />
-          <entry key="py" value="8657" />
+          <entry key="Python Console" value="1146" />
+          <entry key="py" value="11367" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="9532" />
+          <entry key="Python" value="12513" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -55,10 +55,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/03Grouping.py">
+        <entry file="file://$PROJECT_DIR$/04_apply.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="267">
+              <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+              <folding>
+                <element signature="e#30#49#0" expanded="true" />
+                <marker date="1538913730339" expanded="true" signature="598:603" ph="..." />
+                <marker date="1538913730339" expanded="true" signature="761:766" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,6 +87,7 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/Filtering_&amp;_sorting.py" />
         <option value="$PROJECT_DIR$/03Grouping.py" />
+        <option value="$PROJECT_DIR$/04_apply.py" />
       </list>
     </option>
   </component>
@@ -97,7 +103,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -114,6 +119,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -241,8 +247,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/03Grouping.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="296">
+          <caret line="117" column="16" lean-forward="true" selection-start-line="117" selection-start-column="16" selection-end-line="117" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/04_apply.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+          <folding>
+            <element signature="e#30#49#0" expanded="true" />
+            <marker date="1538913730339" expanded="true" signature="598:603" ph="..." />
+            <marker date="1538913730339" expanded="true" signature="761:766" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

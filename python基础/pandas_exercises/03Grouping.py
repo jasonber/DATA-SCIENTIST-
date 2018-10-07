@@ -75,3 +75,44 @@ occup_gender = gender_ocup.div(occup_count, level = "occupation") * 100
 # present all rows from the 'gender column'
 occup_gender.loc[: , 'gender']
 '''
+
+# regiment
+import pandas as pd
+
+raw_data = {'regiment': ['Nighthawks', 'Nighthawks', 'Nighthawks', 'Nighthawks', 'Dragoons', 'Dragoons', 'Dragoons',
+                         'Dragoons', 'Scouts', 'Scouts', 'Scouts', 'Scouts'],
+        'company': ['1st', '1st', '2nd', '2nd', '1st', '1st', '2nd', '2nd','1st', '1st', '2nd', '2nd'],
+        'name': ['Miller', 'Jacobson', 'Ali', 'Milner', 'Cooze', 'Jacon', 'Ryaner', 'Sone', 'Sloan', 'Piger', 'Riani', 'Ali'],
+        'preTestScore': [4, 24, 31, 2, 3, 4, 24, 31, 2, 3, 2, 3],
+        'postTestScore': [25, 94, 57, 62, 70, 25, 94, 57, 62, 70, 62, 70]}
+
+# 整理数据
+regiment = pd.DataFrame(raw_data, columns=raw_data.keys())
+
+# Nighthawksd的preTestScore的平均值
+regiment[regiment['regiment'] == 'Nighthawks']['preTestScore'].mean()
+
+# 公司的描述统计
+regiment.groupby('company').describe()
+
+# 每个公司的 preTestScore的均值
+regiment.groupby('company')['preTestScore'].mean()
+
+# 按照regiment 和 company 计算 preTestScores的均值
+regiment.groupby(['regiment', 'company'])['preTestScore'].mean()
+
+# 按照regiment 和 company 计算 preTestScores的均值， 不统计heirarchical索引
+'''stack 和 unstack'''
+regiment.groupby(['regiment', 'company'])['preTestScore'].mean().unstack()
+
+# regiment 和 company分组
+regiment.groupby(['regiment', 'company']).mean()
+
+# 每个regiment 和 company的数据个数
+regiment.groupby(['company', 'regiment']).count()
+
+# 打印出regiment中所有的名称和数据
+'''不会 也不懂'''
+for name, group in regiment.groupby('regiment'):
+    print(name)
+    print(group)
