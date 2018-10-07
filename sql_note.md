@@ -491,3 +491,91 @@ AND salesman.city IS NOT NULL
 AND customer.grade IS NOT NULL;
 ```
 
+
+
+# [字符串拼接](http://www.cnblogs.com/rainman/p/6203065.html)
+
+concat , +, '||' 跟excel很像
+
+
+
+# Write a query in SQL to display job ID for those jobs that were done by two or more for more than 300 days.
+
+```mysql
+# 错误
+SELECT job_id
+FROM job_history
+GROUP BY job_id
+HAVING COUNT(end_date - start_date > 300) > 2;
+
+# 正确
+SELECT job_id 
+	FROM job_history 
+		WHERE end_date-start_date >300 
+			GROUP BY job_id 
+				HAVING COUNT(*)>=2;
+```
+
+
+
+# [group by注意事项](https://blog.csdn.net/haiross/article/details/50440176)
+
+https://www.cnblogs.com/chenleiustc/archive/2009/07/30/1535042.html
+
+ORDER BY:当使用ORDER BY子句时，多数情况下指定的排列序列都是选择列，但是排序列也可以不是选择列。但是如果在SELECT子句中使用了DISTINCT关键字，则排序列就必须是选择列了，否则会报错。
+
+GROUP BY：告诉数据库如何将查询出的数据进行分组，然后数据库才知道将组处理函数作用于已经分好的组。
+注意点：
+1、组处理函数只能出现在选择列表,ORDER BY子句，HAVING子句中，而不能出现在WHERE子句和GROUP BY子句中
+2、除了COUNT(*)之外，其他组处理函数都会忽略NULL行
+3、如果选择列表同时包含列，表达式和组函数，则这些列，表达式都必须出现在GROUP BY子句中
+4、在组处理函数中可以指定ALL,DISTINCT选项。其中ALL是默认的选项，表示统计所有的行（包括重复的行），而DISTINCT只会统计不同的行
+
+
+
+# Write a query in SQL to display those departments where any manager is managing 4 or more employees.
+
+```mysql
+# 错误
+SELECT DISTINCT department_id
+FROM employees
+GROUP BY manager_id, department_id
+HAVING COUNT(employee_id) >= 4;
+
+# 正确
+SELECT DISTINCT department_id
+	FROM employees
+		GROUP BY department_id, manager_id 
+			HAVING COUNT(employee_id) >=4;
+```
+
+分组也是有顺序的
+
+
+
+# [DISTINCT](http://www.runoob.com/sql/sql-distinct.html)
+
+在表中，一个列可能会包含多个重复值，有时您也许希望仅仅列出不同（distinct）的值。
+
+DISTINCT 关键词用于返回唯一不同的值。
+
+
+
+# 多表查询
+
+Write a SQL statement to make a list with order no, purchase amount, customer name and their cities for those orders which order amount between 500 and 2000.
+
+```mysql
+SELECT orders.ord_no, orders.purch_amt, customer.cust_name, customer.city 
+FROM orders
+JOIN customer
+ON orders.customer_id = customer.customer_id 
+WHERE orders.purch_amt BETWEEN 500 AND 2000;
+# 等价
+SELECT  a.ord_no,a.purch_amt,
+b.cust_name,b.city 
+FROM orders a,customer b 
+WHERE a.customer_id=b.customer_id 
+AND a.purch_amt BETWEEN 500 AND 2000;
+```
+
