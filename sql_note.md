@@ -579,3 +579,29 @@ WHERE a.customer_id=b.customer_id
 AND a.purch_amt BETWEEN 500 AND 2000;
 ```
 
+
+
+# [三个表及以上的连接](https://blog.csdn.net/zht666/article/details/8555164)
+
+```sql
+SELECT * 
+FROM 表1 
+INNER JOIN 表2 
+ON 表1.字段号=表2.字段号 
+INNER JOIN 表3 
+ON 表1.字段号=表3.字段号) 
+INNER JOIN 表4 
+ON 表1.字段号=表4.字段号
+```
+
+# [NATURAL JOIN](https://blog.csdn.net/aeolus_pu/article/details/7789543)
+
+Write a SQL statement to make a join on the tables salesman, customer and orders in such a form that the same column of each table will appear once and only the relational rows will come.
+
+```sql
+SELECT * 
+FROM orders 
+NATURAL JOIN customer  
+NATURAL JOIN salesman;
+```
+
