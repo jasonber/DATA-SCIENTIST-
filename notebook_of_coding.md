@@ -453,8 +453,36 @@ DataFrame.merge(right, how='inner', on=None, left_on=None, right_on=None, left_i
 
 > - left: use only keys from left frame, similar to a SQL left outer join; preserve key order
 > - right: use only keys from right frame, similar to a SQL right outer join; preserve key order
-> - outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically
-> - inner: use intersection of keys from both frames, similar to a SQL inner join; preserve the order of the left keys
+> - outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically **并集**
+> - inner: use intersection of keys from both frames, similar to a SQL inner join; preserve the order of the left keys **交集**
+
+[merge, join, concat](https://pandas.pydata.org/pandas-docs/stable/merging.html)
+
+concat 中文https://blog.csdn.net/stevenkwong/article/details/52528616
+
+merge， join中文 https://blog.csdn.net/stevenkwong/article/details/52540605#comments
+
+merge()：与Sql中的join功能一样，关键参数 数据集df，方式how，关键值on
+
+concat()：不同的轴做简单融合，不去重。与append功能相同，是pandas中的方法
+
+append()：是series和dataframe的方法。两个表合并在一起，按照相同的列排在下面，索引不去重。只是简单的将一个表的数据放在另一个表下面。
+
+join()：dataframe内置的join方法是一种快速合并的方法。它默认以index作为对齐的列。
+
+
+
+如何区分使用场景？https://zhuanlan.zhihu.com/p/38184619：
+
+pandas.concat——可沿一条轴将多个对象链接到一起；
+
+pandas.merge——可根据一个或多个键将不同的DataFrame中的行连接起来。
+
+append——将dataframe附在数据下面，左面。横向和纵向同时扩充，不考虑columns和index
+
+join——如果为’inner’得到的是两表的交集，如果是outer，得到的是两表的并集；如果有join_axes的参数传入，可以指定根据那个轴来对齐数据。
+
+combine—first可以将重复数据编排在一起，用一个对象中的值填充另一个对象中的值。
 
 # [sklearn.preprocessing.MinMaxScaler](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html)
 
@@ -613,7 +641,7 @@ TypeError: 'generator' object is not subscriptable
 
 
 
-# [reset_index](http://www.30daydo.com/article/257)
+# [reset_index](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html)
 
  可以看到，原来的一列index现在变成了columns之一，新的index为[0,1,2,3,4,5]
 如果添加参数 reset_index(drop=True) 那么原index会被丢弃，不会显示为一个新列。
@@ -622,13 +650,19 @@ TypeError: 'generator' object is not subscriptable
 result2 = result.reset_index(drop=True)
 ```
 
+http://www.30daydo.com/article/257
+
+https://blog.csdn.net/jingyi130705008/article/details/78162758
+
 # [pandas.DataFrame.set_index](https://pandas.pydata.org/pandas-docs/version/0.22/generated/pandas.DataFrame.set_index.html)
 
 ```python
 DataFrame.set_index(keys, drop=True, append=False, inplace=False, verify_integrity=False)
 ```
 
-drop 真假的作用？
+drop 真假的作用？是否保留原来的index
+
+
 
 # [pandas.concat](https://blog.csdn.net/stevenkwong/article/details/52528616)
 
@@ -804,3 +838,37 @@ idxmax在dataframe中返回的是一个series， 在series中返回的是个列�
 idxmax返回的最大值中第一次出现的label
 
 skipna = False 返回的是nan空值
+
+# [np.random](https://www.jianshu.com/p/214798dd8f93)
+
+[【Python】区分python中random模块的randint与numpy.random模块的randint](https://blog.csdn.net/ztf312/article/details/77871424)
+
+random.randint(a, b)     # 返回闭区间 [a, b] 范围内的整数值
+
+numpy.random.randint(a, b)   # 返回开区间 [a, b) 范围内的整数值
+
+# [pandas.DataFrame.rename](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rename.html)
+
+```python
+DataFrame.rename(mapper=None, index=None, columns=None, axis=None, copy=True, inplace=False, level=None)
+```
+
+可以修改索引，修改列名
+
+# [pandas.Series.to_frame](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.to_frame.html)
+
+# [pandas.DataFrame.drop](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.drop.html)
+
+```python
+DataFrame.drop(labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise')
+```
+
+# panda 统计
+
+https://blog.csdn.net/claroja/article/details/65445063
+
+# datetime
+
+https://docs.python.org/2/library/datetime.html
+
+内容不少 用到再看吧
