@@ -605,3 +605,45 @@ NATURAL JOIN customer
 NATURAL JOIN salesman;
 ```
 
+# [FULL OUTER JOIN](http://www.runoob.com/sql/sql-join-full.html)
+
+http://www.w3school.com.cn/sql/sql_join_full.asp 例子
+
+Write a SQL statement to make a report with customer name, city, order no. order date, purchase amount for only those customers on the list who must have a grade and placed one or more orders or which order(s) have been placed by the customer who is neither in the list not have a grade.
+
+```sql
+SELECT a.cust_name,a.city, b.ord_no,
+b.ord_date,b.purch_amt AS "Order Amount" 
+FROM customer a 
+FULL OUTER JOIN orders b 
+ON a.customer_id=b.customer_id 
+WHERE a.grade IS NOT NULL;
+```
+
+
+
+FULL OUTER JOIN 关键字只要左表（table1）和右表（table2）其中一个表中存在匹配，则返回行.
+
+FULL OUTER JOIN 关键字结合了 LEFT JOIN 和 RIGHT JOIN 的结果。
+
+mysql 中没有FULL OUTER JOIN 那该怎么实现呢？
+
+# [CROSS JOIN](http://www.cnblogs.com/chenxizhang/archive/2008/11/10/1330325.html)
+
+```sql
+SQL CROSS JOIN syntax:
+SELECT * FROM [TABLE 1] CROSS JOIN [TABLE 2]
+-- 等价
+SELECT * FROM [TABLE 1], [TABLE 2]  //重点,平时写法要注意啊
+```
+
+Write a SQL statement to make a cartesian product between salesman and customer i.e. each salesman will appear for all customer and vice versa.
+
+cartesian product 笛卡尔积
+
+```sql
+SELECT * 
+FROM salesman a 
+CROSS JOIN customer b;
+```
+

@@ -863,12 +863,49 @@ DataFrame.rename(mapper=None, index=None, columns=None, axis=None, copy=True, in
 DataFrame.drop(labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise')
 ```
 
-# panda 统计
+# panda 描述统计函数
 
 https://blog.csdn.net/claroja/article/details/65445063
+
+https://blog.csdn.net/pipisorry/article/details/25625799
+
+axis的选择
+
+0：列固定，按照索引的顺序操作
+
+1：行固定，按照列的顺序操作
 
 # datetime
 
 https://docs.python.org/2/library/datetime.html
 
 内容不少 用到再看吧
+
+https://blog.csdn.net/weixin_38168620/article/details/79596564
+
+datetime的数据类型，可以直接调用年月日
+
+```python
+data.loc[data.index.month == 1].mean()
+```
+
+
+
+# [pandas.Index.flatten](http://pandas.pydata.org/pandas-docs/version/0.14/generated/pandas.Index.flatten.html)
+
+将多维数据按照要求，拉平形成一维数组。与numpy.ndarry.flatten()作用相同
+
+```python
+Index.flatten(order='C')
+```
+
+参数order : {‘C’, ‘F’, ‘A’}, optional
+
+ C (row-major), The default is ‘C’.
+
+Fortran (column-major) order, or preserve the C/Fortran ordering from a. 
+
+A是什么？ ‘A’ means to flatten in column-major order if a is Fortran contiguous in memory, row-major order otherwise.
+
+# PeriodIndex 要搞明白
+

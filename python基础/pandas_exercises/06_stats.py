@@ -57,4 +57,26 @@ data.isnull().sum()
 data.notnull().sum()
 
 # 所有地点时间的平均风速
-data.
+data.fillna(0).values.flatten().mean()
+
+# 创建一个 loc_stats的describe数据框
+# 按照列来计算平均值，也是describe的默认方式
+loc_stats = pd.DataFrame()
+loc_stats['min'] = data.min()
+loc_stats['max'] = data.max()
+loc_stats['mean'] = data.mean()
+loc_stats['std'] = data.std()
+# loc_stats = data.describe(percentiles=[])
+
+# 创建一个day_stats的decribe数据框
+day_stats = pd.DataFrame()
+day_stats['min'] = data.min(axis='columns')
+day_stats['max'] = data.max(axis=1)
+day_stats['mean'] = data.mean(axis=1)
+day_stats['std'] = data.std(axis=1)
+
+# 找到每个地方一月份的平均风速
+data.loc[data.index.month == 1].mean()
+
+# 以年为频次统计每个地区
+data.groupby(data.index.to_period('A')).mean()
