@@ -418,7 +418,7 @@ Only the groups that meet the HAVING criteria will be returned.
 HAVING requires that a GROUP BY clause is present.
 WHERE and HAVING can be in the same query.
 
-
+什么时候用Having啊？？有点懵
 
 # Write a SQL statement to find the highest purchase amount with their ID and order date, for those customers who have a higher purchase amount in a day is within the range 2000 and 6000.
 
@@ -645,5 +645,21 @@ cartesian product 笛卡尔积
 SELECT * 
 FROM salesman a 
 CROSS JOIN customer b;
+```
+
+
+
+# [Write a SQL query to display the name of each company along with the ID and price for their most expensive product.](https://www.w3resource.com/sql-exercises/sql-joins-exercise-25.php)
+
+```sql
+SELECT A.pro_name, A.pro_price, F.com_name
+   FROM item_mast A INNER JOIN company_mast F
+   ON A.pro_com = F.com_id
+     AND A.pro_price =
+     (
+       SELECT MAX(A.pro_price)
+         FROM item_mast A
+         WHERE A.pro_com = F.com_id
+     );
 ```
 
