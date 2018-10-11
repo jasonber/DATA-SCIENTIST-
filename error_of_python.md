@@ -51,3 +51,18 @@ users.groupby('occupation')['age'].mean()
 # TypeError: reduction operation 'argmax' not allowed for this dtype
 
 说明值的数据类型不是数值
+
+
+
+# UnicodeDecodeError: 'utf-8' codec can't decode byte 0xa3 in position 28: invalid start byte
+
+```python
+# 报错
+Past=pd.read_csv("C:/Users/Admin/Desktop/Python/Past.csv",encoding='utf-8')
+# 修正
+Past=pd.read_csv("C:/Users/Admin/Desktop/Python/Past.csv",encoding='cp1252')
+```
+
+
+
+读取文档的时候，utf-8无法解码

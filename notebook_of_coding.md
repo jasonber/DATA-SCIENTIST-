@@ -823,7 +823,20 @@ DataFrame.resample(rule, how=None, axis=0, fill_method=None, closed=None, label=
 
 对时间索引进行频次转换
 
+```python
+'''Step 15. Calculate the min, max and mean windspeeds and standard deviations of the windspeeds across all locations for each week (assume that the first week starts on January 2 1961) for the first 52 weeks.'''
+# resample data to 'W' week and use the functions
+weekly = data.resample('W').agg(['min','max','mean','std'])
+
+# slice it for the first 52 weeks and locations
+weekly.loc[weekly.index[1:53], "RPT":"MAL"] .head(10)
+```
+
+
+
 [offset—aliases](http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases)
+
+A number of string aliases are given to useful common time series frequencies. We will refer to these aliases as offset aliases.
 
 AS 年份开始的频次， 10AS表示每10年分一组
 
@@ -907,5 +920,74 @@ Fortran (column-major) order, or preserve the C/Fortran ordering from a.
 
 A是什么？ ‘A’ means to flatten in column-major order if a is Fortran contiguous in memory, row-major order otherwise.
 
-# PeriodIndex 要搞明白
+# PeriodIndex 要搞明白?
+
+[offset—aliases](http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases)
+
+A number of string aliases are given to useful common time series frequencies. We will refer to these aliases as offset aliases.
+
+```python
+# 找到每个地方一月份的平均风速
+data.loc[data.index.month == 1].mean()
+
+# 以年为频次统计每个地区
+# periodIndex 需要学习
+data.groupby(data.index.to_period('A')).mean()
+
+# 以月为频次统计每个地方的平均风速
+data.groupby(data.index.to_period('M')).mean()
+
+# 以周为频次统计每个地方的平均风速
+data.groupby(data.index.to_period('W')).mean()
+```
+
+
+
+# [python.collections](https://docs.python.org/2/library/collections.html)
+
+具体讲解
+
+https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001411031239400f7181f65f33a4623bc42276a605debf6000
+
+# [pandas.DataFrame.from_dict](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.from_dict.html)
+
+从字典转换为数据框
+
+orient 表示dic 里的key 作为索引名，还是列名。
+
+columns可以直接设置列名
+
+*Parameters:* data, orient, dtype, columns 
+
+Return: pandas.DataFrame
+
+# [pandas.DataFrame.plot](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.plot.html)
+
+使用matplot和pylab来作图
+
+```python
+DataFrame.plot(x=None, y=None, kind='line', ax=None, subplots=False, sharex=None, sharey=False, layout=None, figsize=None, use_index=True, title=None, grid=None, legend=True, style=None, logx=False, logy=False, loglog=False, xticks=None, yticks=None, xlim=None, ylim=None, rot=None, fontsize=None, colormap=None, table=False, yerr=None, xerr=None, secondary_y=False, sort_columns=False, **kwds)
+```
+
+参数：kind : str
+
+‘line’ : line plot (default)
+‘bar’ : vertical bar plot
+‘barh’ : horizontal bar plot
+‘hist’ : histogram
+‘box’ : boxplot
+‘kde’ : Kernel Density Estimation plot
+‘density’ : same as ‘kde’
+‘area’ : area plot
+‘pie’ : pie plot
+‘scatter’ : scatter plot
+‘hexbin’ : hexbin plot
+
+# [matplotlib.pyplot.scatter](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html)
+
+```python
+matplotlib.pyplot.scatter(x, y, s=None, c=None, marker=None, cmap=None, norm=None, vmin=None, vmax=None, alpha=None, linewidths=None, verts=None, edgecolors=None, *, data=None, **kwargs)
+```
+
+s 代表marker的大小 其他的作图函数的参数也是一样的
 

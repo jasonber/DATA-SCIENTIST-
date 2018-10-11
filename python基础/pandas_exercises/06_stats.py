@@ -79,4 +79,15 @@ day_stats['std'] = data.std(axis=1)
 data.loc[data.index.month == 1].mean()
 
 # 以年为频次统计每个地区
+# periodIndex 需要学习
 data.groupby(data.index.to_period('A')).mean()
+
+# 以月为频次统计每个地方的平均风速
+data.groupby(data.index.to_period('M')).mean()
+
+# 以周为频次统计每个地方的平均风速
+data.groupby(data.index.to_period('W')).mean()
+
+# 计算 每周的风速的最小值 最大值 平均值 标准差。 以1961年的1月2 开始。
+weekly = data.resample('W').agg(['min', 'max', 'mean', 'std'])
+weekly.loc[weekly.index[1:53], :].head(10)
