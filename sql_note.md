@@ -663,3 +663,104 @@ SELECT A.pro_name, A.pro_price, F.com_name
      );
 ```
 
+# [LEFT RIGHT 是怎么判断以那个表格为标准的？](http://blog.sina.com.cn/s/blog_161231e190102wqog.html)
+
+交集交的是什么？并集并的是什么？
+
+join 的是列名，要显示哪些行，用inner right left 来判断。
+
+带有B中什么信息的A： 要显示的是A的行。
+
+```sql
+SELECT E.department_id AS "E-department", D.department_id AS "D-department",
+E.first_name, E.last_name, 
+L.city, L.state_province
+FROM employees E
+RIGHT JOIN departments D -- E与D以department_id为条件的交集，以及D的全部department_id
+ON E.department_id = D.department_id
+INNER  JOIN locations L
+ON D.location_id = L.location_id;
+```
+
+Left join：即左连接，是以左表为基础，根据ON后给出的两表的条件将两表连接起来。结果会将左表所有的查询信息列出，而右表只列出ON后条件与左表满足的部分。左连接全称为左外连接，是外连接的一种。
+
+**左右表的条件交集+左表该条件的全部**
+
+Right join：即右连接，是以右表为基础，根据ON后给出的两表的条件将两表连接起来。结果会将右表所有的查询信息列出，而左表只列出ON后条件与右表满足的部分。右连接全称为右外连接，是外连接的一种。
+
+**左右表的条件交集+右表该条件的全部**
+
+Inner join：即内连接，同时将两表作为参考对象，根据ON后给出的两表的条件将两表连接起来。结果则是两表同时满足ON后的条件的部分才会列出。 
+
+**交集**
+
+CROSS join：笛卡尔积，全部数据结合在一起，不是乘除，而是位置的一种排列方法。前面的所有结合方式都是在此基础上完成的。
+
+
+
+# 7. Write a query in SQL to display the first and last name and salary for those employees who earn less than the employee earn whose number is 182.
+
+```sql
+SELECT E.first_name, E.last_name, E.salary 
+  FROM employees E 
+   JOIN employees S
+     ON E.salary < S.salary 
+      AND S.employee_id = 182;
+```
+
+# [8. Write a query in SQL to display the first name of all employees including the first name of their manager.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-8.php)
+
+有管理者的员工的名字以及这位管理者的名字
+
+```sql
+--错误
+SELECT E.first_name AS "Employee Name", 
+M.first_name AS "Manager Name"
+FROM employees E
+LEFT JOIN employees M
+ON E.employee_id = M.manager_id;--用整个公司的员工去匹配管理者，且返回所有员工id
+
+--正确
+SELECT E.first_name AS "Employee Name", 
+   M.first_name AS "Manager"
+     FROM employees E 
+       JOIN employees M
+         ON E.manager_id = M.employee_id;
+
+--等价
+SELECT E.first_name AS "Employee Name", 
+M.first_name AS "Manager Name"
+FROM employees E
+LEFT JOIN employees M
+ON M.employee_id = E.manager_id;--用整个公司的管理者去匹配公司的员工，返回员工的管理者id
+```
+
+
+
+# 11. Write a query in SQL to display the first name of all employees and the first name of their manager including those who does not working under any manager.
+
+```sql
+--原题答案
+SELECT E.first_name AS "Employee Name",
+   M.first_name AS "Manager"
+    FROM employees E 
+      LEFT OUTER JOIN employees M
+       ON E.manager_id = M.employee_id;
+
+--选出没有管理者的员工姓名
+--错误答案：因为条件的筛选在join之前，
+SELECT E.first_name AS "Employees", 
+M.first_name AS "Manager"
+FROM employees E
+LEFT JOIN employees M
+ON E.manager_id = M.employee_id
+And M.manager_id IS NULL;
+--正确
+SELECT first_namen
+FROM employees E
+WHERE manager_id  = 0;
+```
+
+# [JOIN USING](https://stackoverflow.com/questions/13750152/using-keyword-vs-on-clause-mysql)
+
+using用于有相同列名的多表连接。
