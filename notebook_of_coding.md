@@ -991,3 +991,89 @@ matplotlib.pyplot.scatter(x, y, s=None, c=None, marker=None, cmap=None, norm=Non
 
 s 代表marker的大小 其他的作图函数的参数也是一样的
 
+
+
+# [pandas.Index.get_level_values](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Index.get_level_values.html)
+
+Return an Index of values for requested level, equal to the length of the index
+
+# [pandas.DataFrame.isin](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.isin.html)
+
+Return boolean DataFrame showing whether each element in the DataFrame is contained in values.
+
+# [seaborn.FacetGrid](https://seaborn.pydata.org/generated/seaborn.FacetGrid.html)
+
+seaborn 是实现使matplotlib更高级的工具https://seaborn.pydata.org/index.html
+
+**要进一步学习**
+
+This class maps a dataset onto multiple axes arrayed in a grid of rows and columns that correspond to levels of variables in the dataset. The plots it produces are often called “lattice”, “trellis”, or “small-multiple” graphics.
+
+```python
+class seaborn.FacetGrid(data, row=None, col=None, hue=None, col_wrap=None, sharex=True, sharey=True, height=3, aspect=1, palette=None, row_order=None, col_order=None, hue_order=None, hue_kws=None, dropna=True, legend_out=True, despine=True, margin_titles=False, xlim=None, ylim=None, subplot_kws=None, gridspec_kws=None, size=None)
+```
+
+后面必跟着map（[seaborn.FacetGrid.map](https://seaborn.pydata.org/generated/seaborn.FacetGrid.map.html?highlight=map#seaborn.FacetGrid.map)）
+
+```python
+FacetGrid.map(func, *args, **kwargs)
+```
+
+sns的style： {darkgrid, whitegrid, dark, white, ticks}
+
+# 创建preTestScore 和 postTestScore的散点图 大小是性别的4.5倍 由性别决定颜色
+
+```python
+plt.scatter(df['preTestScore'], df['postTestScore'], s=4.5*df['postTestScore'], c=df['female'])
+plt.title('preTestScore X postTestScore')
+plt.xlabel('preTestScore')
+plt.ylabel('postTestScore')
+```
+
+原来参数还可以这么用
+
+# [matplotlib.pyplot.hist](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html)
+
+```python
+matplotlib.pyplot.hist(x, bins=None, range=None, density=None, weights=None, cumulative=False, bottom=None, histtype='bar', align='mid', orientation='vertical', rwidth=None, log=False, color=None, label=None, stacked=False, normed=None, *, data=None, **kwargs)
+```
+
+# [seaborn.distplot](https://seaborn.pydata.org/generated/seaborn.distplot.html?highlight=distplot)
+
+```python
+seaborn.distplot(a, bins=None, hist=True, kde=True, rug=False, fit=None, hist_kws=None, kde_kws=None, rug_kws=None, fit_kws=None, color=None, vertical=False, norm_hist=False, axlabel=None, label=None, ax=None)
+```
+
+# [seaborn.jointplot](https://seaborn.pydata.org/generated/seaborn.jointplot.html?highlight=jointplot#seaborn.jointplot)
+
+```python
+seaborn.jointplot(x, y, data=None, kind='scatter', stat_func=None, color=None, height=6, ratio=5, space=0.2, dropna=True, xlim=None, ylim=None, joint_kws=None, marginal_kws=None, annot_kws=None, **kwargs)
+```
+
+Draw a plot of two variables with bivariate and univariate graphs.
+
+kind : { “scatter” | “reg” | “resid” | “kde” | “hex” }, optional
+
+Kind of plot to draw.
+
+# [seaborn.pairplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html?highlight=pairplot#seaborn.pairplot)
+
+```python
+seaborn.pairplot(data, hue=None, hue_order=None, palette=None, vars=None, x_vars=None, y_vars=None, kind='scatter', diag_kind='auto', markers=None, height=2.5, aspect=1, dropna=True, plot_kws=None, diag_kws=None, grid_kws=None, size=None)
+```
+
+Plot pairwise relationships in a dataset.
+
+# [seaborn.stripplot](https://seaborn.pydata.org/generated/seaborn.stripplot.html?highlight=stripplot#seaborn.stripplot)
+
+```python
+seaborn.stripplot(x=None, y=None, hue=None, data=None, order=None, hue_order=None, jitter=True, dodge=False, orient=None, color=None, palette=None, size=5, edgecolor='gray', linewidth=0, ax=None, **kwargs)
+```
+
+Draw a scatterplot where one variable is categorical.
+
+jitter : float, True/1 is special-cased, optional
+
+抖动，方便看清楚数据点的位置，避免因重叠而看不清
+
+hue：可以看出是legend表示的是什么。分类标准
