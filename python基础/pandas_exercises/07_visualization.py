@@ -128,3 +128,55 @@ graph_tip.map(plt.hist, 'tip')
 scatter = sns.FacetGrid(tips, col='sex', hue='smoker')
 scatter.map(plt.scatter, 'total_bill', 'tip', alpha=.7)
 scatter.add_legend()
+
+# Titanic Desaster
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+titanic = pd.read_csv('/home/zhangzhiliang/Documents/Book/coding/pandas_exercises/07_Visualization/Titanic_Desaster/train.csv')
+
+# 设置索引为passengerId
+titanic.set_index('PassengerId')
+
+# 制作性别饼图
+males = (titanic['Sex'] == 'male').sum()
+females = (titanic['Sex'] == 'female').sum()
+proportions = [males, females]
+# plt.pie(proportions, labels=['males', 'females'], shadow=False, colors=['blue', 'red'], explode=(0.15, 0), startangle=90,
+#         autopct= '%1.1f%%')
+
+plt.pie(proportions, labels=['males', 'females'], shadow=False, colors=['blue', 'red'], explode=(0.15, 0), startangle=90,
+        )
+plt.axis('equal')
+plt.title('Sex Proportion')
+plt.tight_layout()
+plt.show()
+
+# 创建一个关于fare和age的散点图，使用gender为颜色
+'''def sex_numeric(x):
+    if x == 'male':
+        return 1
+    else:
+        return 0
+
+titanic['Sex'] = titanic['Sex'].apply(sex_numeric)
+plt.scatter(titanic['Fare'], titanic['Age'], c=titanic['Sex'])
+plt.legend()
+plt.show()'''
+lm = sns.lmplot(x='Age', y='Fare', data=titanic, hue='Sex', fit_reg=False)
+lm.set(title='Fare X Age')
+axes = lm.axes
+axes[0, 0].set_ylim(-5,)
+axes[0, 0].set_xlim(-5, 85)
+
+# 有多少人存活
+titanic['Survived'].value_counts()
+
+# 创建一个fare的直方图
+df = titanic['Fare'].sort_values(ascending=False)
+plt.hist(df)
+plt.ylabel('Frequency')
+plt.xlabel('Fare')
+plt.title('Fare Payed Histrogram')

@@ -114,6 +114,8 @@ df.iloc[1:3,[1,2]	#第1行到第3行（不包含第3行），第1列和第2列�
 data = data['盈利'].copy()得到的data是series,对应的sort_values方法只需要指定axis;
 data = data[['盈利']].copy()得到的data是dataframe,对应的sort_values方法只需要指定cols
 
+https://blog.csdn.net/chenKFKevin/article/details/62049060
+
 对列操作
 
 ```python
@@ -1077,3 +1079,64 @@ jitter : float, True/1 is special-cased, optional
 抖动，方便看清楚数据点的位置，避免因重叠而看不清
 
 hue：可以看出是legend表示的是什么。分类标准
+
+
+
+# [matplotlib.pyplot.pie](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.pie.html)
+
+```python
+matplotlib.pyplot.pie(x, explode=None, labels=None, colors=None, autopct=None, pctdistance=0.6, shadow=False, labeldistance=1.1, startangle=None, radius=None, counterclock=True, wedgeprops=None, textprops=None, center=(0, 0), frame=False, rotatelabels=False, *, data=None)
+```
+
+shadow：在图下面是否有阴影
+
+explode：分开的距离
+
+startangle：起始角度，0，表示从0开始逆时针转，为第一块。一般选择从90度开始比较好看
+
+autopct：对图片里的数值文本格式的设置，同.format()的使用方法一样。
+
+# [matplotlib.pyplot.axis](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.axis.html)
+
+设置轴的某些属性：
+
+'on'	Turn on axis lines and labels.
+'off'	Turn off axis lines and labels.
+'equal'	Set equal scaling (i.e., make circles circular) by changing axis limits.
+'scaled'	Set equal scaling (i.e., make circles circular) by changing dimensions of the plot box.
+'tight'	Set limits just large enough to show all data.
+'auto'	Automatic scaling (fill plot box with data).
+'normal'	Same as 'auto'; deprecated.
+'image'	'scaled' with axis limits equal to data limits.
+'square'	Square plot; similar to 'scaled', but initially forcing xmax-xmin = ymax-ymin.
+
+
+
+# [matplotlib.tight_layout](https://matplotlib.org/api/tight_layout_api.html)
+
+tight_layout会自动调整子图参数，使之填充整个图像区域。这是个实验特性，可能在一些情况下不工作。它仅仅检查坐标轴标签、刻度标签以及标题的部分。
+
+# [seaborn.lmplot](https://seaborn.pydata.org/generated/seaborn.lmplot.html)
+
+Plot data and regression model fits across a FacetGrid.
+
+This function combines regplot() and FacetGrid. It is intended as a convenient interface to fit regression models across conditional subsets of a dataset.
+
+```python
+seaborn.lmplot(x, y, data, hue=None, col=None, row=None, palette=None, col_wrap=None, height=5, aspect=1, markers='o', sharex=True, sharey=True, hue_order=None, col_order=None, row_order=None, legend=True, legend_out=True, x_estimator=None, x_bins=None, x_ci='ci', scatter=True, fit_reg=True, ci=95, n_boot=1000, units=None, order=1, logistic=False, lowess=False, robust=False, logx=False, x_partial=None, y_partial=None, truncate=False, x_jitter=None, y_jitter=None, scatter_kws=None, line_kws=None, size=None)
+```
+
+seaborn 比matplot简单很多
+
+还有一个叫做echart的库 这些都要学
+
+# pandas.Series.is_unique
+
+只适用于series，返回true和false 判断是否为唯一。
+
+# [pandas.DataFrame.dropna](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.dropna.html)
+
+```python
+DataFrame.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)[source]
+```
+
