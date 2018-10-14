@@ -192,7 +192,7 @@ COUNT(\*) 函数返回表中的记录数
 SELECT COUNT(*) FROM table_name
 ```
 
-
+结合就join 组合查询。
 
 # 查找最便宜的商品
 
@@ -596,6 +596,8 @@ ON 表1.字段号=表4.字段号
 
 # [NATURAL JOIN](https://blog.csdn.net/aeolus_pu/article/details/7789543)
 
+​        自然连接（NATURAL JOIN）是一种特殊的等价连接，它将表中具有相同名称的列自动进行记录匹配。自然连接不必指定任何同等连接条件。图9.9给出了典型的自然连接示意图。自然连接自动判断相同名称的列，而后形成匹配。缺点是，虽然可以指定查询结果包括哪些列，但不能人为地指定哪些列被匹配。另外，自然连接的一个特点是连接后的结果表中匹配的列只有一个。
+
 Write a SQL statement to make a join on the tables salesman, customer and orders in such a form that the same column of each table will appear once and only the relational rows will come.
 
 ```sql
@@ -764,3 +766,107 @@ WHERE manager_id  = 0;
 # [JOIN USING](https://stackoverflow.com/questions/13750152/using-keyword-vs-on-clause-mysql)
 
 using用于有相同列名的多表连接。
+
+# *[21. Write a query in SQL to display the country name, city, and number of those departments where at leaste 2 employees are working.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-21.php)*
+
+看不懂的子查询
+
+```sql
+--错误
+SELECT C.country_name, 
+L.city, 
+COUNT(D.department_id)
+FROM departments D
+LEFT JOIN locations L
+ON D.location_id = L.location_id
+LEFT JOIN countries C
+ON L.country_id = C.country_id
+LEFT JOIN employees E
+ON D.department_id = E.department_id
+GROUP BY D.department_id
+HAVING COUNT(E.employee_id) >= 2;
+
+--正确
+SELECT country_name,city, COUNT(department_id)
+	FROM countries 
+		JOIN locations USING (country_id) 
+		JOIN departments USING (location_id) 
+WHERE department_id IN 
+    (SELECT department_id 
+		FROM employees 
+	 GROUP BY department_id 
+	 HAVING COUNT(department_id)>=2)
+GROUP BY country_name,city;
+```
+
+
+
+# *[25. Write a query in SQL to display full name(first and last name), job title, starting and ending date of last jobs for those employees with worked without a commission percentage.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-25.php)*
+
+```sql
+SELECT CONCAT(e.first_name, ' ', e.last_name) AS Employee_name,
+       j.job_title,
+       h.*
+FROM employees e
+JOIN
+  (SELECT MAX(start_date),
+          MAX(end_date),
+          employee_id
+   FROM job_history
+   GROUP BY employee_id) h ON e.employee_id=h.employee_id
+JOIN jobs j ON j.job_id=e.job_id
+WHERE e.commission_pct = 0;
+```
+
+# *[26. Write a query in SQL to display the department name, department ID, and number of employees in each of the department.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-26.php)*
+
+```sql
+SELECT d.department_name,
+       e.*
+FROM departments d
+JOIN
+  (SELECT count(employee_id),
+          department_id
+   FROM employees
+   GROUP BY department_id) e USING (department_id);
+```
+
+# 子查询的意义
+
+创建满足查询条件的临时视图view
+
+子查询就是将用来定义视图的SELECT语句直接用于FROM子句当中。先执行FROM中的SELECT语句再执行外面的语句。由内而外，跟嵌套函数是一样的，跟矩阵变换是一样的。这是因为SQL语句的执行顺序所致。
+
+子查询不可以使用ORDER BY
+
+执行顺序：
+
+```mysql
+From 
+Where 
+Group by 
+Having 
+Select 
+Order by 
+Limit
+```
+
+子查询与join都是多表查询，他们的区别在哪里？
+
+子查询用于多重条件？什么的什么的数据，子查询查询的是第一个什么的。
+
+# [3. Write a query to find all the orders issued against the salesman who works for customer whose id is 3007.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-3.php)
+
+```sql
+-- 找出发出客户ID为3007的订单的销售人员
+-- distinct 取唯一的值，因为它是子查询目的就是输出值，而不是为了查看
+--
+SELECT *
+FROM orders
+WHERE salesman_id =
+    (SELECT DISTINCT salesman_id 
+     FROM orders 
+     WHERE customer_id =3007);
+
+```
+
