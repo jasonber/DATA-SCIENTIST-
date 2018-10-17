@@ -870,3 +870,67 @@ WHERE salesman_id =
 
 ```
 
+
+
+# [8. Write a query to count the customers with grades above New York's average.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-8.php)
+
+```sql
+SELECT grade, COUNT (DISTINCT customer_id)
+FROM customer
+GROUP BY grade
+HAVING grade >
+    (SELECT AVG(grade)
+     FROM customer
+     WHERE city = 'New York');
+
+```
+
+# 子查询与JOIN的转换
+
+[9 Write a query to display all customers with orders on October 5, 2012.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-9.php)
+
+```sql
+--子查询
+SELECT *
+FROM customer 
+WHERE customer_id IN 
+(SELECT customer_id
+ FROM orders
+ WHERE ord_date = '2012-10-05');
+ 
+--连接查询
+SELECT C.*
+FROM customer C
+INNER JOIN orers O
+ON C.customer_id = O.customer_id
+AND O.ord_date = '2012-10-05';
+```
+
+子查询和链接查询，需要根据查询的列名来看怎么使用。如果要呈现列名的列名在不同的表中，那么就必须使用JOIN。如果要呈现的列名在同一个表中，那么使用子查询或JOIN都可以。
+
+# [11. Write a query to find the name and numbers of all salesmen who had more than one customer.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-11.php)
+
+```sql
+SELECT salesman_id,name 
+FROM salesman a 
+WHERE 1 < 
+    (SELECT COUNT(*) 
+     FROM customer 
+     WHERE salesman_id=a.salesman_id);
+```
+
+
+
+# [14.Write a query to find the sums of the amounts from the orders table, grouped by date, eliminating all those dates where the sum was not at least 1000.00 above the maximum amount for that date.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-14.php)
+
+```sql
+SELECT ord_date, SUM (purch_amt)
+FROM orders a
+GROUP BY ord_date
+HAVING SUM (purch_amt) >
+    (SELECT 1000.00 + MAX(purch_amt) 
+     FROM orders b 
+     WHERE a.ord_date = b.ord_date);
+
+```
+
