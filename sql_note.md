@@ -934,3 +934,47 @@ HAVING SUM (purch_amt) >
 
 ```
 
+# [15. Write a query to extract the data from the customer table if and only if one or more of the customers in the customer table are located in London.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-15.php)完全读不懂
+
+```sql
+SELECT customer_id,cust_name, city
+FROM customer
+WHERE EXISTS
+   (SELECT *
+    FROM customer 
+    WHERE city='London');
+```
+
+[EXISTS 和 IN的区别](https://www.jianshu.com/p/f212527d76ff)
+
+https://blog.csdn.net/zhangsify/article/details/71937745
+
+exists 和 IN的功能一样，但是效率较高。
+
+```sql
+select * from A where id in (select id from B);
+
+select * from A where exists (select id from B where A.id=B.id);
+```
+
+# [16. Write a query to find the salesmen who have multiple customers.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-16.php)完全不懂
+
+```sql
+SELECT * 
+FROM salesman 
+WHERE salesman_id IN (
+   SELECT DISTINCT salesman_id 
+   FROM customer a 
+   WHERE EXISTS (
+      SELECT * 
+      FROM customer b 
+      WHERE b.salesman_id=a.salesman_id 
+      AND b.cust_name<>a.cust_name));
+
+SELECT a.salesman_id, a.name, count(*)
+FROM salesman a, customer b
+WHERE a.salesman_id = b.salesman_id
+GROUP BY 1, 2
+HAVING COUNT(*) >= 2;
+```
+
