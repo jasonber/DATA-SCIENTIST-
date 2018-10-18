@@ -87,3 +87,21 @@ y轴表示某一变量在自变量的影响下的概率情况
 曲线下面的面积表示，在自变量为某值的情况下，因变量的概率
 
 
+
+# XGBOOST LightGBMde 区别
+
+分裂
+XGB：Level-wise，一次分裂同一层的叶子，但很多叶子分裂增益低、有不必要的搜索和分裂
+LGB：Leaf-wise with 深度限制，从所有叶子中找增益最大的叶子分裂
+决策树算法
+XGB：exact决策树
+LGB：Histogram
+加速
+XGB：无
+LGB：直方图做差（父－兄弟）
+categorical feature
+XGB：需要one hot / dummy
+LGB：支持
+直方图
+XGB：近似直方图算法：对所有feature每一层建一直方图
+LGB：对每一feature建直方图，只需一次
