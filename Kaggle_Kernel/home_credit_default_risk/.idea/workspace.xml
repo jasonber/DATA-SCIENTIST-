@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7da9baff-fb5a-4183-b0c1-5ae965f26c84" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../rong 360/Reject_Inference/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../rong 360/Reject_Inference/data_explore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/home_credit_default_risk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/home_credit_default_risk.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LGBM_for_home_risk.py" beforeDir="false" afterPath="$PROJECT_DIR$/LGBM_for_home_risk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manual_Feature_Engineering2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Manual_Feature_Engineering2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home risk.py" beforeDir="false" afterPath="$PROJECT_DIR$/home risk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/notebook_of_coding.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/项目简介.md" beforeDir="false" afterPath="$PROJECT_DIR$/项目简介.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python基础/pandas_exercises/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../python基础/pandas_exercises/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +21,7 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="19" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="7" />
           <entry key="project.open.time.11" value="6" />
           <entry key="project.open.time.12" value="3" />
@@ -30,12 +33,12 @@
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="28" />
+          <entry key="project.opened" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1302" />
+          <entry key="Python Console" value="1376" />
           <entry key="dummy" value="1" />
           <entry key="py" value="20623" />
           <entry key="txt" value="30" />
@@ -44,19 +47,19 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="31" />
-          <entry key="Python" value="21925" />
+          <entry key="Python" value="21999" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="18" />
+          <entry key="Python" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="md" value="1" />
-          <entry key="py" value="18" />
+          <entry key="py" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -64,11 +67,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Manual_Feature_Engineering1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="479" column="54" selection-start-line="479" selection-start-column="54" selection-end-line="479" selection-end-column="54" />
+            <state relative-caret-position="841">
+              <caret line="479" column="53" selection-start-line="479" selection-start-column="53" selection-end-line="479" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/home risk.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -97,10 +109,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="6" />
-    <option name="y" value="187" />
-    <option name="width" value="1360" />
-    <option name="height" value="736" />
+    <option name="y" value="118" />
+    <option name="width" value="1352" />
+    <option name="height" value="731" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -208,8 +219,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1368" height="742" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1" y="0" width="1368" height="742" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24535316" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -241,51 +251,12 @@
     <entry file="file://$PROJECT_DIR$/hyperopt_lgb.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/generic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6221" selection-start-line="6221" selection-end-line="6221" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/dtypes/generic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/frame.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="321" selection-start-line="321" selection-end-line="321" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/dtypes/missing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/internals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="3779" selection-start-line="3779" selection-end-line="3779" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notebook_of_coding.md">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home risk.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="10" selection-end-line="18" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/generic.py" />
+    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/dtypes/generic.py" />
+    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/frame.py" />
+    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/dtypes/missing.py" />
+    <entry file="file:///opt/anaconda/lib/python3.6/site-packages/pandas/core/internals.py" />
+    <entry file="file://$PROJECT_DIR$/notebook_of_coding.md" />
     <entry file="file://$PROJECT_DIR$/LGBM_for_home_risk.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -307,8 +278,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Manual_Feature_Engineering1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="479" column="54" selection-start-line="479" selection-start-column="54" selection-end-line="479" selection-end-column="54" />
+        <state relative-caret-position="841">
+          <caret line="479" column="53" selection-start-line="479" selection-start-column="53" selection-end-line="479" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home risk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
         </state>
       </provider>
     </entry>
