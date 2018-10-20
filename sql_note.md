@@ -978,3 +978,69 @@ GROUP BY 1, 2
 HAVING COUNT(*) >= 2;
 ```
 
+
+
+# 子查询中 EXISTS IN ANY ALL的用法
+
+https://blog.csdn.net/tjuyanming/article/details/77015427
+
+https://blog.csdn.net/zzxian/article/details/7278682?utm_source=blogxgwz1
+
+```sql
+--EXISTS
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition)
+
+--IN
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (SELECT STATEMENT)
+
+--ANY
+SELECT column_name(s)
+FROM table_name
+WHERE column_name operator ANY
+(SELECT column_name FROM table_name WHERE condition)
+
+--ALL
+SELECT column_name(s)
+FROM table_name
+WHERE column_name operator ALL
+(SELECT column_name FROM table_name WHERE condition)
+
+```
+
+
+
+# [19.Write a query to find salesmen with all information who lives in the city where any of the customers lives](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-19.php)
+
+```sql
+--EXISTS
+SELECT *
+FROM salesman S
+WHERE EXISTS (
+SELECT city FROM customer C
+WHERE S.city = C.city );
+
+--IN
+SELECT *
+FROM salesman
+WHERE city IN
+(SELECT city
+ FROM customer
+ JOIN salesman USING(city));
+ 
+ --ANY
+ SELECT *
+FROM salesman 
+WHERE city=ANY
+    (SELECT city
+     FROM customer);
+```
+
+
+
+# FROM 后面不能跟子查询
+
