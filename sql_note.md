@@ -1012,6 +1012,12 @@ WHERE column_name operator ALL
 
 ```
 
+in 和 =any 即满足一个即可
+
+not in 和  <> all 即不等于所有，每个都不相等。
+
+但是<>any 只要有一个不相等即为true
+
 
 
 # [19.Write a query to find salesmen with all information who lives in the city where any of the customers lives](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-19.php)
