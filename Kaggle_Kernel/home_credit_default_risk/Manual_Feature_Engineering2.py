@@ -205,9 +205,9 @@ train, test = remove_missing_columns(train, test)
 train.to_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/features_engineer/train_FE2_missing_remove.csv', index = False)
 test.to_csv('/home/zhangzhiliang/Documents/Kaggle_data/home_risk/features_engineer/test_FE2_missing_remove.csv', index = False)
 
-gc.enable()
-del test, train
-gc.collect()
+# gc.enable()
+# del test, train
+# gc.collect()
 
 
 def aggregate_client(df, group_vars, df_names):
@@ -235,6 +235,7 @@ def aggregate_client(df, group_vars, df_names):
         gc.collect()
 
         df_by_loan = pd.merge(df_by_loan, df[[group_vars[0], group_vars[1]]], on = group_vars[0], how = 'left')
+        df_by_loan = df_by_loan.drop(columns=[group_vars[0]])
         df_by_client = agg_numerical(df_by_loan, parent_var = group_vars[1], df_name = df_names[1])
 
     else:
@@ -248,13 +249,56 @@ def aggregate_client(df, group_vars, df_names):
 
         df_by_client = agg_numerical(df_by_loan, parent_var = group_vars[1], df_name = df_names[1])
 
-        gc.enabel()
-        del df, df_by_loan
-        gc.collect()
+    gc.enable()
+    del df, df_by_loan
+    gc.collect()
 
-        return df_by_client
+    return df_by_client
 
 cash = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/POS_CASH_balance.csv")
 cash = convert_types(cash, print_info = True)
 
 cash_by_client = aggregate_client(cash, group_vars = ['SK_ID_PREV', 'SK_ID_CURR'], df_names = ['cash', 'client'])
+
+print('Cash by Client Shape:', cash_by_client.shape)
+train = pd.merge(train, cash_by_client, on='SK_ID_CURR', how='left')
+test = pd.merge(test, cash_by_client, on='SK_ID_CURR', how='left')
+
+gc.enable()
+del cash, cash_by_client
+gc.collect()
+
+train, test = remove_missing_columns(train, test)
+
+credit = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/credit_card_balance.csv")
+credit = convert_types(credit, print_info=True)
+credit_by_client = aggregate_client(credit, group_vars=['SK_ID_PREV', 'SK_ID_CURR'], df_names=['credit', 'client'])
+print('Credit by client shape:', credit_by_client.shape)
+train = pd.merge(train, credit_by_client, on='SK_ID_CURR', how='left')
+test = pd.merge(test, credit_by_client, on='SK_ID_CURR', how='left')
+gc.enable()
+del credit, credit_by_client
+gc.collect()
+train, test = remove_missing_columns(train, test)
+
+# Installment
+installment = pd.read_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/credit_card_balance.csv")
+installment = convert_types(installment, print_info=True)
+installment_by_client = aggregate_client(installment, group_vars=['SK_ID_PREV', 'SK_ID_CURR'], df_names=['installments',
+                                                                                                         'client'])
+print('Installment by client shape:', installment_by_client.shape)
+train = pd.merge(train, installment_by_client, on='SK_ID_CURR', how='left')
+test = pd.merge(test, installment_by_client, on='SK_ID_CURR', how='left')
+gc.enable()
+del installment, installment_by_client
+gc.collect()
+train, test = remove_missing_columns(train, test)
+
+print('Final Training Shape:', train.shape)
+print('Final Testing Shape:', test.shape)
+print('Final Training Size:{}'.format(return_size(train)))
+print('Final Testing Size:{}'.format(return_size(test)))
+
+# 保存数据集
+train.to_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/train_previous_raw.csv", index=False, chunksize=500)
+test.to_csv("/home/zhangzhiliang/Documents/Kaggle_data/home_risk/test_previous_raw.csv", index=False)
