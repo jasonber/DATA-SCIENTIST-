@@ -55,7 +55,7 @@ WHERE
 BETWEEN     AND     
 ```
 
-等价于
+等价于 
 
 ```mysql
 SELECT 
@@ -63,6 +63,8 @@ SELECT
  WHERE subject = 'Chemistry'
    AND year>=1965 AND year<=1975;
 ```
+
+Between And 在不同的数据库中，边界会有不同
 
 # [IN](http://www.w3school.com.cn/sql/sql_in.asp)
 
@@ -90,6 +92,8 @@ LIKE 操作符用于在 WHERE 子句中搜索列中的指定模式。
 SELECT column_name(s)
 FROM table_name
 WHERE column_name LIKE pattern
+# 否定
+NOT LIKE
 ```
 
 "%" 可用于定义通配符（模式中缺少的字母）。
@@ -855,6 +859,12 @@ Limit
 
 子查询用于多重条件？什么的什么的数据，子查询查询的是第一个什么的。
 
+子查询用于展示的内容来源于一个table，而展示条件却需要用到其他table的情况。子查询生成的view。
+
+join用于展示的内容来源于多个table。
+
+FROM没有子查询
+
 # [3. Write a query to find all the orders issued against the salesman who works for customer whose id is 3007.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-3.php)
 
 ```sql
@@ -986,6 +996,10 @@ https://blog.csdn.net/tjuyanming/article/details/77015427
 
 https://blog.csdn.net/zzxian/article/details/7278682?utm_source=blogxgwz1
 
+https://www.cnblogs.com/feiquan/p/8654171.html 讲的特别清楚
+
+为了实现大于一群值，小于一群值而出现的。相当判断一个值 对一个集合的关系。
+
 ```sql
 --EXISTS
 SELECT column_name(s)
@@ -1049,4 +1063,15 @@ WHERE city=ANY
 
 
 # FROM 后面不能跟子查询
+
+# [Write a query to display all the information of an employee whose salary and reporting person id is 3000 and 121 respectively.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-7.php)
+
+分别符合某些条件
+
+```sql
+SELECT * 
+FROM employees 
+WHERE (salary,manager_id)=
+(SELECT 3000,121);
+```
 
