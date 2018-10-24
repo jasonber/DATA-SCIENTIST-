@@ -175,6 +175,40 @@ ORDER BY
 
 3、end 必须写，end后面可加入表达式，表示对case的操作
 
+https://www.cnblogs.com/Richardzhu/p/3571670.html
+
+case when 可以看做是对数据的转换
+
+实例
+
+[Write a query to display the employee id, name ( first name and last name ) and the job id column with a modified title SALESMAN for those employees whose job title is ST_MAN and DEVELOPER for whose job title is IT_PROG.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-23.php)
+
+```sql
+--简单case函数
+SELECT  employee_id,  first_name, last_name,  
+CASE job_id  
+WHEN 'ST_MAN' THEN 'SALESMAN'  
+WHEN 'IT_PROG' THEN 'DEVELOPER'  
+ELSE job_id  
+END AS designation,  salary 
+FROM employees;
+```
+
+[Write a query to display the employee id, name ( first name and last name ), salary and the SalaryStatus column with a title HIGH and LOW respectively for those employees whose salary is more than and less than the average salary of all employees.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-24.php)
+
+```sql
+--搜索case函数
+SELECT  employee_id,  first_name, last_name, salary,  
+CASE WHEN salary >= 
+(SELECT AVG(salary) 
+FROM employees) THEN 'HIGH'  
+ELSE 'LOW'  
+END AS SalaryStatus 
+FROM employees;
+```
+
+
+
 # [聚合函数](https://www.cnblogs.com/ghost-xyx/p/3811036.html)
 
 SQL中提供的聚合函数可以用来统计、求和、求最值等等。
@@ -1062,7 +1096,13 @@ WHERE city=ANY
 
 
 
-# FROM 后面不能跟子查询
+# FROM 后面的子查询
+
+子查询的例子
+
+https://www.cnblogs.com/wangshenhe/archive/2012/11/28/2792093.html
+
+
 
 # [Write a query to display all the information of an employee whose salary and reporting person id is 3000 and 121 respectively.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-7.php)
 
@@ -1073,5 +1113,46 @@ SELECT *
 FROM employees 
 WHERE (salary,manager_id)=
 (SELECT 3000,121);
+```
+
+
+
+# [31.Write a query which is looking for the names of all employees whose salary is greater than 50% of their department’s total salary bill.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-31.php)
+
+```sql
+--我的错误解答
+SELECT first_name, last_name
+FROM employees
+WHERE salary > (
+SELECT (SUM(salary))*0.5
+FROM employees
+GROUP BY department_id);
+
+--正确答案
+SELECT e1.first_name, e1.last_name 
+FROM employees e1 
+WHERE salary > 
+( SELECT (SUM(salary))*.5 
+FROM employees e2 
+WHERE e1.department_id=e2.department_id);
+```
+
+要按照department_id 来做对比
+
+# [Write a query to display the employee id, name ( first name and last name ), salary, department name and city for all the employees who gets the salary as the salary earn by the employee which is maximum within the joining person January 1st, 2002 and December 31st, 2003.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-34.php)
+
+在使用join的时候还是要用where 来添加筛选条件
+
+```sql
+SELECT E.employee_id, CONCAT(E.first_name, ' ', E.last_name), E.salary, 
+D.department_name, 
+L.city
+FROM employees E
+JOIN departments D USING(department_id)
+JOIN locations L  USING(location_id)
+WHERE E.salary = (
+SELECT MAX(salary)
+FROM employees
+WHERE hire_date BETWEEN '2002-01-01' AND '2003-12-31');
 ```
 
