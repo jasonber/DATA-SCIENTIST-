@@ -1156,3 +1156,73 @@ FROM employees
 WHERE hire_date BETWEEN '2002-01-01' AND '2003-12-31');
 ```
 
+
+
+# [游标](http://www.cnblogs.com/yangyang8848/archive/2009/07/02/1514593.html)
+
+ 游标（Cursor）是处理数据的一种方法，为了查看或者处理结果集中的数据，游标提供了在结果集中一次以行或者多行前进或向后浏览数据的能力。我们可以把游标当作一个指针，它可以指定结果中的任何位置，然后允许用户对指定位置的数据进行处理
+
+结果集：指的是SELECT 查询到结果
+
+**游标相当于鼠标的滑轮，可以让你在SELECT的结果中逐行产看结果。**
+
+游标的生命周期包含有五个阶段：声明游标、打开游标、读取游标数据、关闭游标、释放游标
+
+```sql
+--声明游标
+标准游标：
+Declare MyCursor Cursor 
+    For Select * From Master_Goods
+只读游标
+Declare MyCusror Cursor
+    For Select * From Master_Goods
+    For Read Only
+可更新游标
+Declare MyCusror Cursor
+    For Select * From Master_Goods
+    For UpDate
+
+--打开游标
+全局游标：Open Global MyCursor            
+局部游标: Open MyCursor
+
+--读取游标数据
+Fetch [Next | Prior | First | Last | Absolute　n　| Relative　n　]  From MyCursor
+'''
+Next表示返回结果集中当前行的下一行记录，如果第一次读取则返回第一行。默认的读取选项为Next
+Prior表示返回结果集中当前行的前一行记录，如果第一次读取则没有行返回，并且把游标置于第一行之前。
+First表示返回结果集中的第一行，并且将其作为当前行。
+Last表示返回结果集中的最后一行，并且将其作为当前行。
+Absolute　n　如果n为正数，则返回从游标头开始的第n行，并且返回行变成新的当前行。如果n为负，则返回从游标末尾开始的第n行，并且返回行为新的当前行，如果n为0，则返回当前行。
+Relative　n　如果n为正数，则返回从当前行开始的第n行，如果n为负,则返回从当前行之前的第n行，如果为0，则返回当前行。
+'''
+
+--关闭游标
+Close Global MyCursor               Close MyCursor
+
+--释放游标
+Deallocate Glboal MyCursor       Deallocate MyCursor
+
+--实例
+Declare MyCusror Cursor Scroll
+    For Select * From Master_Goods Order By GoodsID
+Open MyCursor
+    Fetch next From MyCursor
+    Into @GoodsCode,@GoodsName
+    While(@@Fetch_Status = 0)
+        Begin
+            Begin
+                Select @GoodsCode = Convert(Char(20),@GoodsCode)
+                Select @GoodsName = Convert(Char(20),@GoodsName)
+                PRINT @GoodsCode + ':' + @GoodsName
+                End
+                Fetch next From MyCursor
+                Into @GoodsCode,@GoodsName
+                End
+Close MyCursor
+Deallocate MyCursor
+```
+
+
+
+目前不懂的地方是 declare begin-end 这两个地方。
