@@ -1166,5 +1166,148 @@ df3 = df.copy() # df3是df备份，修改df不会改变df3
 
 # panda + pymysql
 
-# 如何在python中操作mysql
+```python
+import pandas as pd
+import pymysql
+database = pymysql.connect(host='localhost', user='root', password='ztzz910327', db='competition_data')
+sql = 'SELECT * FROM employee'
+df = pd.read_sql(sql, database)
+database.close()
+```
+
+
+
+# 如何在python中操作mysql---pymysql
+
+https://blog.csdn.net/qq_35304570/article/details/78767288
+
+```python
+#流程
+connect
+cursor（）
+sql语句
+execute（）
+commit（）
+close（）
+```
+
+
+
+pymysql.Connect()参数说明
+host(str):      MySQL服务器地址
+port(int):      MySQL服务器端口号
+user(str):      用户名
+passwd(str):    密码
+db(str):        数据库名称
+charset(str):   连接编码
+
+connection对象支持的方法
+cursor()        使用该连接创建并返回游标
+commit()        提交当前事务
+rollback()      回滚当前事务
+close()         关闭连接
+
+cursor对象支持的方法
+execute(op)     执行一个数据库的查询命令
+fetchone()      取得结果集的下一行
+fetchmany(size) 获取结果集的下几行
+fetchall()      获取结果集中的所有行
+rowcount()      返回数据条数或影响行数
+close()         关闭游标对象
+
+```python
+# 示例
+import pymysql
+# 打开数据库连接
+db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+# 使用cursor()方法获取操作游标 
+cursor = db.cursor()
+# SQL 插入语句
+sql = "INSERT INTO EMPLOYEE(FIRST_NAME, \
+       LAST_NAME, AGE, SEX, INCOME) \
+       VALUES ('%s', '%s', '%d', '%c', '%d' )" % \
+       ('Mac', 'Mohan', 20, 'M', 2000)
+try:
+   # 执行sql语句
+   cursor.execute(sql)
+   # 执行sql语句
+   db.commit()
+except:
+   # 发生错误时回滚
+   db.rollback()
+# 关闭数据库连接
+db.close()
+
+#查询
+import pymysql
+# 打开数据库连接
+db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+# 使用cursor()方法获取操作游标 
+cursor = db.cursor()
+# SQL 查询语句
+sql = "SELECT * FROM EMPLOYEE \
+       WHERE INCOME > '%d'" % (1000)
+try:
+   # 执行SQL语句
+   cursor.execute(sql)
+   # 获取所有记录列表
+   results = cursor.fetchall()
+   for row in results:
+      fname = row[0]
+      lname = row[1]
+      age = row[2]
+      sex = row[3]
+      income = row[4]
+       # 打印结果
+      print ("fname=%s,lname=%s,age=%d,sex=%s,income=%d" % \
+             (fname, lname, age, sex, income ))
+except:
+   print ("Error: unable to fetch data")
+# 关闭数据库连接
+db.close()
+```
+
+
+
+
+
+# [TRY](http://www.runoob.com/python/python-exceptions.html)
+
+```python
+# 语法
+try:
+<语句>        #运行别的代码
+except <名字>：
+<语句>        #如果在try部份引发了'name'异常
+except <名字>，<数据>:
+<语句>        #如果引发了'name'异常，获得附加的数据
+else:
+<语句>        #如果没有异常发生
+
+#代码示例
+    try:
+    fh = open("testfile", "w")
+    fh.write("这是一个测试文件，用于测试异常!!")
+except IOError:
+    print "Error: 没有找到文件或读取文件失败"
+else:
+    print "内容写入文件成功"
+    fh.close()
+# 无异常时的输出
+内容写入文件成功
+# 异常时的输出
+Error: 没有找到文件或读取文件失败
+
+# 还可以不带错误名
+try:
+    正常的操作
+   ......................
+except:
+    发生异常，执行这块代码
+   ......................
+else:
+    如果没有异常执行这块代码
+```
+
+# python 中操作数据库 SQLAlchemy
 
