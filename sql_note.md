@@ -26,25 +26,25 @@ select 10 + 15 - 5 * 2;
 语法顺序：
 
 ```mysql
-Select 
-From 
-Where LIKE BETWEEN IN
-Group by 
-Having 
-Order by 
-Limit
+Select 1
+From 2
+Where LIKE BETWEEN IN 3
+Group by 4
+Having 5
+Order by 6 
+Limit 7
 ```
 
 执行顺序：
 
 ```mysql
-From 
-Where 
-Group by 
-Having 
-Select 
-Order by 
-Limit
+From 2
+Where 3
+Group by 4 
+Having 5
+Select 1
+Order by 6 
+Limit 7
 ```
 
 # [Between](http://www.w3school.com.cn/sql/sql_between.asp)
@@ -1226,3 +1226,58 @@ Deallocate MyCursor
 
 
 目前不懂的地方是 declare begin-end 这两个地方。
+
+
+
+# [48. Write a query in SQL to display the the details of those departments which max salary is 7000 or above for those employees who already done one or more jobs.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-48.php)
+
+```sql
+SELECT *
+FROM departments
+WHERE DEPARTMENT_ID IN
+    (SELECT DEPARTMENT_ID
+     FROM employees
+     WHERE EMPLOYEE_ID IN
+         (SELECT EMPLOYEE_ID
+          FROM job_history
+          GROUP BY EMPLOYEE_ID
+          HAVING COUNT(EMPLOYEE_ID) > 1)
+     GROUP BY DEPARTMENT_ID
+     HAVING MAX(SALARY) > 7000);
+```
+
+# [52.Write a query in SQL to display all the infromation about those employees who earn second lowest salary of all the employees.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-52.php)
+
+```sql
+--我的答案
+SELECT * 
+FROM employees
+WHERE salary = (
+SELECT MIN(salary)
+FROM employees
+WHERE salary >(
+SELECT MIN(salary)
+FROM employees));
+
+--官方答案
+SELECT *
+FROM employees m
+WHERE  2 = (SELECT COUNT(DISTINCT salary ) 
+            FROM employees
+            WHERE  salary <= m.salary);
+```
+
+
+
+# [54. Write a query in SQL to display the department ID, full name (first and last name), salary for those employees who is highest salary drawar in a department.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-54.php)
+
+```sql
+SELECT department_id, first_name || ' ' || last_name AS Employee_name, salary 
+	FROM employees a
+		WHERE salary = 
+			(SELECT MAX(salary) 
+				FROM employees 
+			WHERE department_id = a.department_id);
+```
+
+子查询：选取对应的部门的最大值。

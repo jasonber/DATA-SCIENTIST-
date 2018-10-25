@@ -1162,3 +1162,9 @@ df2 = df # df2是df是视图，修改df也会改变df2
 df3 = df.copy() # df3是df备份，修改df不会改变df3
 ```
 
+
+
+# panda + pymysql
+
+# 如何在python中操作mysql
+
