@@ -1181,6 +1181,8 @@ database.close()
 
 https://blog.csdn.net/qq_35304570/article/details/78767288
 
+https://ask.hellobi.com/blog/wangdawei/9367
+
 ```python
 #流程
 connect
@@ -1310,4 +1312,48 @@ else:
 ```
 
 # python 中操作数据库 SQLAlchemy
+
+```python
+from SQLAlchemy import *
+import pymysql
+db = create_engine('mysql+pymysl://用户名：密码@端口/数据库？charset=编码方式', echo=False)
+# 提交操作
+db.execute('sql语句')
+# 展示结果
+da.execute('sql语句').fetchall()
+```
+
+```python
+# 示例 与pandas合作 操作sql
+import pandas as pd
+from sqlalchemy import *
+
+# 创建SQL连接
+database = create_engine('mysql+pymysql://root:密码@localhost/competition_data')
+# 读取sql到pandas
+sql = 'SELECT * FROM employee'
+df = pd.read_sql(sql, database)
+# 在df中插入数据
+item1 = pd.DataFrame([['xiao', 'zhao', 31, 'M', 0], ['zhang', 'wuji', 27, 'F', 0]])
+item1.rename(columns = {0:'first_name', 1:'last_name', 2:'age', 3:'sex', 4:'income'}, inplace=True)
+new_df = pd.concat([df, item1], ignore_index=True)
+# 将修改好的df 存入sql
+new_df.to_sql('employee', con=database, if_exists='append', index=False)
+# 查询SQL并展示结果（应该是游标展示吧？）
+database.execute("select * from employee").fetchall()
+# 在sql中插入一行数据，如果出错就返回sql中的错误
+try:
+    database.execute("INSERT INTO employee (first_name, last_name, age, sex, income)  \
+    VALUE('Chang', 'Wudi', 56, 'F', 3000)")
+except Exception as e:
+    print(e)
+```
+
+
+
+## [pandas.DataFrame.to_sql](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_sql.html)
+
+```python
+DataFrame.to_sql(name, con, schema=None, if_exists='fail', index=True, index_label=None, chunksize=None, dtype=None)
+```
 
