@@ -121,27 +121,7 @@ SELECT *
      WHERE (subject ='Economics' AND year=1971);
 ```
 
-# [UNION](http://www.w3school.com.cn/sql/sql_union.asp)
 
-UNION 操作符用于合并两个或多个 SELECT 语句的结果集。
-
-请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。
-
-```mysql
-SELECT column_name(s) FROM table_name1
-UNION
-SELECT column_name(s) FROM table_name2
-```
-
-默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL
-
-```mysql
-SELECT column_name(s) FROM table_name1
-UNION ALL
-SELECT column_name(s) FROM table_name2
-```
-
-()的作用是啥？
 
 # ORDER BY
 
@@ -149,6 +129,7 @@ SELECT column_name(s) FROM table_name2
 SELECT column_name,column_name
 FROM table_name
 ORDER BY column_name,column_name ASC|DESC;
+ORDER BY 列号
 ```
 
 # 找出所有的1970获奖者，按照subject和获奖者姓名排序，其中Economic和Chemistry 按照升序排列在最后
@@ -1281,3 +1262,73 @@ SELECT department_id, first_name || ' ' || last_name AS Employee_name, salary
 ```
 
 子查询：选取对应的部门的最大值。
+
+
+
+# [UNION](http://www.runoob.com/sql/sql-union.html)
+
+https://blog.csdn.net/zouxucong/article/details/73468979
+
+UNION 操作符用于合并两个或多个 SELECT 语句的结果集。
+
+请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。
+
+union操作符合并的结果集，不会允许重复值，如果允许有重复值的话，使用UNION ALL.
+
+所谓的重复值是指这条记录完全一样
+
+UNION结果集中的列名总等于union中第一个select语句中的列名
+
+```sql
+SELECT salesman_id "ID", name, 'Salesman'
+FROM salesman
+WHERE city='London'
+UNION
+(SELECT customer_id "ID", cust_name, 'Customer'
+FROM customer
+WHERE city='London')
+```
+
+这里注意：由于列名的使用了第一个select的列名，所以在结果中要注意区分数据来源。
+
+
+
+# [4. Write a query to make a report of which salesman produce the largest and smallest orders on each date.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-4.php)
+
+```sql
+SELECT a.salesman_id, name, ord_no, 'highest on', ord_date
+FROM salesman a, orders b
+WHERE a.salesman_id =b.salesman_id
+AND b.purch_amt=
+	(SELECT MAX (purch_amt)
+	FROM orders c
+	WHERE c.ord_date = b.ord_date)
+UNION
+(SELECT a.salesman_id, name, ord_no, 'lowest on', ord_date
+FROM salesman a, orders b
+WHERE a.salesman_id =b.salesman_id
+AND b.purch_amt=
+	(SELECT MIN (purch_amt)
+	FROM orders c
+	WHERE c.ord_date = b.ord_date))
+
+```
+
+UNION相当于将两个查询结果拼接在一起了。
+
+# [6. Write a query to list all the salesmen, and indicate those who do not have customers in their cities, as well as whose who do.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-6.php)
+
+```sql
+SELECT salesman.salesman_id, name, cust_name, commission
+FROM salesman, customer
+WHERE salesman.city = customer.city
+UNION
+(SELECT salesman_id, name, 'NO MATCH', commission
+FROM salesman
+WHERE NOT city = ANY
+	(SELECT city
+        FROM customer))
+ORDER BY 2 DESC
+
+```
+
