@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7da9baff-fb5a-4183-b0c1-5ae965f26c84" name="Default Changelist" comment="" />
+    <list default="true" id="7da9baff-fb5a-4183-b0c1-5ae965f26c84" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/automated_feature_engineering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../notebook_of_coding.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sql_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../sql_note.md" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,47 +17,47 @@
     <session id="-1147205034">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="24" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="8" />
+          <entry key="project.closed" value="27" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.10" value="9" />
           <entry key="project.open.time.11" value="6" />
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.19" value="1" />
-          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="33" />
+          <entry key="project.opened" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1403" />
+          <entry key="Python Console" value="1432" />
           <entry key="dummy" value="1" />
-          <entry key="py" value="22956" />
+          <entry key="py" value="25014" />
           <entry key="txt" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="31" />
-          <entry key="Python" value="24359" />
+          <entry key="Python" value="26446" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="22" />
+          <entry key="Python" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="md" value="1" />
-          <entry key="py" value="22" />
+          <entry key="py" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -61,10 +66,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Manual_Feature_Engineering2.py">
+        <entry file="file://$PROJECT_DIR$/automated_feature_engineering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="303" column="6" selection-start-line="301" selection-end-line="303" selection-end-column="101" />
+            <state relative-caret-position="150">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+              <folding>
+                <element signature="e#140#159#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,6 +97,8 @@
         <option value="$PROJECT_DIR$/LGBM_for_home_risk.py" />
         <option value="$PROJECT_DIR$/Manual_Feature_Engineering1.py" />
         <option value="$PROJECT_DIR$/Manual_Feature_Engineering2.py" />
+        <option value="$PROJECT_DIR$/venv/auto_feature_engineering.py" />
+        <option value="$PROJECT_DIR$/automated_feature_engineering.py" />
       </list>
     </option>
   </component>
@@ -118,7 +128,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../python基础" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -205,7 +215,7 @@
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="742" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19851302" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19851302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -218,7 +228,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5018587" side_tool="true" weight="0.41733548" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49814126" visible="true" weight="0.41733548" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.49814126" visible="true" weight="0.41733548" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -270,10 +280,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/auto_feature_engineering.py" />
     <entry file="file://$PROJECT_DIR$/Manual_Feature_Engineering2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="303" column="6" selection-start-line="301" selection-end-line="303" selection-end-column="101" />
+        <state relative-caret-position="105">
+          <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/automated_feature_engineering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding>
+            <element signature="e#140#159#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

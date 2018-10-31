@@ -1357,3 +1357,30 @@ except Exception as e:
 DataFrame.to_sql(name, con, schema=None, if_exists='fail', index=True, index_label=None, chunksize=None, dtype=None)
 ```
 
+# [动态生成变量](https://www.cnblogs.com/dcb3688/p/4347688.html)
+
+https://docs.python.org/3/library/functions.html?highlight=locals#locals
+
+```python
+1 createVar = locals()
+2 listTemp = range(1,10)
+3 for i,s in enumerate(listTemp):
+4     createVar['a'+i] = s
+5 print a1,a2,a3
+6 #......
+复制代码
+复制代码
+1 def foo(args):
+2     x=1
+3     print locals()
+4 
+5 foo(123)
+6 
+7 #将会得到 {'arg':123,'x':1}
+复制代码
+复制代码
+1 for i in range(3):
+2     locals()['a'+str(i)]=i
+3     print 'a'+str(i)
+```
+
