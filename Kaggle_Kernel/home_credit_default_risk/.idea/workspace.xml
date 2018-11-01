@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7da9baff-fb5a-4183-b0c1-5ae965f26c84" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/automated_feature_engineering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../notebook_of_coding.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../sql_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../sql_note.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automated_feature_engineering.py" beforeDir="false" afterPath="$PROJECT_DIR$/automated_feature_engineering.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +14,7 @@
     <session id="-1147205034">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="27" />
+          <entry key="project.closed" value="28" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="9" />
           <entry key="project.open.time.11" value="6" />
@@ -29,23 +26,23 @@
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.7" value="3" />
-          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="37" />
+          <entry key="project.opened" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1432" />
+          <entry key="Python Console" value="1535" />
           <entry key="dummy" value="1" />
-          <entry key="py" value="25014" />
+          <entry key="py" value="28385" />
           <entry key="txt" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="31" />
-          <entry key="Python" value="26446" />
+          <entry key="Python" value="29920" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -68,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/automated_feature_engineering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+            <state relative-caret-position="225">
+              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
               <folding>
                 <element signature="e#140#159#0" expanded="true" />
               </folding>
@@ -113,6 +110,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -124,7 +122,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -290,8 +287,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/automated_feature_engineering.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        <state relative-caret-position="225">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
           <folding>
             <element signature="e#140#159#0" expanded="true" />
           </folding>

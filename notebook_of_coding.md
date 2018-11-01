@@ -1384,3 +1384,72 @@ https://docs.python.org/3/library/functions.html?highlight=locals#locals
 3     print 'a'+str(i)
 ```
 
+```python
+# 按需求的df名字生成df
+def get_data(path, data_name):
+    create_vars[data_name] = pd.read_csv(path)
+    print("Success")
+    return create_vars[data_name]
+
+
+path = "/home/zhangzhiliang/Documents/Kaggle_data/home_risk/"
+file_list = ['application_train', 'application_test', 'bureau', 'bureau_balance', 'POS_CASH_balance',
+             'credit_card_balance', 'previous_application', 'installments_payments']
+df_name = ['app_train', 'app_test', 'bureau', 'bureau_balance', 'cash',
+           'credit', 'previous', 'installments']
+
+path_list = []
+for i in file_list:
+    path_list.append(path + i + '.csv')
+# zip 同时遍历两个list
+create_vars = locals()
+for i, j in zip(path_list, df_name):
+    create_vars[j] = get_data(i, j)
+```
+
+
+
+# [python 内置extend和append](https://blog.csdn.net/kancy110/article/details/77131441)
+
+extend是将object中的各个元素加入到列表中， append是将object作为整体加入到列表中。
+
+```python
+key1 = ['SK_ID_CURR']
+key2 = key1.copy()
+key2.extend(['SK_ID_PREV'])
+# extend 和 append不能进行赋值操作,会返回None类型
+key2 = extend('SK_ID_PREV')
+
+```
+
+
+
+# [Featuretools](https://docs.featuretools.com/index.html)
+
+概念：
+
+实体和实体集：实体就是对象+关系，实体集就是把实体装到表里或df中
+
+关系：各个表之间的关联方式，有父表、子表
+
+feature primitives特征基本体：
+
+deep feature synthesis深度特征综合：
+
+```python
+import featuretools as ft
+# 创建实体集
+es = ft.EntitySet(id=)
+# 加入实体 每个实体都需要有唯一的索引
+es = es.entity_from_dataframe(entity_id=, dataframe=, index=)
+# 没有索引的 可以由函数自动生成
+es = es.entity_from_dataframe(entity_id=, dataframe=, make_index=True, index=)
+# 描述各个实体间的关系
+r_app_bureau = ft.Relationship(es['app']['SK_ID_CURR'], es['bureau']['SK_ID_CURR'])
+# 添加关系到实体集
+es = es.add_relationship([r_app_bureau])
+```
+
+注意事项：
+
+1、创建关系时， 每个实体之间的关系最好是单向的，不然特征基本体会堆积。单向、不循环图。
