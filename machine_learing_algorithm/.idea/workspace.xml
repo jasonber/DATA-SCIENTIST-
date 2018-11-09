@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e3ace51-8326-4e0f-a6c5-7743430a0c30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/machine_learning_basics/linear_regression.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recommendations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zou_bo/regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Kaggle_Kernel/home_credit_default_risk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Kaggle_Kernel/home_credit_default_risk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Kaggle_Kernel/home_credit_default_risk/automated_feature_engineering.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Kaggle_Kernel/home_credit_default_risk/automated_feature_engineering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../error_of_python.md" beforeDir="false" afterPath="$PROJECT_DIR$/../error_of_python.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../notebook_of_coding.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/machine_learning_basics/logsitic regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,32 +15,33 @@
     <session id="2117989090">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="4" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="3" />
+          <entry key="py" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="3" />
+          <entry key="Python" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="114" />
-          <entry key="py" value="4738" />
+          <entry key="Python Console" value="199" />
+          <entry key="py" value="7276" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="4852" />
+          <entry key="Python" value="7475" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -53,15 +49,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine_learning_basics/linear_regression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="112" column="3" selection-start-line="111" selection-end-line="116" selection-end-column="10" />
+            <state relative-caret-position="1346">
+              <caret line="116" column="9" selection-start-line="116" selection-start-column="9" selection-end-line="116" selection-end-column="9" />
               <folding>
                 <element signature="e#93#111#0" expanded="true" />
                 <marker date="1541735481957" expanded="true" signature="579:1942" ph="..." />
                 <marker date="1541735481957" expanded="true" signature="734:743" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/machine_learning_basics/logsitic regression.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+              <folding>
+                <element signature="e#95#113#0" expanded="true" />
+                <marker date="1541760531309" expanded="true" signature="640:645" ph="..." />
+                <marker date="1541760531309" expanded="true" signature="796:805" ph="..." />
               </folding>
             </state>
           </provider>
@@ -85,6 +95,7 @@
         <option value="$PROJECT_DIR$/recommendations.py" />
         <option value="$PROJECT_DIR$/zou_bo/regression.py" />
         <option value="$PROJECT_DIR$/machine_learning_basics/linear_regression.py" />
+        <option value="$PROJECT_DIR$/machine_learning_basics/logsitic regression.py" />
       </list>
     </option>
   </component>
@@ -182,7 +193,7 @@
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="742" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24981412" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24981412" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -195,7 +206,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32744783" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32744783" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -264,12 +275,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_basics/linear_regression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="112" column="3" selection-start-line="111" selection-end-line="116" selection-end-column="10" />
+        <state relative-caret-position="1346">
+          <caret line="116" column="9" selection-start-line="116" selection-start-column="9" selection-end-line="116" selection-end-column="9" />
           <folding>
             <element signature="e#93#111#0" expanded="true" />
             <marker date="1541735481957" expanded="true" signature="579:1942" ph="..." />
             <marker date="1541735481957" expanded="true" signature="734:743" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_basics/logsitic regression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <folding>
+            <element signature="e#95#113#0" expanded="true" />
+            <marker date="1541760531309" expanded="true" signature="640:645" ph="..." />
+            <marker date="1541760531309" expanded="true" signature="796:805" ph="..." />
           </folding>
         </state>
       </provider>

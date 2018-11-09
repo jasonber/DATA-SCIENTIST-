@@ -1539,3 +1539,14 @@ Good bye!
 np.r_是按列连接两个矩阵，就是把两矩阵上下相加，要求列数相等，类似于pandas中的concat()。
 np.c_是按行连接两个矩阵，就是把两矩阵左右相加，要求行数相等，类似于pandas中的merge()。
 
+# [sklearn.datasets.make_blobs](https://www.jianshu.com/p/069d8841bd8e)
+
+https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html
+
+生成聚类数据集的模块
+
+Generate isotropic Gaussian blobs for clustering.
+
+# [np.newaxis](https://blog.csdn.net/lanchunhui/article/details/49725065)
+
+为 numpy.ndarray（多维数组）增加一个轴
