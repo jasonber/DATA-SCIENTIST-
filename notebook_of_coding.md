@@ -1432,7 +1432,11 @@ key2 = extend('SK_ID_PREV')
 
 关系：各个表之间的关联方式，有父表、子表
 
-feature primitives特征基本体：
+feature primitives特征基本操作：在一个表或多个表中进行操作创造出新的特征。
+
+1、聚合运算：对每个父表的子表进行统计，均值、最小、最大、标准差等。
+
+2、转换：对一个表中的一列或多列进行操作。
 
 deep feature synthesis深度特征综合：
 
@@ -1448,8 +1452,90 @@ es = es.entity_from_dataframe(entity_id=, dataframe=, make_index=True, index=)
 r_app_bureau = ft.Relationship(es['app']['SK_ID_CURR'], es['bureau']['SK_ID_CURR'])
 # 添加关系到实体集
 es = es.add_relationship([r_app_bureau])
+# 进行
 ```
 
 注意事项：
 
 1、创建关系时， 每个实体之间的关系最好是单向的，不然特征基本体会堆积。单向、不循环图。
+
+
+
+# [python 打开文件的方法](http://www.runoob.com/python/file-methods.html)
+
+```python
+open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
+```
+
+
+
+# [python 类](http://www.runoob.com/python/python-object.html)
+
+https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00138682004077376d2d7f8cc8a4e2c9982f92788588322000
+
+类和实例
+
+面向对象最重要的概念就是类（Class）和实例（Instance），必须牢记类是抽象的模板，比如Student类，而实例是根据类创建出来的一个个具体的“对象”，每个对象都拥有相同的方法，但各自的数据可能不同。
+
+类是模板， 描述的是一类事物的样子和功能。样子通过属性定义，功能通过动作来定义。
+
+```python
+class ClassName(基类名):
+    def __init__(self, attr1， attr2.....):
+        self.attr1 =
+        self.attr2 =
+    def function:
+        .....
+        return 
+    
+```
+
+单下划线、双下划线、头尾双下划线说明：
+
+```python
+__foo__: 定义的是特殊方法，一般是系统定义名字 ，类似 __init__() 之类的。
+
+_foo: 以单下划线开头的表示的是 protected 类型的变量，即保护类型只能允许其本身与子类进行访问，不能用于 from module import *
+
+__foo: 双下划线的表示的是私有类型(private)的变量, 只能是允许这个类本身进行访问了。
+```
+
+
+
+# [python pass](https://www.runoob.com/python/python-pass-statement.html)
+
+Python pass是空语句，是为了保持程序结构的完整性。
+
+pass 不做任何事情，一般用做占位语句。
+
+```python
+#!/usr/bin/python
+# -*- coding: UTF-8 -*- 
+
+# 输出 Python 的每个字母
+for letter in 'Python':
+   if letter == 'h':
+      pass
+      print '这是 pass 块'
+   print '当前字母 :', letter
+
+print "Good bye!"
+
+# 输出
+当前字母 : P
+当前字母 : y
+当前字母 : t
+这是 pass 块
+当前字母 : h
+当前字母 : o
+当前字母 : n
+Good bye!
+```
+
+
+
+# [np.c_ 和 np.r_](https://blog.csdn.net/yj1556492839/article/details/79031693)
+
+np.r_是按列连接两个矩阵，就是把两矩阵上下相加，要求列数相等，类似于pandas中的concat()。
+np.c_是按行连接两个矩阵，就是把两矩阵左右相加，要求行数相等，类似于pandas中的merge()。
+

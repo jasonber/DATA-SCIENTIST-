@@ -66,3 +66,24 @@ Past=pd.read_csv("C:/Users/Admin/Desktop/Python/Past.csv",encoding='cp1252')
 
 
 读取文档的时候，utf-8无法解码
+
+
+
+# [python3 TypeError: 'map' object is not subscriptable](https://blog.csdn.net/mingyuli/article/details/81238858)
+
+In Python 3, map returns an iterable object of type map, and not a subscriptible list, which would allow you to write map[i]. To force a list result, write
+
+https://www.e-learn.cn/content/wangluowenzhang/87273
+
+```python
+# 报错
+d = map(apply_filters_to_token, sentences)
+x.append(d)
+# 正确
+d = list(map(apply_filters_to_token, sentences))
+x.append(d)
+```
+
+# ValueError: not enough values to unpack (expected 3, got 2)
+
+函数返回值少于要求的值

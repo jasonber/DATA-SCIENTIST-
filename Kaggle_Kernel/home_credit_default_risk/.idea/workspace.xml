@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7da9baff-fb5a-4183-b0c1-5ae965f26c84" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automated_feature_engineering.py" beforeDir="false" afterPath="$PROJECT_DIR$/automated_feature_engineering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../notebook_of_coding.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,10 +16,10 @@
     <session id="-1147205034">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="29" />
+          <entry key="project.closed" value="31" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
-          <entry key="project.open.time.10" value="10" />
+          <entry key="project.open.time.10" value="11" />
           <entry key="project.open.time.11" value="6" />
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="1" />
@@ -27,23 +29,23 @@
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.7" value="3" />
-          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="40" />
+          <entry key="project.opened" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1535" />
+          <entry key="Python Console" value="1537" />
           <entry key="dummy" value="1" />
-          <entry key="py" value="28385" />
+          <entry key="py" value="28574" />
           <entry key="txt" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="31" />
-          <entry key="Python" value="29920" />
+          <entry key="Python" value="30111" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -64,32 +66,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/automated_feature_engineering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="240">
+              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
               <folding>
                 <element signature="e#140#159#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Features_selection_with_LGBM.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="367" column="59" lean-forward="true" selection-start-line="367" selection-start-column="59" selection-end-line="367" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Manual_Feature_Engineering2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
             </state>
           </provider>
         </entry>
@@ -119,7 +103,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="118" />
     <option name="width" value="1352" />
     <option name="height" value="731" />
@@ -130,7 +114,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,6 +125,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -231,7 +215,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="742" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19851302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -292,16 +275,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/automated_feature_engineering.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
-          <folding>
-            <element signature="e#140#159#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Manual_Feature_Engineering1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -316,17 +289,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Manual_Feature_Engineering2.py">
+    <entry file="file://$PROJECT_DIR$/Features_selection_with_LGBM.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
+        <state relative-caret-position="360">
+          <caret line="373" column="13" selection-start-line="373" selection-start-column="13" selection-end-line="373" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Features_selection_with_LGBM.py">
+    <entry file="file://$PROJECT_DIR$/Manual_Feature_Engineering2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="367" column="59" lean-forward="true" selection-start-line="367" selection-start-column="59" selection-end-line="367" selection-end-column="59" />
+        <state relative-caret-position="128">
+          <caret line="295" selection-start-line="295" selection-end-line="295" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/automated_feature_engineering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="e#140#159#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

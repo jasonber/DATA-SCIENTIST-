@@ -75,3 +75,8 @@ r_previous_credit = ft.Relationship(es['previous']['SK_ID_PREV'], es['credit']['
 # add in the defined relationship
 es = es.add_relationships([r_app_bureau, r_bureau_balance, r_app_previous, r_previous_cash, r_previous_installments,
                            r_previous_credit])
+
+# display the primitives
+primitives = ft.list_primitives()
+pd.options.display.max_colwidth = 100
+primitives[primitives['type'] == 'aggregation'].head(10)
