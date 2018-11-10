@@ -1550,3 +1550,50 @@ Generate isotropic Gaussian blobs for clustering.
 # [np.newaxis](https://blog.csdn.net/lanchunhui/article/details/49725065)
 
 为 numpy.ndarray（多维数组）增加一个轴
+
+# [python operator 模块](https://docs.python.org/2/library/operator.html)
+
+https://blog.csdn.net/hephec/article/details/77992114 
+
+本模块主要包括一些python内部操作符对应的函数，主要包括几类：对象比较，逻辑笔记，算术运算和序列操作
+
+# [np.tile](https://blog.csdn.net/wy250229163/article/details/52453201)
+
+函数形式： tile(A，rep) 
+功能：重复A的各个维度 
+参数类型： 
+
+- A: Array类的都可以 
+- rep：A沿着各个维度重复的次数
+
+# [np.argsort](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.argsort.html)
+
+返回值排序后的索引，默认升序
+
+# [dic.get()](http://www.runoob.com/python/att-dictionary-get.html)
+
+Python 字典(Dictionary) get() 函数返回指定键的值，如果值不在字典中返回默认值
+
+
+
+# [dic.iteritems()](https://blog.csdn.net/program_developer/article/details/78657908)
+
+字典的items方法作用：是可以将字典中的所有项，以列表方式返回。因为字典是无序的，所以用items方法返回字典的所有项，也是没有顺序的。
+字典的iteritems方法作用：与items方法相比作用大致相同，只是它的返回值不是列表，而是一个迭代器。
+
+
+
+# [np.min()](https://blog.csdn.net/qq_18433441/article/details/54743271)
+
+```python
+import numpy as np
+a = np.array([[1,5,3],[4,2,6]])
+print(a.min()) #无参，所有中的最小值
+print(a.min(0)) # axis=0; 每列的最小值
+print(a.min(1)) # axis=1；每行的最小值
+# 结果
+1
+[1 2 3]
+[1 2]
+```
+
