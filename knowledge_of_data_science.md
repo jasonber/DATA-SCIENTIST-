@@ -105,3 +105,8 @@ LGB：支持
 直方图
 XGB：近似直方图算法：对所有feature每一层建一直方图
 LGB：对每一feature建直方图，只需一次
+
+
+
+# [信息熵](https://blog.csdn.net/pipisorry/article/details/51695283)
+

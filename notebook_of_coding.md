@@ -1419,6 +1419,12 @@ key2 = key1.copy()
 key2.extend(['SK_ID_PREV'])
 # extend 和 append不能进行赋值操作,会返回None类型
 key2 = extend('SK_ID_PREV')
+# 区别
+a = [1, 2, 3]
+b = [4, 5, 6]
+a.append(b) # 输出[1, 2, 3, [4, 5, 6]]
+a = [1, 2, 3]
+a.extend(b) # 输出[1, 2, 3, 4, 5, 6]
 
 ```
 
@@ -1596,4 +1602,8 @@ print(a.min(1)) # axis=1；每行的最小值
 [1 2 3]
 [1 2]
 ```
+
+
+
+# [字典](http://www.runoob.com/python3/python3-dictionary.html)
 
