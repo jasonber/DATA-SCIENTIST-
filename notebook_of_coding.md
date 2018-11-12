@@ -90,6 +90,36 @@ df[1:3] #第1行到第2行（不含第3行）
 df[-1:] #最后一行
 df[-3:-1] #倒数第3行到倒数第1行（不包含最后1行即倒数第1行，这里有点烦躁，因为从前数时从第0行开始，从后数就是-1行开始，毕竟没有-0）
 
+# 切片的复制功能
+c = d
+d = list(np.arange(0, 10))
+c = d
+del(c[0])
+
+c
+Out[30]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+d
+Out[31]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+d = list(np.arange(0, 10))
+c = d[:]
+c
+Out[34]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+d
+Out[35]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+del[c[0]]
+c
+Out[37]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+d
+Out[38]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+e = d.copy()
+e
+Out[40]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+del(e[0])
+e
+Out[42]: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 ```python
@@ -116,7 +146,8 @@ df.iloc[1:3,[1,2]	#第1行到第3行（不包含第3行），第1列和第2列�
 data = data['盈利'].copy()得到的data是series,对应的sort_values方法只需要指定axis;
 data = data[['盈利']].copy()得到的data是dataframe,对应的sort_values方法只需要指定cols
 https://blog.csdn.net/chenKFKevin/article/details/62049060
-
+切片还有复制的作用 
+    
 type(iris.iloc[10:30, 2:2])
 Out[6]: pandas.core.frame.DataFrame
 type(iris.iloc[10:30, 2])
@@ -792,11 +823,60 @@ python的内置函数，是str类型数据的方法之一。
 
 设定dataframe的索引名字
 
-# [逻辑运算与位运算](http://www.runoob.com/python3/python3-basic-operators.html#ysf4)
+# [operator 逻辑运算与位运算](http://www.runoob.com/python3/python3-basic-operators.html#ysf4)
 
 or and是逻辑运算符， 均返回的为真的表达式，而不是 1,0
 
 | & 是位运算符，是按照二进制各个位置的数来对比的。
+
+[operator.itemgetter()](https://blog.csdn.net/dongtingzhizi/article/details/12068205)
+
+itemgetter函数用于获取对象的哪些维的数据，参数为一些序号（即需要获取的数据在对象中的序号）,按照行列的索引提取值
+
+```python
+import numpy as np
+import operator
+list = [[1, 2, 3], 'b', [4, 5, 6]]
+array = np.arange(0, 30 , 2)
+matrix = array.reshape(5, 3)
+a = operator.itemgetter(1)
+b = operator.itemgetter(1, 0)
+a(matrix)
+Out[9]: array([ 6,  8, 10])
+b(matrix)
+Out[10]: (array([ 6,  8, 10]), array([0, 2, 4]))
+c = operator.itemgetter((1, 0), 1)
+c(matrix)
+Out[13]: (6, array([ 6,  8, 10]))
+```
+
+[sorted函数以及operator.itemgetter函数](https://blog.csdn.net/dongtingzhizi/article/details/12068205)
+
+```python
+import numpy as np
+import operator
+a = {}
+alp = ['d', 'c', 'b', 'a']
+num = range(1, 5)
+for i, j in zip(alp, num):
+    a[i] = j
+a
+Out[12]: {'d': 1, 'c': 2, 'b': 3, 'a': 4}
+
+sorted_a_item = sorted(a.items(), key=operator.itemgetter(1), reverse=True)
+sorted_a_item
+Out[18]: [('a', 4), ('b', 3), ('c', 2), ('d', 1)]
+
+sorted_a_item = sorted(a.items(), key=operator.itemgetter(2), reverse=True)
+IndexError: tuple index out of range
+
+sorted_a_item = sorted(a.items(), key=operator.itemgetter(0), reverse=True)
+sorted_a_item
+Out[21]: [('d', 1), ('c', 2), ('b', 3), ('a', 4)]
+sorted_a_item = sorted(a.items(), key=operator.itemgetter(0))
+sorted_a_item # tuple组成的list
+Out[23]: [('a', 4), ('b', 3), ('c', 2), ('d', 1)]
+```
 
 
 
@@ -1580,7 +1660,12 @@ https://blog.csdn.net/hephec/article/details/77992114
 
 Python 字典(Dictionary) get() 函数返回指定键的值，如果值不在字典中返回默认值
 
+```python
+dict.get(key, default=None)
+```
 
+key -- 字典中要查找的键。
+default -- 如果指定键的值不存在时，返回该默认值值。
 
 # [dic.iteritems()](https://blog.csdn.net/program_developer/article/details/78657908)
 

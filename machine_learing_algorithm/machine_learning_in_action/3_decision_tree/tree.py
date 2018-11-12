@@ -3,6 +3,7 @@ from math import log
 import operator
 
 def entropy(dataset):
+    # 获得样本量
     num_entries = len(dataset)
     label_num = {}
     for feature_vector in dataset:
@@ -14,6 +15,8 @@ def entropy(dataset):
     ent = 0.0
     for key in label_num:
         probability = float(label_num[key]) / num_entries
+        # 因为循环的存在 所以自增就能完成求和
+        # 因为熵是概率和log乘积的负值，所以使用自减
         ent -= probability * log(probability, 2)
 
     return ent
@@ -40,6 +43,7 @@ def split_dataset(dataset, feature, value):
     return_dataset = []
     for feature_vector in dataset:
         if feature_vector[feature] == value:
+            # 以value为分界点 将某个特征分成两部分
             reduce_feature_vector = feature_vector[:feature]
             reduce_feature_vector.extend(feature_vector[feature + 1:])
             return_dataset.append(reduce_feature_vector)
@@ -51,13 +55,15 @@ def choose_best_feature_to_split(dataset):
     base_entropy = entropy(dataset)
     best_info_gain = 0.0
     best_feature = -1
+    # 遍历每个特征
     for i in range(num_features):
-        feature_list = [example[i] for example in dataset]
-        unique_feature = set(feature_list)
+        feature_value_list = [example[i] for example in dataset]
+        # 获取每个特征中包含的值，并使这些值唯一
+        unique_feature_value = set(feature_value_list)
         new_entropy = 0.0
-        for value in unique_feature: # 这部分不太懂了
+        for value in unique_feature_value: # 这部分不太懂了
             sub_dataset = split_dataset(dataset, i, value)
-            probability = len(sub_dataset) / float(len(dataset)) # 这里计算的是该类别出在全部数据集中概率
+            probability = len(sub_dataset) / float(len(dataset)) # 这里计算的是该类别在全部数据集中概率
             new_entropy += probability * entropy(sub_dataset)
         info_gain = base_entropy - new_entropy
         if (info_gain > best_info_gain):
@@ -72,6 +78,7 @@ def voting(class_list):
         if vote not in class_count.keys():
             class_count[vote] = 0
         class_count[vote] += 1
+    # 排序完成后将字典转换为了 tuple组成的list
     sorted_class_count = sorted(class_count.items(), key=operator.itemgetter(1), reverse=True)
     return sorted_class_count[0][0]
 
@@ -86,12 +93,13 @@ def create_tree(dataset, labels):
     best_feature_label = labels[best_feature]
     my_tree = {best_feature_label:{}}
 
-    # del(labels[best_feature]) 这里是错误的 需要自己再消化下
+    # 保证删除best_feature不会对 原始的数据造成影响
     sub_labels = labels[:]
     del(sub_labels[best_feature])
 
     feature_values = [example[best_feature] for example in dataset]
     unique_values = set(feature_values)
     for value in unique_values:
+        # 递归 要死记硬背了
         my_tree[best_feature_label][value] = create_tree(split_dataset(dataset, best_feature, value),sub_labels)
     return my_tree

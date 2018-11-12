@@ -24,6 +24,7 @@ def classify0(inX, dataSet, labels, k):
     sqDiffMat = diffMat ** 2
     sqDistances = sqDiffMat.sum(axis=1)
     distances = sqDistances ** 0.5
+    # 获取值排序后的索引顺序
     sortedDistIndicies = np.argsort(distances)
     classCount = {}
     # 选择距离最小的k个点
@@ -44,7 +45,9 @@ def file_to_matrix(filename):
     class_label_vector = []
     index = 0
     for line in array_of_lines:
+        # 去掉换行符
         line = line.strip()
+        # 用tab分割，整理数据格式
         list_from_line = line.split('\t')
         matrix[index, :] = list_from_line[0: 3]
         class_label_vector.append(int(list_from_line[-1]))
