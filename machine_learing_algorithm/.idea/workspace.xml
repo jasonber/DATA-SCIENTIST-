@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e3ace51-8326-4e0f-a6c5-7743430a0c30" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning_in_action/2_KNN/kNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/2_KNN/kNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../notebook_of_coding.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,37 +17,37 @@
     <session id="2117989090">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.closed" value="13" />
+          <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="6" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="18" />
+          <entry key="py" value="20" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="18" />
+          <entry key="Python" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="2103" />
-          <entry key="py" value="19666" />
+          <entry key="Python Console" value="2539" />
+          <entry key="py" value="22303" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="21769" />
+          <entry key="Python" value="24842" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -56,22 +56,29 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/machine_learning_in_action/2_KNN/kNN.py">
+        <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="144" column="72" selection-start-line="144" selection-start-column="72" selection-end-line="144" selection-end-column="72" />
+            <state relative-caret-position="251">
+              <caret line="104" column="18" lean-forward="true" selection-start-line="104" selection-start-column="18" selection-end-line="104" selection-end-column="18" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <marker date="1542092697351" expanded="true" signature="3326:3331" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py">
+        <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="281">
-              <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
+              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+              <folding>
+                <marker date="1542099395514" expanded="true" signature="225:230" ph="..." />
+                <marker date="1542099395514" expanded="true" signature="494:499" ph="..." />
+                <marker date="1542099395514" expanded="true" signature="782:787" ph="..." />
+                <marker date="1542099395514" expanded="true" signature="1413:1418" ph="..." />
+                <marker date="1542099395514" expanded="true" signature="1843:1848" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,8 +86,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+            <state relative-caret-position="255">
+              <caret line="17" column="36" lean-forward="true" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,9 +122,10 @@
         <option value="$PROJECT_DIR$/machine_learning_in_action/1_KNN/kNN_digits.py" />
         <option value="$PROJECT_DIR$/machine_learning_in_action/1_KNN/kNN.py" />
         <option value="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/__int__.py" />
-        <option value="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py" />
         <option value="$PROJECT_DIR$/machine_learning_in_action/2_KNN/kNN.py" />
         <option value="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py" />
+        <option value="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py" />
+        <option value="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py" />
       </list>
     </option>
   </component>
@@ -394,17 +405,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py">
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+        <state relative-caret-position="251">
+          <caret line="104" column="18" lean-forward="true" selection-start-line="104" selection-start-column="18" selection-end-line="104" selection-end-column="18" />
+          <folding>
+            <marker date="1542092697351" expanded="true" signature="3326:3331" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py">
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="36" lean-forward="true" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
-          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <marker date="1542099395514" expanded="true" signature="225:230" ph="..." />
+            <marker date="1542099395514" expanded="true" signature="494:499" ph="..." />
+            <marker date="1542099395514" expanded="true" signature="782:787" ph="..." />
+            <marker date="1542099395514" expanded="true" signature="1413:1418" ph="..." />
+            <marker date="1542099395514" expanded="true" signature="1843:1848" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

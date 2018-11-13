@@ -103,3 +103,16 @@ def create_tree(dataset, labels):
         # 递归 要死记硬背了
         my_tree[best_feature_label][value] = create_tree(split_dataset(dataset, best_feature, value),sub_labels)
     return my_tree
+
+def classify(input_tree, feat_labels, test_vector):
+    first_str = input_tree.keys()[0]
+    second_dict = input_tree[first_str]
+    feat_index = feat_labels.index(first_labels)
+    for key in second_dict.keys():
+        if test_vector[feat_index] == key:
+            if type(second_dict[key]).__name__=='dict':
+                class_label = classify(second_dict[key], feat_labels, test_vector)
+            else:
+                class_label = second_dict[key]
+    return class_label
+
