@@ -982,6 +982,12 @@ select * from A where id in (select id from B);
 select * from A where exists (select id from B where A.id=B.id);
 ```
 
+EXISTS用于检查子查询是否至少会返回一行数据，该子查询实际上并不返回任何数据，而是返回值True或False。那么，这里我们来看一下in和exists的区别：
+①in 是把外表和内表作hash 连接，而exists是对外表作loop循环，每次loop循环再对内表进行查询。
+②一直以来认为exists比in效率高的说法是不准确的。
+　-->如果查询的两个表大小相当，那么用in和exists差别不大。
+　-->***如果两个表中一个较小，一个是大表，则子查询表大的用exists，子查询表小的用in***
+
 # [16. Write a query to find the salesmen who have multiple customers.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-16.php)完全不懂
 
 ```sql

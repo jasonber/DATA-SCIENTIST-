@@ -1692,3 +1692,5 @@ print(a.min(1)) # axis=1；每行的最小值
 
 # [字典](http://www.runoob.com/python3/python3-dictionary.html)
 
+# [dataframe.replace](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.replace.html)
+
