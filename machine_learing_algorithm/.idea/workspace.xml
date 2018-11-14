@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e3ace51-8326-4e0f-a6c5-7743430a0c30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test_plot_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../notebook_of_coding.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,14 +15,14 @@
     <session id="2117989090">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="6" />
-          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -43,13 +39,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="2620" />
-          <entry key="py" value="25290" />
+          <entry key="Python Console" value="2656" />
+          <entry key="py" value="25731" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="27910" />
+          <entry key="Python" value="28387" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -60,12 +56,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
+            <state relative-caret-position="326">
+              <caret line="147" column="33" selection-start-line="147" selection-start-column="33" selection-end-line="147" selection-end-column="33" />
               <folding>
-                <marker date="1542185995637" expanded="true" signature="3463:3468" ph="..." />
-                <marker date="1542185995637" expanded="true" signature="3943:3948" ph="..." />
-                <marker date="1542185995637" expanded="true" signature="4284:4361" ph="..." />
+                <marker date="1542193475351" expanded="true" signature="3463:3468" ph="..." />
+                <marker date="1542193475351" expanded="true" signature="3943:3948" ph="..." />
+                <marker date="1542193475351" expanded="true" signature="4392:4452" ph="..." />
               </folding>
             </state>
           </provider>
@@ -74,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
+            <state relative-caret-position="191">
+              <caret line="111" selection-start-line="111" selection-end-line="111" />
               <folding>
                 <marker date="1542181365467" expanded="true" signature="375:380" ph="..." />
                 <marker date="1542181365467" expanded="true" signature="653:658" ph="..." />
@@ -91,11 +87,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="281">
+              <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1542186160557" expanded="true" signature="34:255" ph="..." />
+                <marker date="1542193475391" expanded="true" signature="34:255" ph="..." />
               </folding>
             </state>
           </provider>
@@ -148,6 +144,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="machine_learing_algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -176,17 +183,6 @@
               <item name="machine_learing_algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="machine_learing_algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="machine_learing_algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -350,6 +346,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="742" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16802974" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -554,29 +551,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/treeplotter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/treeplotter.py" />
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
+        <state relative-caret-position="326">
+          <caret line="147" column="33" selection-start-line="147" selection-start-column="33" selection-end-line="147" selection-end-column="33" />
           <folding>
-            <marker date="1542185995637" expanded="true" signature="3463:3468" ph="..." />
-            <marker date="1542185995637" expanded="true" signature="3943:3948" ph="..." />
-            <marker date="1542185995637" expanded="true" signature="4284:4361" ph="..." />
+            <marker date="1542193475351" expanded="true" signature="3463:3468" ph="..." />
+            <marker date="1542193475351" expanded="true" signature="3943:3948" ph="..." />
+            <marker date="1542193475351" expanded="true" signature="4392:4452" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
+        <state relative-caret-position="191">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
           <folding>
             <marker date="1542181365467" expanded="true" signature="375:380" ph="..." />
             <marker date="1542181365467" expanded="true" signature="653:658" ph="..." />
@@ -590,11 +581,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="281">
+          <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1542186160557" expanded="true" signature="34:255" ph="..." />
+            <marker date="1542193475391" expanded="true" signature="34:255" ph="..." />
           </folding>
         </state>
       </provider>

@@ -1555,6 +1555,23 @@ http://www.runoob.com/python/python-func-open.html
 open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
 ```
 
+读取txt文件
+
+```python
+fr = open('/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-/machine_learing_algorithm/'
+          'machine_learning_in_action/3_decision_tree/lenses.txt')
+lenses = [inst.strip().split('\t') for inst in fr.readlines()]
+lenses_feature = ['age', 'prescript', 'astigmatic', 'tearRate']
+
+
+def file2matrix(filename): #导入数据
+	fr = open(filename)
+	arrayOfLines = fr.readlines()
+	returnMat = [i.strip().split('\t') for i in arrayOfLines]
+	labels = ['age', 'prescript', 'astigmatic', 'tearRate']
+	return returnMat,labels
+```
+
 
 
 # [python 类](http://www.runoob.com/python/python-object.html)

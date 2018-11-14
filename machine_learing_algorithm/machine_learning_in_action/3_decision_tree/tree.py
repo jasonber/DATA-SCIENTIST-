@@ -142,3 +142,7 @@ def load_tree(tree_file):
     import pickle
     fr = open(tree_file, 'rb')
     return pickle.load(fr)
+
+def file_to_matrix(file_name):
+    fr = open(file_name)
+    list_of_data = fr.readlines()

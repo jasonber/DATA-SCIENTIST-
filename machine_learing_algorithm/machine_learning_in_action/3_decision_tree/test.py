@@ -29,3 +29,11 @@ tree.store_tree('my_tree', "/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-
 
 tree.load_tree("/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-/"
                          "machine_learing_algorithm/machine_learning_in_action/3_decision_tree/classifierStorage.txt")
+
+# 隐形眼镜
+fr = open('/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-/machine_learing_algorithm/'
+          'machine_learning_in_action/3_decision_tree/lenses.txt')
+lenses = [inst.strip().split('\t') for inst in fr.readlines()]
+lenses_feature = ['age', 'prescript', 'astigmatic', 'tearRate']
+lenses_tree = tree.create_tree(lenses, lenses_feature)
+tree_plotter.create_plot(lenses_tree)
