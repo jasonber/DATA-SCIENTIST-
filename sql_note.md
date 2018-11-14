@@ -1363,3 +1363,5 @@ OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'；
 ```
 
+# [事务](http://www.runoob.com/mysql/mysql-transaction.html)
+
