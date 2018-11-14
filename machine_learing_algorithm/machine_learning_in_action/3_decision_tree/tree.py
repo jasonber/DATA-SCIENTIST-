@@ -1,7 +1,14 @@
 import numpy as np
 from math import log
 import operator
-
+"""
+决策树的算法的实现分为两部分
+1、利用已有的信息构建决策树
+    a、树的构建需要id3， c4.5， cart算法。主要目的是向着数据混乱程度变小的方向画树
+    b、如何保存建立好的树
+2、使用建立好的决策数去进行分类
+    a、如何给出分类标签
+"""
 def entropy(dataset):
     # 获得样本量
     num_entries = len(dataset)
@@ -104,15 +111,34 @@ def create_tree(dataset, labels):
         my_tree[best_feature_label][value] = create_tree(split_dataset(dataset, best_feature, value),sub_labels)
     return my_tree
 
+
 def classify(input_tree, feat_labels, test_vector):
-    first_str = input_tree.keys()[0]
-    second_dict = input_tree[first_str]
-    feat_index = feat_labels.index(first_labels)
+    first_node = list(input_tree.keys())[0]
+    second_dict = input_tree[first_node]
+    feat_index = feat_labels.index(first_node)
     for key in second_dict.keys():
         if test_vector[feat_index] == key:
-            if type(second_dict[key]).__name__=='dict':
+            if type(second_dict[key]).__name__ == 'dict':
                 class_label = classify(second_dict[key], feat_labels, test_vector)
             else:
                 class_label = second_dict[key]
     return class_label
 
+
+def store_tree(input_tree, tree_file):
+    import pickle
+    # 不适用with as
+    # fw = open(tree_file, 'w')
+    # pickle.dump(input_tree, fw)
+    # fw.close()
+    # https://blog.csdn.net/qq_33363973/article/details/77881168
+    # type error
+    # with open(tree_file, 'w') as fw:
+    with open(tree_file, 'wb') as fw:
+        pickle.dump(input_tree, fw)
+
+
+def load_tree(tree_file):
+    import pickle
+    fr = open(tree_file, 'rb')
+    return pickle.load(fr)

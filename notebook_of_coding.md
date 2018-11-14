@@ -1549,6 +1549,8 @@ es = es.add_relationship([r_app_bureau])
 
 # [python 打开文件的方法](http://www.runoob.com/python/file-methods.html)
 
+http://www.runoob.com/python/python-func-open.html
+
 ```python
 open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
 ```
@@ -1693,4 +1695,112 @@ print(a.min(1)) # axis=1；每行的最小值
 # [字典](http://www.runoob.com/python3/python3-dictionary.html)
 
 # [dataframe.replace](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.replace.html)
+
+# [*args 和 **kwargs](https://eastlakeside.gitbooks.io/interpy-zh/content/args_kwargs/)
+
+*args 是用来发送一个非键值对的可变数量的参数列表给一个函数
+
+```python
+def test_var_args(f_arg, *argv):
+    print("first normal arg:", f_arg)
+    for arg in argv:
+        print("another arg through *argv:", arg)
+
+test_var_args('yasoob', 'python', 'eggs', 'test')
+
+#out
+first normal arg: yasoob
+another arg through *argv: python
+another arg through *argv: eggs
+another arg through *argv: test
+```
+
+
+
+```python
+**kwargs 允许你将不定长度的键值对, 作为参数传递给一个函数。 如果你想要在一个函数里处理带名字的参数, 你应该使用**kwargs。
+
+def greet_me(**kwargs):
+    for key, value in kwargs.items():
+        print("{0} == {1}".format(key, value))
+
+
+>>> greet_me(name="yasoob")
+name == yasoob
+```
+
+那么如果你想在函数里同时使用所有这三种参数， 顺序是这样的：
+
+```python
+some_func(fargs, *args, **kwargs)
+```
+
+
+
+# python 序列化（持久化）和 sklearn 序列化（持久化）
+
+[python pickle](https://blog.csdn.net/sxingming/article/details/52164249)
+
+pickle提供了一个简单的持久化功能。可以将对象以文件的形式存放在磁盘上。
+
+pickle模块只能在python中使用，python中几乎所有的数据类型（列表，字典，集合，类等）都可以用pickle来序列化，
+
+```python
+>>> a1 = 'apple'  
+>>> b1 = {1: 'One', 2: 'Two', 3: 'Three'}  
+>>> c1 = ['fee', 'fie', 'foe', 'fum']  
+>>> f1 = file('temp.pkl', 'wb')  
+# 保存
+>>> pickle.dump(a1, f1, True)  
+>>> pickle.dump(b1, f1, True)  
+>>> pickle.dump(c1, f1, True)  
+>>> f1.close()
+# 载入
+>>> f2 = file('temp.pkl', 'rb')  
+>>> a2 = pickle.load(f2)  
+>>> a2  
+'apple'  
+>>> b2 = pickle.load(f2)  
+>>> b2  
+{1: 'One', 2: 'Two', 3: 'Three'}  
+>>> c2 = pickle.load(f2)  
+>>> c2  
+['fee', 'fie', 'foe', 'fum']  
+>>> f2.close()  
+```
+
+[机器学习模型的持久化 joblib](https://blog.csdn.net/Dream_angel_Z/article/details/47175373)
+
+```python
+>>>from sklearn.externals import joblib
+>>> os.chdir("workspace/model_save")
+>>> from sklearn import svm
+>>> X = [[0, 0], [1, 1]]
+>>> y = [0, 1]
+>>> clf = svm.SVC()
+>>> clf.fit(X, y)  
+>>> clf.fit(train_X,train_y)
+# 保存模型
+>>> joblib.dump(clf, "train_model.m")
+# 载入模型
+>>> clf = joblib.load("train_model.m")
+>>> clf.predit(test_X) #此处test_X为特征集
+```
+
+
+
+# with as 和 context manage
+
+https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/index.html
+
+http://www.maixj.net/ict/python-with-as-14005
+
+```python
+# 使用 with as 不再需要关注 close
+try:
+    with open( "a.txt" ) as f :
+        do something
+except xxxError:
+    do something about exception
+```
 
