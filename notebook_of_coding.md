@@ -60,7 +60,7 @@ dtyps查看数据类型 适用于dataframe
 
 # iloc loc ix
 
-
+切片操作只针对多维矩阵可以使用，list不能使用[:,:]这种方式取数，它也没有这种方式
 
 loc——通过行标签索引行数据
 iloc——通过行号索引行数据，只能是数字，[前闭后开](https://blog.csdn.net/slvher/article/details/44703185)：前闭后开区间（即begin <= idx < end）
@@ -1819,5 +1819,30 @@ try:
         do something
 except xxxError:
     do something about exception
+```
+
+# [np.mat](https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.mat.html)
+
+将数据结果转换为矩阵
+
+# [np, 矩阵基础](https://www.jianshu.com/p/9bb94f6ca1b0)
+
+https://www.cnblogs.com/xzcfightingup/p/7598293.html
+
+矩阵生成：http://www.zmonster.me/2016/02/25/creation-and-io-of-ndarray.html
+
+# [np.ndarray.tolist](https://docs.scipy.org/doc/numpy-1.15.1/reference/generated/numpy.ndarray.tolist.html)
+
+将数组转换为list
+
+```python
+>>> a = np.array([1, 2])
+>>> a.tolist()
+[1, 2]
+>>> a = np.array([[1, 2], [3, 4]])
+>>> list(a)
+[array([1, 2]), array([3, 4])]
+>>> a.tolist()
+[[1, 2], [3, 4]]
 ```
 
