@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e3ace51-8326-4e0f-a6c5-7743430a0c30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/reg_tree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/machine_learing_algorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/machine_learing_algorithm.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/tree_explore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/reg_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/reg_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../notebook_of_coding.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vim_notebook.md" beforeDir="false" afterPath="$PROJECT_DIR$/../vim_notebook.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,39 +19,39 @@
     <session id="2117989090">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
+          <entry key="project.closed" value="25" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.7" value="9" />
-          <entry key="project.open.time.8" value="4" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="22" />
+          <entry key="project.open.time.7" value="10" />
+          <entry key="project.open.time.8" value="5" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="37" />
-          <entry key="txt" value="3" />
+          <entry key="py" value="47" />
+          <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="37" />
+          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="Python" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="3146" />
-          <entry key="py" value="31310" />
+          <entry key="Python Console" value="3304" />
+          <entry key="py" value="37839" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="34456" />
+          <entry key="Python" value="41143" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -61,29 +62,46 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/reg_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
+            <state>
+              <caret line="187" column="27" selection-start-line="187" selection-start-column="27" selection-end-line="187" selection-end-column="27" />
               <folding>
-                <marker date="1542291445666" expanded="true" signature="330:335" ph="..." />
-                <marker date="1542291445666" expanded="true" signature="873:878" ph="..." />
-                <marker date="1542291445666" expanded="true" signature="1340:1341" ph="..." />
-                <marker date="1542291445666" expanded="true" signature="1340:1345" ph="..." />
-                <marker date="1542291445666" expanded="true" signature="1340:2755" ph="..." />
-                <marker date="1542291445666" expanded="true" signature="3455:3460" ph="..." />
-                <marker date="1542291445666" expanded="true" signature="3517:3522" ph="..." />
-                <marker date="1542291445666" expanded="true" signature="3734:4760" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="446:451" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="989:994" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="1456:1457" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="1456:1461" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="1456:2871" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="3571:3576" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="3633:3638" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="4978:4983" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="5428:5433" ph="..." />
+                <marker date="1542341997026" expanded="true" signature="5609:5614" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="76" column="2" selection-start-line="76" selection-start-column="2" selection-end-line="76" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test.py">
+        <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/tree_explore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-260">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="1185">
+              <caret line="88" column="42" lean-forward="true" selection-end-line="96" selection-end-column="15" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#98#119#0" expanded="true" />
+                <marker date="1542356350889" expanded="true" signature="1570:1575" ph="..." />
+                <marker date="1542356350889" expanded="true" signature="1638:2063" ph="..." />
+                <marker date="1542356350889" expanded="true" signature="2145:3272" ph="..." />
               </folding>
             </state>
           </provider>
@@ -126,6 +144,7 @@
         <option value="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test2.py" />
         <option value="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/reg_tree.py" />
         <option value="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test.py" />
+        <option value="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/tree_explore.py" />
       </list>
     </option>
   </component>
@@ -140,17 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="machine_learing_algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -167,24 +175,23 @@
               <item name="machine_learing_algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="machine_learing_algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="machine_learning_in_action" type="462c0819:PsiDirectoryNode" />
-              <item name="2_KNN" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="machine_learing_algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="machine_learing_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="machine_learning_in_action" type="462c0819:PsiDirectoryNode" />
-              <item name="3_decision_tree" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="machine_learing_algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="machine_learing_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="machine_learning_in_action" type="462c0819:PsiDirectoryNode" />
               <item name="9_cart_tree" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="machine_learing_algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="machine_learing_algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="machine_learing_algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -225,7 +232,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test (2)">
+  <component name="RunManager" selected="Python.test">
     <configuration name="regression" type="PythonConfigurationType" factoryName="Python">
       <module name="machine_learing_algorithm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -297,13 +304,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning_in_action" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning_in_action/KNN/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -340,6 +347,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.test (2)" />
         <item itemvalue="Python.test_plot_tree" />
         <item itemvalue="Python.test (1)" />
@@ -384,8 +392,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3268921" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3268921" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32850242" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003723" side_tool="true" weight="0.32850242" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.4996277" visible="true" weight="0.32850242" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -402,6 +410,11 @@
           <line>18</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/tree_explore.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -413,12 +426,52 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="data_matrix" language="Python" />
+        <watch expression="test_matrix.shape" language="Python" />
+        <watch expression="X.shape" language="Python" />
+        <watch expression="X" language="Python" />
+        <watch expression="model" language="Python" />
+        <watch expression="model.shape" language="Python" />
+        <watch expression="input_data.shape" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>model</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>X</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>test_matrix.shape</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>test_matrix</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>input_data.shape</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>model.shape</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>X.shape</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>data_matrix</expression-string>
         <language-id>Python</language-id>
@@ -431,41 +484,6 @@
       </expression>
       <expression>
         <expression-string>myTree</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>second_dict</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>first_node</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>mytree</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>intree</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>inTree</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>second_dict[key]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>d</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -525,13 +543,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/__int__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file:///opt/anaconda/lib/python3.7/site-packages/matplotlib/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="930" selection-start-line="930" selection-end-line="930" />
-        </state>
-      </provider>
     </entry>
     <entry file="file:///opt/anaconda/lib/python3.7/site-packages/matplotlib/pyplot.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -593,30 +604,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-end-line="10" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/tp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/anaconda/lib/python3.7/site-packages/IPython/core/interactiveshell.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="2960" selection-start-line="2960" selection-end-line="2960" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test2.py" />
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/tp.py" />
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/ex00.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -627,23 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/reg_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
-          <folding>
-            <marker date="1542291445666" expanded="true" signature="330:335" ph="..." />
-            <marker date="1542291445666" expanded="true" signature="873:878" ph="..." />
-            <marker date="1542291445666" expanded="true" signature="1340:1341" ph="..." />
-            <marker date="1542291445666" expanded="true" signature="1340:1345" ph="..." />
-            <marker date="1542291445666" expanded="true" signature="1340:2755" ph="..." />
-            <marker date="1542291445666" expanded="true" signature="3455:3460" ph="..." />
-            <marker date="1542291445666" expanded="true" signature="3517:3522" ph="..." />
-            <marker date="1542291445666" expanded="true" signature="3734:4760" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/3_decision_tree/tree_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-107">
@@ -651,12 +623,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///opt/anaconda/lib/python3.7/site-packages/numpy/lib/function_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="2329" column="4" selection-start-line="2329" selection-start-column="4" selection-end-line="2329" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/bikeSpeedVsIq_train.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/bikeSpeedVsIq_test.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="1067" selection-start-line="1067" selection-end-line="1067" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/reg_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="187" column="27" selection-start-line="187" selection-start-column="27" selection-end-line="187" selection-end-column="27" />
+          <folding>
+            <marker date="1542341997026" expanded="true" signature="446:451" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="989:994" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="1456:1457" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="1456:1461" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="1456:2871" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="3571:3576" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="3633:3638" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="4978:4983" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="5428:5433" ph="..." />
+            <marker date="1542341997026" expanded="true" signature="5609:5614" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/anaconda/lib/python3.7/site-packages/IPython/core/interactiveshell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="2960" selection-start-line="2960" selection-end-line="2960" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-260">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="284">
+          <caret line="76" column="2" selection-start-line="76" selection-start-column="2" selection-end-line="76" selection-end-column="2" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/anaconda/lib/python3.7/site-packages/matplotlib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="1866" selection-start-line="1866" selection-end-line="1866" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/9_cart_tree/tree_explore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="88" column="42" lean-forward="true" selection-end-line="96" selection-end-column="15" />
+          <folding>
+            <element signature="e#98#119#0" expanded="true" />
+            <marker date="1542356350889" expanded="true" signature="1570:1575" ph="..." />
+            <marker date="1542356350889" expanded="true" signature="1638:2063" ph="..." />
+            <marker date="1542356350889" expanded="true" signature="2145:3272" ph="..." />
           </folding>
         </state>
       </provider>

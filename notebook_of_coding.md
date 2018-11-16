@@ -1831,6 +1831,17 @@ https://www.cnblogs.com/xzcfightingup/p/7598293.html
 
 矩阵生成：http://www.zmonster.me/2016/02/25/creation-and-io-of-ndarray.html
 
+```python
+np.ones((3, 4))
+
+[[ 1.  1.  1.  1.]
+ [ 1.  1.  1.  1.]
+ [ 1.  1.  1.  1.]]
+
+```
+
+
+
 # [np.ndarray.tolist](https://docs.scipy.org/doc/numpy-1.15.1/reference/generated/numpy.ndarray.tolist.html)
 
 将数组转换为list
@@ -1846,3 +1857,16 @@ https://www.cnblogs.com/xzcfightingup/p/7598293.html
 [[1, 2], [3, 4]]
 ```
 
+# [numpy.linalg](https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.linalg.html)
+
+numpy下的linalg=linear+algebra，包含很多线性代数的运算，主要用法有以下几种
+
+https://blog.csdn.net/chunjing6629/article/details/80554778
+
+
+
+# [python.tkinter](http://www.runoob.com/python/python-gui-tkinter.html)
+
+python的GUI制作库
+
+check button 复选框http://www.runoob.com/python/python-tk-checkbutton.html

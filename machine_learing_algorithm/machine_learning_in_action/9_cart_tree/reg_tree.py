@@ -7,7 +7,12 @@
 工程上总的来说:
 CART 和 C4.5 之间主要差异在于分类结果上，CART 可以回归分析也可以分类，C4.5 只能做分类；
 C4.5 子节点是可以多分的，而 CART 是无数个二叉子节点；
-以此拓展出以 CART 为基础的 “树群” Random forest ， 以 回归树 为基础的 “树群” GBDT
+以此拓展出以 CART 为基础的 “树群” Random forest ， 以 CART中的 回归树 为基础的 “树群” GBDT
+GBDT只能做回归
+
+模型树与回归树的差别在于：回归树的叶节点是节点数据标签值的平均值，
+而模型树的节点数据是一个线性模型（可用最简单的最小二乘法来构建线性模型）
+分类树直接就是有标签的，所以不需要用均值、模型来代替
 """
 import numpy as np
 
@@ -131,3 +136,78 @@ def prune(tree, test_data):
             return tree
     else:
         return tree
+
+
+def linear_model(dataset):
+    """
+    使用最小二乘法来求模型参数，建立线性模型
+    :param dataset:
+    :return:
+    """
+    r, c = np.shape(dataset)
+    X = np.mat(np.ones((r, c)))
+    Y = np.mat(np.ones((r, 1)))
+    X[:, 1: c] = dataset[:, 0: c-1]
+    Y = dataset[:, -1]
+    xTx = X.T * X
+    # 这里的公式还需要巩固，矩阵的逆，矩阵的行列式
+    if np.linalg.det(xTx) == 0.0:
+        raise NameError('This matrix is singular, cannot do inverse,\n try increasing the second value of ops')
+    # 这里用的是线性回归的解析解，正规方程来求参数矩阵
+    ws = xTx.I * (X.T * Y)
+    return ws, X, Y
+
+
+def model_leaf(dataset):
+    ws, X, Y = linear_model(dataset)
+    # ws是个矩阵[【b],[w]]
+    return ws
+
+def model_error(dataset):
+    """
+    模型树的分支规则是 降低模型的误差，也就是损失函数要小
+    :param dataset:
+    :return:
+    """
+    ws, X, Y = linear_model(dataset)
+    y_predict = X * ws
+    error = np.sum(np.power(Y - y_predict, 2))
+    return error
+
+
+# 为了和 modelTreeEval() 保持一致，保留两个输入参数
+def reg_tree_value(model, input_data):
+    return float(model)
+
+
+def model_tree_value(model, input_data):
+    c = np.shape(input_data)[1]
+    X = np.mat(np.ones((1, c+1)))
+    X[:, 1: c+1] = input_data
+    # print("X={}, model={}".format(X, model))
+    return float(X * model)
+
+
+def tree_forecast(tree, input_data, model_value=reg_tree_value):
+    if not is_tree(tree):
+        return model_value(tree, input_data)
+    # 书中写的是inData[tree['spInd']]，只适合inData只有一列的情况，否则会产生异常
+    #if input_data[tree['split_index']] > tree['split_value']:
+    if input_data[0,tree['split_index']] > tree['split_value']:
+        if is_tree(tree['left']):
+            return tree_forecast(tree['left'], input_data, model_value)
+        else:
+            return model_value(tree['left'], input_data)
+    else:
+        if is_tree(tree['right']):
+            return tree_forecast(tree['right'], input_data, model_value)
+        else:
+            return model_value(tree['right'], input_data)
+
+
+def create_forecast(tree, test_data, model_value=reg_tree_value):
+    r = len(test_data)
+    y_predict = np.mat(np.zeros((r, 1)))
+    for i in range(r):
+        y_predict[i, 0] = tree_forecast(tree, np.mat(test_data[i]), model_value)
+    return y_predict
