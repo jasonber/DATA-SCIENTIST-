@@ -1870,3 +1870,13 @@ https://blog.csdn.net/chunjing6629/article/details/80554778
 python的GUI制作库
 
 check button 复选框http://www.runoob.com/python/python-tk-checkbutton.html
+
+
+
+# [矩阵的转置](https://blog.csdn.net/Asher117/article/details/82934857)
+
+随后再看
+
+T https://docs.scipy.org/doc/numpy-1.15.1/reference/generated/numpy.ndarray.T.html
+
+transpose https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.transpose.html
