@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e3ace51-8326-4e0f-a6c5-7743430a0c30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/5_Logistic/log_reg.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/machine_learing_algorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/machine_learing_algorithm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../notebook_of_coding.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning_in_action/5_Logistic/log_reg.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/5_Logistic/log_reg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +15,9 @@
     <session id="2117989090">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="26" />
+          <entry key="project.closed" value="27" />
           <entry key="project.open.time.1" value="4" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.2" value="1" />
@@ -27,7 +25,7 @@
           <entry key="project.open.time.7" value="10" />
           <entry key="project.open.time.8" value="5" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="26" />
+          <entry key="project.opened" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -44,13 +42,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="3326" />
-          <entry key="py" value="39996" />
+          <entry key="Python Console" value="3354" />
+          <entry key="py" value="43221" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="43322" />
+          <entry key="Python" value="46575" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -58,26 +56,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/log_reg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="40" column="27" lean-forward="true" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+            <state relative-caret-position="-294">
+              <caret line="141" column="30" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
               <folding>
-                <marker date="1542378995497" expanded="true" signature="190:195" ph="..." />
-                <marker date="1542378995497" expanded="true" signature="538:543" ph="..." />
-                <marker date="1542378995497" expanded="true" signature="620:625" ph="..." />
-                <marker date="1542378995497" expanded="true" signature="1128:1323" ph="..." />
+                <element signature="e#0#18#0" expanded="true" />
+                <marker date="1542428911712" expanded="true" signature="286:291" ph="..." />
+                <marker date="1542428911712" expanded="true" signature="634:639" ph="..." />
+                <marker date="1542428911712" expanded="true" signature="714:719" ph="..." />
+                <marker date="1542428911712" expanded="true" signature="1703:2303" ph="..." />
+                <marker date="1542428911712" expanded="true" signature="2333:2607" ph="..." />
+                <marker date="1542428911712" expanded="true" signature="5613:5830" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="267">
+              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -204,7 +208,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.test (3)">
     <configuration name="regression" type="PythonConfigurationType" factoryName="Python">
       <module name="machine_learing_algorithm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -268,6 +272,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test (3)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="machine_learing_algorithm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning_in_action/5_Logistic" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="machine_learing_algorithm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -316,14 +341,15 @@
       <item itemvalue="Python.test (1)" />
       <item itemvalue="Python.test_plot_tree" />
       <item itemvalue="Python.test (2)" />
+      <item itemvalue="Python.test (3)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test (3)" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.test (2)" />
         <item itemvalue="Python.test_plot_tree" />
         <item itemvalue="Python.test (1)" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -382,6 +408,16 @@
           <line>18</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -393,17 +429,41 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="test_matrix.shape" language="Python" />
-        <watch expression="X.shape" language="Python" />
-        <watch expression="X" language="Python" />
-        <watch expression="model" language="Python" />
-        <watch expression="model.shape" language="Python" />
-        <watch expression="input_data.shape" language="Python" />
+        <watch expression="data_matrix.shape" language="Python" />
+        <watch expression="weights.shape" language="Python" />
+        <watch expression="data_matrix[i]" language="Python" />
+        <watch expression="data_matrix[i].shape" language="Python" />
+        <watch expression="type(theta)" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>type(theta)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>data_matrix[i].shape</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>data_matrix[i]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>weights.shape</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>data_matrix.shape</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>model</expression-string>
         <language-id>Python</language-id>
@@ -426,31 +486,6 @@
       </expression>
       <expression>
         <expression-string>input_data.shape</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.shape</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>X.shape</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>data_matrix</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>my_tree</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>myTree</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -635,18 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3179">
           <caret line="187" column="27" selection-start-line="187" selection-start-column="27" selection-end-line="187" selection-end-column="27" />
-          <folding>
-            <marker date="1542341997026" expanded="true" signature="446:451" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="989:994" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="1456:1457" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="1456:1461" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="1456:2871" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="3571:3576" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="3633:3638" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="4978:4983" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="5428:5433" ph="..." />
-            <marker date="1542341997026" expanded="true" signature="5609:5614" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -654,9 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1258">
           <caret line="76" column="2" selection-start-line="76" selection-start-column="2" selection-end-line="76" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -664,30 +684,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="96" column="14" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
           <folding>
-            <element signature="e#98#119#0" expanded="true" />
-            <marker date="1542356350889" expanded="true" signature="1570:1575" ph="..." />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/log_reg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="40" column="27" lean-forward="true" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+        <state relative-caret-position="-294">
+          <caret line="141" column="30" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
           <folding>
-            <marker date="1542378995497" expanded="true" signature="190:195" ph="..." />
-            <marker date="1542378995497" expanded="true" signature="538:543" ph="..." />
-            <marker date="1542378995497" expanded="true" signature="620:625" ph="..." />
-            <marker date="1542378995497" expanded="true" signature="1128:1323" ph="..." />
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1542428911712" expanded="true" signature="286:291" ph="..." />
+            <marker date="1542428911712" expanded="true" signature="634:639" ph="..." />
+            <marker date="1542428911712" expanded="true" signature="714:719" ph="..." />
+            <marker date="1542428911712" expanded="true" signature="1703:2303" ph="..." />
+            <marker date="1542428911712" expanded="true" signature="2333:2607" ph="..." />
+            <marker date="1542428911712" expanded="true" signature="5613:5830" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>

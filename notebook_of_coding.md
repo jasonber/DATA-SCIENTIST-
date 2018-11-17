@@ -1812,6 +1812,8 @@ https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/index.html
 
 http://www.maixj.net/ict/python-with-as-14005
 
+http://python.jobbole.com/81477/
+
 ```python
 # 使用 with as 不再需要关注 close
 try:
@@ -1880,3 +1882,39 @@ check button 复选框http://www.runoob.com/python/python-tk-checkbutton.html
 T https://docs.scipy.org/doc/numpy-1.15.1/reference/generated/numpy.ndarray.T.html
 
 transpose https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.transpose.html
+
+
+
+# [numpy.matrix.getA()](https://docs.scipy.org/doc/numpy-1.15.1/reference/generated/numpy.matrix.getA.html)
+
+把矩阵转换为ndarray
+
+
+
+# [删除元素](https://blog.csdn.net/deqiangxiaozi/article/details/75808863)
+
+del 不适用array
+
+```python
+# del
+a = ['a','b','c']
+del a[0]  #指定删除0位的元素
+print(a)
+输出为：['b', 'c']
+
+# remove
+a = ['a','b','c']
+a.remove('b') #删除指定元素
+print(a)
+输出为：['a', 'c']
+
+# pop
+a = ['a','b','c']
+b = ['d','e','f']
+# pop的命令，其有返回值，可赋值带出
+c = a.pop() #默认删除-1位置元素'c',并将删除元素返回值赋值
+d = b.pop(0) #删除0位元素'd',并将删除元素返回值赋值
+print(a,b,c,d)
+返回值：['a', 'b'] ['e', 'f'] c d
+```
+

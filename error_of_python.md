@@ -87,3 +87,11 @@ x.append(d)
 # ValueError: not enough values to unpack (expected 3, got 2)
 
 函数返回值少于要求的值
+
+# TypeError: 'range' object doesn't support item deletion
+
+python3.x , 出现错误 'range' object doesn't support item deletion
+
+原因：python3.x   range返回的是range对象，不返回数组对象
+
+解决方法：把 trainingSet = range(50) 改为 trainingSet = list(range(50))
