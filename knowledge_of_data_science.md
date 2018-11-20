@@ -106,7 +106,19 @@ LGB：支持
 XGB：近似直方图算法：对所有feature每一层建一直方图
 LGB：对每一feature建直方图，只需一次
 
+http://lightgbm.apachecn.org/cn/latest/Features.html
+
+https://blog.csdn.net/u010242233/article/details/79769950
+
+https://blog.csdn.net/niaolianjiulin/article/details/76584785
+
+https://blog.csdn.net/qq_28031525/article/details/70207918
+
+直方图算法https://blog.csdn.net/jasonwang_/article/details/80833001
+
 
 
 # [信息熵](https://blog.csdn.net/pipisorry/article/details/51695283)
+
+# [算法对比](https://blog.csdn.net/u010159842/article/details/52918815)
 
