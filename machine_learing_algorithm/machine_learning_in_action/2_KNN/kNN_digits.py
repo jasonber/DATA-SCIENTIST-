@@ -1,3 +1,4 @@
+# /usr/bin/env
 import numpy as np
 import operator
 from os import listdir
@@ -15,7 +16,7 @@ class KnnDigits(object):
             line = file.readline()
             for j in range(32):
                 return_vector[0, 32 * i + j] = int(line[j])
-         return return_vector
+        return return_vector
 
     def hand_write_class_test(self):
         hand_write_labels = []
