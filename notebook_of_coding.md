@@ -1918,3 +1918,38 @@ print(a,b,c,d)
 返回值：['a', 'b'] ['e', 'f'] c d
 ```
 
+# [sys](https://www.cnblogs.com/Archie-s/p/6860301.html)
+https://docs.python.org/3/library/sys.html
+sys.path.append("自定义模块路径")
+
+# [os](https://www.cnblogs.com/yufeihlf/p/6179547.html)
+http://www.runoob.com/python3/python3-os-file-methods.html
+os.getwcd()查看当前所在的路径
+os.path.split()将路径分解为(文件夹,文件名)，返回的是元组类型
+os.path.join()组合成路径
+os.open()打开文件
+os.chdir()改变工作路径
+
+# [csv](https://www.cnblogs.com/pyxiaomangshe/p/8026483.html)
+```python
+reader(csvfile, dialect='excel', **fmtparams)
+csvfile，必须是支持迭代(Iterator)的对象，可以是文件(file)对象或者列表(list)对象，如果是文件对
+象，打开时需要加"b"标志参数。
+ 
+dialect，编码风格，默认为excel的风格，也就是用逗号（,）分隔，dialect方式也支持自定义，通过调用register_dialect方法来注册，下文会提到。
+ 
+fmtparam，格式化参数，用来覆盖之前dialect对象指定的编码风格。
+```
+```python
+import csv
+with open('eggs.csv', 'w', newline='') as csvfile:
+    spamwriter = csv.writer(csvfile, delimiter=' ',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
+    spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+```
+# [json](http://www.runoob.com/python/python-json.html)
+```python
+json.dumps(obj, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, encoding="utf-8", default=None, sort_keys=False, **kw)
+
+json.loads(s[, encoding[, cls[, object_hook[, parse_float[, parse_int[, parse_constant[, object_pairs_hook[, **kw]]]]]]]])

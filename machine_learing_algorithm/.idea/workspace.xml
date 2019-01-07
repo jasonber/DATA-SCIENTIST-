@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e3ace51-8326-4e0f-a6c5-7743430a0c30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/7_AdaBoost/adaboost.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/machine_learning_in_action/7_AdaBoost/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/machine_learing_algorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/machine_learing_algorithm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning_in_action/2_KNN/kNN_digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning_in_action/2_KNN/kNN_digits.py" afterDir="false" />
-    </list>
+    <list default="true" id="2e3ace51-8326-4e0f-a6c5-7743430a0c30" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +12,9 @@
     <session id="2117989090">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="30" />
+          <entry key="project.closed" value="31" />
           <entry key="project.open.time.1" value="4" />
-          <entry key="project.open.time.10" value="2" />
+          <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.2" value="1" />
@@ -29,7 +23,7 @@
           <entry key="project.open.time.7" value="10" />
           <entry key="project.open.time.8" value="6" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="30" />
+          <entry key="project.opened" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -63,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/log_reg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="2380">
               <caret line="141" column="30" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
               <folding>
                 <marker date="1542428911712" expanded="true" signature="286:291" ph="..." />
@@ -79,11 +73,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/machine_learning_in_action/7_AdaBoost/adaboost.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+            <state relative-caret-position="522">
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
               <folding>
                 <marker date="1543452533494" expanded="true" signature="44:49" ph="..." />
-                <marker date="1543452533494" expanded="true" signature="557:1876" ph="..." />
               </folding>
             </state>
           </provider>
@@ -697,9 +690,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/log_reg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="2380">
           <caret line="141" column="30" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
           <folding>
             <marker date="1542428911712" expanded="true" signature="286:291" ph="..." />
@@ -711,26 +714,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine_learning_in_action/5_Logistic/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/7_AdaBoost/test.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/machine_learning_in_action/7_AdaBoost/adaboost.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+        <state relative-caret-position="522">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
           <folding>
             <marker date="1543452533494" expanded="true" signature="44:49" ph="..." />
-            <marker date="1543452533494" expanded="true" signature="557:1876" ph="..." />
           </folding>
         </state>
       </provider>
