@@ -1953,3 +1953,23 @@ with open('eggs.csv', 'w', newline='') as csvfile:
 json.dumps(obj, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, encoding="utf-8", default=None, sort_keys=False, **kw)
 
 json.loads(s[, encoding[, cls[, object_hook[, parse_float[, parse_int[, parse_constant[, object_pairs_hook[, **kw]]]]]]]])
+```
+
+# [python3启动虚拟环境](https://blog.csdn.net/lose_812/article/details/79851677)
+```shell
+$ mkdir work
+$ python3 -m venv work/
+
+# 查看虚拟环境目录结构
+$ cd work
+$ ls
+bin  include  lib  lib64  pyvenv.cfg  share
+$ cd work
+$ source bin/activate
+
+# 前面有括号xx，即表示虚拟环境激活成功，在激活环境下pip安装的包单独管理，不会冲突 
+(work) $
+# 退出虚拟环境
+(work) $ deactivate
+```
+
