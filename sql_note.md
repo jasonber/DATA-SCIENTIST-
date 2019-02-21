@@ -2,6 +2,9 @@
 ```mysql
 select 'This is SQL Exercise, Practice and Solution';
 ```
+# 关键词的意义
+select 选啥 from 从哪选（子查询、联结表）Where 啥条件 group by 咋分组
+子查询可出现在任何位置
 
 # 用3列展现3个数字
 
@@ -27,7 +30,7 @@ select 10 + 15 - 5 * 2;
 
 ```mysql
 Select 1
-From 2
+From 2 
 Where LIKE BETWEEN IN 3
 Group by 4
 Having 5
@@ -1342,7 +1345,7 @@ ORDER BY 2 DESC
 
 # MySQL导入导出CSV
 
-```mysql
+```sql
 # 导出CSV
 SELECT * FROM [TABLE]
 INTO OUTFILE '[FILE]'；
@@ -1365,3 +1368,40 @@ LINES TERMINATED BY '\n'；
 
 # [事务](http://www.runoob.com/mysql/mysql-transaction.html)
 
+# [新的练习](https://zhuanlan.zhihu.com/p/38354000)
+
+# case when
+```sql
+select c_id, (及格人数 / 总人数)*100 as '及格百分数'
+from 
+(select c_id ,
+sum(case when s_score>=60 then 1 else 0 end) as '及格人数',
+sum(case when s_score<60 then 1 else 0 end) as '不及格人数',
+(select count(s_score) from Score) as '总人数' 
+from score
+group by c_id ) as per
+```
+
+# 查询和“01”号同学所学课程完全相同的其他同学的学号
+【解题思路】首先找出学号为1001的学生学习过的课程，然后根据这些课程号和所学课程总数就可以找到有哪些同学学习过和他一样的课程
+```sql
+select s_id
+from Score
+where c_id in
+(select c_id from Score where s_id='01')
+and s_id <> '01'
+group by s_id
+having count(c_id)=(select count(c_id) from Score where s_id='01');
+```
+
+# 把“SCORE”表中“张三”老师教的课的成绩都更改为此课程的平均成绩
+【解题思路】考察数据库更改操作。首先找到李多多老师教过哪些课程及其课程的平均成绩，然后根据课程号关联成绩表进行更新
+```sql
+update Score as a join 
+(select avg(s_score) as t, Score.c_id from Score 
+join Course on Score.c_id= Course.c_id
+join Teacher on Teacher.t_id= Course.t_id
+where t_name ='张三' group by c_id) as b#张三老师教的课与平均分
+on a.c_id= b.c_id
+set a.s_score= b.t;
+```
