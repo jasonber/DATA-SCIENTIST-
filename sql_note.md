@@ -1,3 +1,42 @@
+# sql的编写理解
+1. 就是从表中按照条件取得数据
+2. 取数的信息：
+      1. 取什么字段 
+      2. 从什么样的表中取
+      3. 数据应该满足什么样的要求
+3. 两种取数思路：
+   1. 建好包含所取信息的表，按照条件取数
+      （子查询，join建表）
+   2. 按照条件获取字段，在现有的表中取出这些字段
+      （where in , like ,regep)
+
+# sql语句的两个顺序
+
+1. 语法顺序：S F W G H O L
+
+```sql
+Select 1
+From 2 
+Where LIKE BETWEEN IN 3
+Group by 4
+Having 5
+Order by 6 
+Limit 7
+```
+
+2. 执行顺序：F W G H S O L
+
+```sql
+From 2
+Where 3
+Group by 4 
+Having 5
+Select 1
+Order by 6 
+Limit 7
+```
+
+
 # 展现字符串
 ```mysql
 select 'This is SQL Exercise, Practice and Solution';
@@ -24,31 +63,7 @@ select 10 + 15;
 select 10 + 15 - 5 * 2;
 ```
 
-# sql语句的两个顺序
 
-语法顺序：
-
-```mysql
-Select 1
-From 2 
-Where LIKE BETWEEN IN 3
-Group by 4
-Having 5
-Order by 6 
-Limit 7
-```
-
-执行顺序：
-
-```mysql
-From 2
-Where 3
-Group by 4 
-Having 5
-Select 1
-Order by 6 
-Limit 7
-```
 
 # [Between](http://www.w3school.com.cn/sql/sql_between.asp)
 ``` mysql
@@ -1405,3 +1420,73 @@ where t_name ='张三' group by c_id) as b#张三老师教的课与平均分
 on a.c_id= b.c_id
 set a.s_score= b.t;
 ```
+
+# ***按各科平均成绩从低到高和及格率的百分数从高到低排列，以如下形式显示：***
+子查询建好表，然后从表中提取数据
+```sql
+select partOne.c_id as '课程号',课程名,平均成绩,及格百分数
+FROM
+(select c.c_id, c.c_name as '课程名', avg(s.s_score) as '平均成绩'
+from Course c join Score s
+on c.c_id = s.c_id
+group by c.c_id) as partOne 
+join 
+(select c_id, (及格人数 / 该课程总人数)*100 as '及格百分数'
+from 
+(select c_id ,
+sum(case when s_score>=60 then 1 else 0 end) as '及格人数',
+sum(case when s_score<60 then 1 else 0 end) as '不及格人数',
+count(*) as '该课程总人数' 
+from Score
+group by c_id ) as partTwo) as partThree
+on partOne.c_id = partThree.c_id;
+```
+
+# ***查询学生平均成绩及其名次***
+
+```sql
+SELECT s_id as '学号',平均成绩,
+      (SELECT COUNT(*) FROM(SELECT s_id,AVG(s_score)AS '平均成绩'
+                            FROM Score GROUP BY s_id)AS b 
+       WHERE b.平均成绩>a.平均成绩)+1 as RANK
+FROM (select s_id,avg(S_score) as 平均成绩 from Score group by s_id)AS a
+order by 平均成绩 desc;
+```
+[讲解](https://blog.csdn.net/djlzxzy/article/details/3897069)
+
+# ***查询每门课程成绩最好的前两名***
+```sql
+SELECT a.c_id as 课程号,c_name as 课程名称,s_name as 姓名,b.s_score as chengji  FROM 
+Course a join Score b on a.c_id=b.c_id
+join Student c on c.s_id=b.s_id
+WHERE (SELECT COUNT(*) FROM Score d WHERE a.c_id=d.c_id AND b.s_score<d.s_score)<=1
+ORDER BY a.c_id ASC,b.s_score DESC
+```
+
+# 查询学过编号为“01”的课程并且也学过编号为“02”的课程的学生的学号、姓名
+```sql
+--写法一：找到合适的s_id,从student中选取数据
+select s_id,s_name
+from Student 
+where s_id in
+(select s_id from Score where c_id = '01') 
+AND s_id in
+(select s_id from Score where c_id = '02')
+--写法二：制作合适的临时表，从中提取满足需求的数据，
+select a.s_id,a.s_name
+from Student a JOIN Score b ON a.s_id=b.s_id
+JOIN Score c ON a.s_id=c.s_id
+where b.c_id='01' and c.c_id='02'
+--确保是同一个学生的选课数据
+and b.s_id=c.s_id ;
+```
+
+# 42、查询有2门不同课程成绩相同的学生的学号、课程号、学生成绩
+多条件join
+```sql
+select distinct a.s_id as 学生编号 ,a.c_id as 课程编号,a.s_score as 学生成绩
+from Score a join Score b
+on a.s_id=b.s_id and a.c_id<> b.c_id
+where a.s_score=b.s_score;
+```
+
