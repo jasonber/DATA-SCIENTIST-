@@ -1973,3 +1973,64 @@ $ source bin/activate
 (work) $ deactivate
 ```
 
+# [pandas apply applymap map](https://blog.csdn.net/u010814042/article/details/76401133/)
+总的来说就是apply()是一种让函数作用于列或者行操作，applymap()是一种让函数作用于DataFrame每一个元素的操作，而map是一种让函数作用于Series每一个元素的操作
+
+# [时间数据分箱 resample]（http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.resample.html）
+
+# [获取最大值的索引 idxmax](http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.idxmax.html)
+
+# [np.random 的使用]（https://blog.csdn.net/mengenqing/article/details/80615668）
+
+# [np.flatten ravel](https://blog.csdn.net/liuweiyuxiang/article/details/78220080)
+# [数据分箱](https://zhuanlan.zhihu.com/p/31168548)
+```python
+>>> import numpy as np
+>>> import pandas as pd
+>>> score_list = np.random.randint(30,100,size=20)
+>>> socre_list
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'socre_list' is not defined
+>>> score_list
+array([98, 74, 91, 49, 78, 46, 73, 61, 45, 56, 57, 63, 92, 53, 63, 86, 35,
+       60, 63, 88])
+>>> bins = [0, 59, 70, 80, 100]
+>>> score_cat = pd.cut(score_list, bins)
+>>> pd.value_counts(score_cat)
+(0, 59]      7
+(80, 100]    5
+(59, 70]     5
+(70, 80]     3
+dtype: int64
+>>> df['score'] = score_list
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'df' is not defined
+>>> df = pd.DataFrame()
+>>> df['score'] = score_list
+>>> df['student'] = [pd.util.testing.rands(3) for i in range(20)]
+>>> df['Categories'] = pd.cut(df['score'], bins, labels=['Low', 'OK', 'Good', 'Great'])
+>>> df
+    score student Categories
+0      98     QFG      Great
+1      74     mbF       Good
+2      91     RRe      Great
+3      49     v31        Low
+4      78     sK9       Good
+5      46     8wR        Low
+6      73     JQt       Good
+7      61     RME         OK
+8      45     dYT        Low
+9      56     i18        Low
+10     57     5s0        Low
+11     63     Y22         OK
+12     92     CR7      Great
+13     53     O3u        Low
+14     63     IgN         OK
+15     86     VP5      Great
+16     35     XJU        Low
+17     60     FdV         OK
+18     63     DLm         OK
+19     88     YxF      Great
+```
