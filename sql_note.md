@@ -21,7 +21,7 @@ Where LIKE BETWEEN IN 3
 Group by 4
 Having 5
 Order by 6 
-Limit 7
+Limit 7 Offset 
 ```
 
 2. 执行顺序：F W G H S O L
@@ -1490,3 +1490,66 @@ on a.s_id=b.s_id and a.c_id<> b.c_id
 where a.s_score=b.s_score;
 ```
 
+# [leetcode 第n高的薪资](https://leetcode.com/problems/nth-highest-salary/)
+```sql
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+Declare M int;
+Set M = N-1;
+  RETURN (
+      # Write your MySQL query statement below.
+      select Distinct salary from Employee order by Salary limit M, 1 
+  );
+END
+```
+## [limit offset](https://blog.csdn.net/iastro/article/details/53037600)
+这个功能类似pandas的切片 limit 限制返回多少行， offset 告知从多少行开始返回
+```sql
+limit 9,4
+等价于
+Limit 4 offset 9
+均返回 10,11,12,13
+```
+## [自定义函数](https://www.cnblogs.com/caoruiy/p/4485273.html)
+
+# [leetcode 第二高的薪资](https://leetcode.com/problems/second-highest-salary/solution/)
+```sql
+SELECT
+    IFNULL(
+      (SELECT DISTINCT Salary
+       FROM Employee
+       ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1),
+    NULL) AS SecondHighestSalary
+```
+## ifnull
+https://www.cnblogs.com/acm-bingzi/p/mysqlIfnull.html
+
+# [leetcode rank 成绩](https://leetcode.com/problems/rank-scores/)
+```sql
+--解法1 更快
+select X.Score, Rank 
+from Scores, (
+    select Score,(@start:=@start+1) as Rank 
+    from (
+        select distinct Score 
+        from Scores order by Score desc) as S, 
+    (select @start := 0) as T) as X 
+where X.Score=Scores.Score 
+order by Rank;
+--解法2 
+ SELECT S.Score, c.Rank
+FROM Scores as S LEFT OUTER JOIN 
+(SELECT b.Score, 
+  (SELECT count(*) 
+     FROM (select distinct Score from Scores) as a 
+     WHERE b.Score <= a.Score
+  ) AS Rank
+FROM (select distinct Score from Scores) as b   
+ORDER BY Score DESC
+ ) AS c
+ON S.Score = c.Score
+ORDER BY Score DESC;
+```
+@ 变量 声明自定义变量
+:=的作用 为变量赋值， = 的作用是用于比较的
