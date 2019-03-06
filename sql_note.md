@@ -1527,14 +1527,24 @@ https://www.cnblogs.com/acm-bingzi/p/mysqlIfnull.html
 
 # [leetcode rank 成绩](https://leetcode.com/problems/rank-scores/)
 ```sql
---解法1 更快
+--详细解释
+select @start:=0; -- 自定义变量且返回一个表，只有一行且值为0
+select @start:=@start+1 from (select @start:=0) b;-- 对自定变量进行运算，返回运算结果
+select distinct b.*, a.* from 178_RankScores a, (select @start:=0) b;-- 将自定义变量的表与其他表拼接，类似pd.concat
+select @start:=@start+1, a.* from 178_RankScores a, (select @start:=0) b;-- 对自定义变量进行运算，再拼接
+select @start:=@start+1, a.Score from 178_RankScores a, (select @start:=0) b;--同上
+select  distinct @start:=@start+1, a.Score from 178_RankScores a, (select @start:=0) b; --因为自定变量这里的结果可以理解为行号，所以是唯一值
+select Score from 178_RankScores order by Score desc;
+select distinct Score from 178_RankScores order by Score desc;
+
+
+--解法1 更快 创建包含要提取的字段表，并从中提取
 select X.Score, Rank 
 from Scores, (
-    select Score,(@start:=@start+1) as Rank 
+    select Score,(@start:=@start+1) as Rank --创建的第一个表，包含Score和rank，对score取唯一值并计算行号也就是rank
     from (
-        select distinct Score 
-        from Scores order by Score desc) as S, 
-    (select @start := 0) as T) as X 
+        select distinct Score from Scores order by Score desc) as S, 
+        (select @start := 0) as T) as X --创建第二个表 获得rank，
 where X.Score=Scores.Score 
 order by Rank;
 --解法2 
@@ -1550,6 +1560,57 @@ ORDER BY Score DESC
  ) AS c
 ON S.Score = c.Score
 ORDER BY Score DESC;
+
+
 ```
+https://www.cnblogs.com/genialx/p/5932558.html
 @ 变量 声明自定义变量
+https://www.cnblogs.com/genialx/p/5932558.html
+变量的使用
+https://blog.csdn.net/lili625/article/details/80252420
+行号的使用
+
 :=的作用 为变量赋值， = 的作用是用于比较的
+## 四种rank的方法
+With Variables: 841 ms
+
+First one uses two variables, one for the current rank and one for the previous score.
+
+SELECT
+  Score,
+  @rank := @rank + (@prev <> (@prev := Score)) Rank
+FROM
+  Scores,
+  (SELECT @rank := 0, @prev := -1) init
+ORDER BY Score desc
+Always Count: 1322 ms
+
+This one counts, for each score, the number of distinct greater or equal scores.
+
+SELECT
+  Score,
+  (SELECT count(distinct Score) FROM Scores WHERE Score >= s.Score) Rank
+FROM Scores s
+ORDER BY Score desc
+Always Count, Pre-uniqued: 795 ms
+
+Same as the previous one, but faster because I have a subquery that "uniquifies" the scores first. Not entirely sure why it's faster, I'm guessing MySQL makes tmp a temporary table and uses it for every outer Score.
+
+SELECT
+  Score,
+  (SELECT count(*) FROM (SELECT distinct Score s FROM Scores) tmp WHERE s >= Score) Rank
+FROM Scores
+ORDER BY Score desc
+Filter/count Scores^2: 1414 ms
+
+Inspired by the attempt in wangkan2001's answer. Finally Id is good for something :-)
+
+SELECT s.Score, count(distinct t.score) Rank
+FROM Scores s JOIN Scores t ON s.Score <= t.score
+GROUP BY s.Id
+ORDER BY s.Score desc
+
+# [distinct 用法](https://blog.csdn.net/lmy86263/article/details/73612020)
+```sql
+SELECT country, distinct province from person; // 该语句是错误的
+```
