@@ -36,6 +36,8 @@ Order by 6
 Limit 7
 ```
 
+# mysql的取数过程 
+是一个循环。遍历所有表看看是否满足where的条件。按照where的条件，制作出一个表，在表内进行分组，筛选，然后再用select 从表中提取字段。这时会获得一个目标表，在这个表上进行排序等操作。
 
 # 展现字符串
 ```mysql
@@ -1614,3 +1616,8 @@ ORDER BY s.Score desc
 ```sql
 SELECT country, distinct province from person; // 该语句是错误的
 ```
+
+# sql 优化
+# sql join
+https://blog.csdn.net/forlovehuan/article/details/78979831
+所有的表链接都是在笛卡尔积的基础 进行选取的。遍历多个表的笛卡尔积，从中选择符合where的数据，做成表。
