@@ -1621,3 +1621,12 @@ SELECT country, distinct province from person; // 该语句是错误的
 # sql join
 https://blog.csdn.net/forlovehuan/article/details/78979831
 所有的表链接都是在笛卡尔积的基础 进行选取的。遍历多个表的笛卡尔积，从中选择符合where的数据，做成表。
+
+# [group by 的分组操作](https://blog.csdn.net/u013166209/article/details/52605926)
+在查询的时候，当使用group by之后，每个分组默认显示的数据是主键值最小的那一条数据，这个时候使用再使用 order by 来排序的话也也只是对分组后的结果进行排序，对分组内数据的排序没有影响。
+记住运行顺序，先group by 再 Order by。order by ， limit都是对临时表的操作
+
+# [max min group by的坑](https://blog.csdn.net/hj12312/article/details/79376215)
+[max min 的作用范围](http://www.cnblogs.com/kuangwong/p/8027733.html)
+max min 只作用于一列，Group by 只返回该组中出现的第一个值
+当要进行分组最大值，最小值的时候，要使用子查询和where
