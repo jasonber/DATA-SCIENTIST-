@@ -1621,6 +1621,7 @@ SELECT country, distinct province from person; // 该语句是错误的
 # sql join
 https://blog.csdn.net/forlovehuan/article/details/78979831
 所有的表链接都是在笛卡尔积的基础 进行选取的。遍历多个表的笛卡尔积，从中选择符合where的数据，做成表。
+笛卡尔积的结果是 左表行数×右表行数， on 限制了在那个字段上进行笛卡尔积。只有字段相同的值才会进行笛卡尔积（on 和 where的作用）
 
 # [group by 的分组操作](https://blog.csdn.net/u013166209/article/details/52605926)
 在查询的时候，当使用group by之后，每个分组默认显示的数据是主键值最小的那一条数据，这个时候使用再使用 order by 来排序的话也也只是对分组后的结果进行排序，对分组内数据的排序没有影响。
@@ -1630,3 +1631,67 @@ https://blog.csdn.net/forlovehuan/article/details/78979831
 [max min 的作用范围](http://www.cnblogs.com/kuangwong/p/8027733.html)
 max min 只作用于一列，Group by 只返回该组中出现的第一个值
 当要进行分组最大值，最小值的时候，要使用子查询和where
+
+# [truncate table](https://www.1keydata.com/cn/sql/sql-truncate.php)
+清除表的内容，而不删除（drop）表。
+
+# [185. Department Top Three Salaries](https://leetcode.com/problems/department-top-three-salaries/)
+疑问：
+1、以下两个sql，结果为什么不同。
+**2、问题根源是子查询中的字段**
+```sql
+# 正确答案
+select e.Name, d.Name, e.Salary
+from 185_Employee e left join 185_Department d
+on e.DepartmentId=d.Id
+where 
+(select count(distinct e.Salary)
+from 185_Employee e2 --这里没有联结
+where e.DepartmentId = e2.DepartmentId
+and e2.Salary>e.Salary)<=3
+
+# 结果为空
+select e.Name, d.Name, e.Salary
+from 185_Employee e left join 185_Department d
+on e.DepartmentId=d.Id
+where 
+(select count(distinct e1.Salary)
+from 185_Employee e1 join 185_Employee e2  --这里有一个链接
+on e1.DepartmentId = e2.DepartmentId
+where e2.Salary>e1.Salary)<=3
+
+# 将子查询的e1改成e 结果正确
+select e.Name, d.Name, e.Salary
+from 185_Employee e left join 185_Department d
+on e.DepartmentId=d.Id
+where 
+(select count(distinct e.Salary) --这里改成e.Salary
+from 185_Employee e1 join 185_Employee e2  
+on e1.DepartmentId = e2.DepartmentId
+where e2.Salary>e1.Salary)<=3
+```
+
+# [sql delete 联结删除](https://blog.csdn.net/yun__yang/article/details/53485760)
+```sql
+delete table1 from table1 inner join table2 on table1.id = table2.id where table2.type = 'something' and table1.id = 'idnums';
+```
+
+# [Mysql 日期](http://www.runoob.com/sql/sql-dates.html)
+```sql
+NOW()	返回当前的日期和时间
+CURDATE()	返回当前的日期
+CURTIME()	返回当前的时间
+DATE()	提取日期或日期/时间表达式的日期部分
+EXTRACT()	返回日期/时间的单独部分
+DATE_ADD()	向日期添加指定的时间间隔
+DATE_SUB()	从日期减去指定的时间间隔
+DATEDIFF()	返回两个日期之间的天数
+DATE_FORMAT()	用不同的格式显示日期/时间
+```
+
+# [mysql update](http://www.runoob.com/mysql/mysql-update-query.html)
+```sql
+UPDATE table_name SET field1=new-value1, field2=new-value2
+[WHERE Clause]
+```
+
