@@ -98,7 +98,7 @@ WHERE column_name IN (value1,value2,...)
 
 # 选择姓Louis的人的信息
 
-```mysql
+```sql
 SELECT *
  FROM nobel_win 
    WHERE winner LIKE 'Louis%';
@@ -169,6 +169,7 @@ ORDER BY
 ```
 
 [case](https://www.cnblogs.com/4littleProgrammer/p/4820006.html)
+case when 实例 https://www.cnblogs.com/aipan/p/7770611.html
 
 1、case表达式会从最初的when子句中的 判断表达式进行判断。如果为真，就返回then子句中的表达式，case表达式的执行到此结束
 
@@ -1695,3 +1696,25 @@ UPDATE table_name SET field1=new-value1, field2=new-value2
 [WHERE Clause]
 ```
 
+# [MySQL 数据区间分组](https://www.cnblogs.com/lazyx/p/5577105.html)
+https://www.cnblogs.com/shea/archive/2017/04/25/6760381.html
+elt , interval
+ELT(n,str1,str2,str3,...) ：如果n=1，则返回str1,如果n=2，则返回str2,依次类推。如果n小于1或大于参数个数，返回NULL
+INTERVAL()函数进行比较列表(N，N1，N2，N3等等)中的N值。该函数如果N<N1返回0，如果N<N2返回1，如果N<N3返回2 等等。如果N为NULL，它将返回-1
+
+# [MySQL 行列转化](https://www.cnblogs.com/angryprogrammer/p/5249472.html)
+思想：与pivot一样，需要手动制作表，行名通过group by来实现，列名通过if或case when实现， 值通过对列名的操作来实现（如聚合）
+IF(expr1,expr2,expr3)，如果expr1的值为true，则返回expr2的值，如果expr1的值为false，
+IFNULL(expr1, expr2), 如果expr1不是NULL，IFNULL()返回expr1，否则它返回expr2。IFNULL()返回一个数字或字符串值
+```sql
+--case when 与 if的转换
+select 
+ifnull(c1, 'total'),
+sum(case when c2='B1' then c3 else 0 end) as B1,
+sum(case c2 when 'B2' then c3 else 0 end) as B2, 
+sum(if(c2='B3', c3, 0)) as B3,
+sum(if(c2='B4', c3, 0)) as B4,
+sum(c3) as total
+from tx
+group by c1 with rollup;
+```
