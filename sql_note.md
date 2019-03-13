@@ -152,7 +152,8 @@ ORDER BY column_name,column_name ASC|DESC;
 ORDER BY 列号
 ```
 
-# 找出所有的1970获奖者，按照subject和获奖者姓名排序，其中Economic和Chemistry 按照升序排列在最后
+# *记住* 找出所有的1970获奖者，按照subject和获奖者姓名排序，其中Economic和Chemistry 按照升序排列在最后
+
 
 ```mysql
 SELECT *
@@ -177,9 +178,11 @@ case when 实例 https://www.cnblogs.com/aipan/p/7770611.html
 
 3、end 必须写，end后面可加入表达式，表示对case的操作
 
+4、case 字段 when 只能进行转换， case when 条件 能对字段进行条件赋值以及可以对字段进行运算
+
 https://www.cnblogs.com/Richardzhu/p/3571670.html
 
-case when 可以看做是对数据的转换
+case when 可以看做是对数据的行列转换
 
 实例
 
