@@ -212,7 +212,9 @@ END AS SalaryStatus
 FROM employees;
 ```
 
-
+# 单双引号
+‘’表示表内的值
+“”表示文本
 
 # [聚合函数](https://www.cnblogs.com/ghost-xyx/p/3811036.html)
 
@@ -247,8 +249,9 @@ SELECT pro_name, pro_price
 ```
 
 sql的赋值方式？ “=”的意义？
+= 号的意义是比较，：=的意义是赋值
 
-# Write a SQL query to display those customers who are neither belongs to the city New York nor grade value is more than 100. 
+# [Write a SQL query to display those customers who are neither belongs to the city New York nor grade value is more than 100.](https://www.w3resource.com/sql-exercises/sql-boolean-operator-exercise-5.php)
 
 ```mysql
 SELECT * 
@@ -265,8 +268,12 @@ SELECT *
 FROM customer
 WHERE city != 'New York' AND grade <= 100;
 ```
+[多条件查询](https://blog.csdn.net/liuying_1001/article/details/37700883)
+注意：
+1、逻辑符号的等级， and优先级高于or
+2、条件的意义      
 
-# Write a SQL statement to display either those orders which are not issued on date 2012-09-10 and issued by the salesman whose ID is 505 and below or those orders which purchase amount is 1000.00 and below.
+# [Write a SQL statement to display either those orders which are not issued on date 2012-09-10 and issued by the salesman whose ID is 505 and below or those orders which purchase amount is 1000.00 and below.](https://www.w3resource.com/sql-exercises/sql-boolean-operator-exercise-6.php)
 
 ```mysql
 SELECT * 
@@ -278,7 +285,7 @@ OR purch_amt>1000.00);
 
 
 
-# Write a SQL statement to display salesman_id, name, city and commission who gets the commission within the range more than 0.10% and less than 0.12%.
+# [Write a SQL statement to display salesman_id, name, city and commission who gets the commission within the range more than 0.10% and less than 0.12%.](https://www.w3resource.com/sql-exercises/sql-boolean-operator-exercise-7.php)
 
 ```mysql
 SELECT salesman_id,name,city,commission 
@@ -292,9 +299,9 @@ FROM salesman
 WHERE commission BETWEEN 0.10 AND 0.12;
 ```
 
-BETWEEN包含等号
+BETWEEN包含等号,这个要注意 各个语言是不一样的
 
-# Write a SQL statement where i) order dates are anything but 2012-08-17, or customer id is not greater than 3005 ii) and purchase amount is not below 1000.
+# [Write a SQL statement where i) order dates are anything but 2012-08-17, or customer id is not greater than 3005 ii) and purchase amount is not below 1000.](https://www.w3resource.com/sql-exercises/sql-boolean-operator-exercise-9.php)
 
 ```mysql
 SELECT * 
@@ -312,7 +319,8 @@ WHERE (NOT(ord_date = '2012-08-17' OR customer_id > 3005)
 
 筛选的条件要屡清楚
 
-# Write a SQL query to display order number, purchase amount, achived, the unachieved percentage for those order which exceeds the 50% of the target value of 6000.
+# [Write a SQL query to display order number, purchase amount, achived, the unachieved percentage for those order which exceeds the 50% of the target value of 6000.](https://www.w3resource.com/sql-exercises/sql-boolean-operator-exercise-10.php)
+[运算符的顺序](https://docs.microsoft.com/zh-cn/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-2017)
 
 ```mysql
 SELECT ord_no,purch_amt, 
