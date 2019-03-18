@@ -10,3 +10,7 @@ https://blog.csdn.net/jhc_binge/article/details/84649767
 https://www.cnblogs.com/zhengna/p/9376325.html
 
 # [Failed with exception java.io.IOException:java.lang.IllegalArgumentException: java.net.URISyntaxException: Relative path in absolute URI: ${system:user.name%7D](https://blog.csdn.net/wodedipang_/article/details/72720257)
+
+# 进入图形界面
+主要原因是profile 修改错误
+https://blog.csdn.net/tengdazhang770960436/article/details/79056165
