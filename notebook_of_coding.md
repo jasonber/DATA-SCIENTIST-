@@ -1660,10 +1660,10 @@ Generate isotropic Gaussian blobs for clustering.
 
 https://blog.csdn.net/hephec/article/details/77992114 
 
-本模块主要包括一些python内部操作符对应的函数，主要包括几类：对象比较，逻辑笔记，算术运算和序列操作
+本模块主要包括一些python内部操作符对应的函数，主要包括几类：对象比较，逻辑比较，算术运算和序列操作
 
 # [np.tile](https://blog.csdn.net/wy250229163/article/details/52453201)
-
+https://blog.csdn.net/ksearch/article/details/21388985
 函数形式： tile(A，rep) 
 功能：重复A的各个维度 
 参数类型： 
@@ -1672,6 +1672,7 @@ https://blog.csdn.net/hephec/article/details/77992114
 - rep：A沿着各个维度重复的次数
 
 # [np.argsort](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.argsort.html)
+https://www.cnblogs.com/yyxf1413/p/6253995.html
 
 返回值排序后的索引，默认升序
 
@@ -1687,11 +1688,22 @@ key -- 字典中要查找的键。
 default -- 如果指定键的值不存在时，返回该默认值值。
 
 # [dic.iteritems()](https://blog.csdn.net/program_developer/article/details/78657908)
+https://blog.csdn.net/liukai2918/article/details/78307271
 
 字典的items方法作用：是可以将字典中的所有项，以列表方式返回。因为字典是无序的，所以用items方法返回字典的所有项，也是没有顺序的。
 字典的iteritems方法作用：与items方法相比作用大致相同，只是它的返回值不是列表，而是一个迭代器。
 
-
+# [operator.itemgetter()](https://blog.csdn.net/dongtingzhizi/article/details/12068205)
+要注意，operator.itemgetter函数获取的不是值，而是定义了一个函数，通过该函数作用到对象上才能获取值。
+```python
+a = [1,2,3] 
+>>> b=operator.itemgetter(1)      //定义函数b，获取对象的第1个域的值
+>>> b(a) 
+2 
+>>> b=operator.itemgetter(1,0)   //定义函数b，获取对象的第1个域和第0个的值
+>>> b(a) 
+(2, 1) 
+```
 
 # [np.min()](https://blog.csdn.net/qq_18433441/article/details/54743271)
 
