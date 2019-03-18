@@ -762,7 +762,7 @@ CROSS join：笛卡尔积，全部数据结合在一起，不是乘除，而是�
 
 
 
-# 7. Write a query in SQL to display the first and last name and salary for those employees who earn less than the employee earn whose number is 182.
+# *记住* 7. Write a query in SQL to display the first and last name and salary for those employees who earn less than the employee earn whose number is 182.
 
 ```sql
 SELECT E.first_name, E.last_name, E.salary 
@@ -772,8 +772,7 @@ SELECT E.first_name, E.last_name, E.salary
       AND S.employee_id = 182;
 ```
 
-# [8. Write a query in SQL to display the first name of all employees including the first name of their manager.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-8.php)
-
+# [*记住* 8. Write a query in SQL to display the first name of all employees including the first name of their manager.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-8.php)
 有管理者的员工的名字以及这位管理者的名字
 
 ```sql
@@ -801,7 +800,7 @@ ON M.employee_id = E.manager_id;--用整个公司的管理者去匹配公司的�
 
 
 
-# 11. Write a query in SQL to display the first name of all employees and the first name of their manager including those who does not working under any manager.
+# [*记住* 11. Write a query in SQL to display the first name of all employees and the first name of their manager including those who does not working under any manager.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-11.php)
 
 ```sql
 --原题答案
@@ -820,7 +819,7 @@ LEFT JOIN employees M
 ON E.manager_id = M.employee_id
 And M.manager_id IS NULL;
 --正确
-SELECT first_namen
+SELECT first_name
 FROM employees E
 WHERE manager_id  = 0;
 ```
