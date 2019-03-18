@@ -332,7 +332,7 @@ WHERE (100*purch_amt)/6000>50;
 
 
 
-# *Write a SQL query to display order number, purchase amount, achived, the unachieved percentage for those order which exceeds the 50% of the target value of 6000.*
+# [Write a SQL query to display order number, purchase amount, achived, the unachieved percentage for those order which exceeds the 50% of the target value of 6000.](https://www.w3resource.com/sql-exercises/sql-boolean-operator-exercise-10.php)
 
 ```mysql
 SELECT ord_no,purch_amt, 
@@ -351,7 +351,7 @@ WHERE (purch_amt/6000)*100 > 50;
 
 alias的用法 
 
-# Write a query in SQL to find the data of employees whose last name is Dosni or Mardy.
+# [Write a query in SQL to find the data of employees whose last name is Dosni or Mardy.](https://www.w3resource.com/sql-exercises/sql-boolean-operator-exercise-11.php)
 
 ```mysql
 SELECT * 
@@ -366,7 +366,7 @@ WHERE emp_lname IN ('Dosni', 'Mardy'); # 也适用于数值
 
 
 
-# Write a query to filter all those orders with all information which purchase amount value is within the range 500 and 4000 except those orders of purchase amount value 948.50 and 1983.43.
+# [Write a query to filter all those orders with all information which purchase amount value is within the range 500 and 4000 except those orders of purchase amount value 948.50 and 1983.43.](https://www.w3resource.com/sql-exercises/sql-wildcard-special-operator-exercise-6.php)
 
 ```mysql
 SELECT * 
@@ -385,7 +385,7 @@ WHERE
  purch_amt BETWEEN 500 AND 4000;
 ```
 
-# Write a SQL statement to find those salesmen with all other information and name started with any latter within 'A' and 'K'.
+# [Write a SQL statement to find those salesmen with all other information and name started with any latter within 'A' and 'K'.](https://www.w3resource.com/sql-exercises/sql-wildcard-special-operator-exercise-7.php)
 
 ```mysql
 SELECT *
@@ -409,7 +409,7 @@ FROM item_mast;
 
 
 
-# Write a SQL statement to find those rows from the table testtable which contain the escape character underscore ( _ ) in its column 'col1'.
+# [Write a SQL statement to find those rows from the table testtable which contain the escape character underscore ( _ ) in its column 'col1'.](https://www.w3resource.com/sql-exercises/sql-wildcard-special-operator-exercise-12.php)
 
 ```mysql
 SELECT *
@@ -430,7 +430,7 @@ col IS NOT NULL
 NOT col IS NULL
 ```
 
-# Write a SQL statement to find the number of salesmen currently listing for all of their customers
+# [Write a SQL statement to find the number of salesmen currently listing for all of their customers](https://www.w3resource.com/sql-exercises/sql-aggregate-function-exercise-3.php)
 
 ```mysql
 SELECT COUNT (DISTINCT salesman_id) 
@@ -471,7 +471,7 @@ WHERE and HAVING can be in the same query.
 
 什么时候用Having啊？？有点懵
 
-# Write a SQL statement to find the highest purchase amount with their ID and order date, for those customers who have a higher purchase amount in a day is within the range 2000 and 6000.
+# [Write a SQL statement to find the highest purchase amount with their ID and order date, for those customers who have a higher purchase amount in a day is within the range 2000 and 6000.](https://www.w3resource.com/sql-exercises/sql-aggregate-function-exercise-13.php)
 
 ```mysql
 SELECT customer_id,ord_date,MAX(purch_amt) 
@@ -493,7 +493,7 @@ WHERE column_name operator value
 GROUP BY column_name
 ```
 
-# Write a SQL statement to make a report with customer ID in such a manner that, the largest number of orders booked by the customer will come first along with their highest purchase amount.
+# [Write a SQL statement to make a report with customer ID in such a manner that, the largest number of orders booked by the customer will come first along with their highest purchase amount.](https://www.w3resource.com/sql-exercises/sql-formatting-output-exercise-9.php)
 
 ```sql
 SELECT customer_id, COUNT(DISTINCT ord_no), 
@@ -509,7 +509,7 @@ ORDER BY 2 DESC;
 
 https://blog.csdn.net/wmz545546/article/details/77921550
 
-# Write a query to find those customers with their name and those salesmen with their name and city who lives in the same city.
+# [Write a query to find those customers with their name and those salesmen with their name and city who lives in the same city.](https://www.w3resource.com/sql-exercises/sql-quering-on-multiple-table-exercise-1.php)
 
 ```sql
 SELECT customer.cust_name,
@@ -518,7 +518,7 @@ FROM salesman, customer
 WHERE salesman.city = customer.city;
 ```
 
-# Write a SQL statement to display all those orders by the customers not located in the same cities where their salesmen live.
+# [Write a SQL statement to display all those orders by the customers not located in the same cities where their salesmen live.](https://www.w3resource.com/sql-exercises/sql-quering-on-multiple-table-exercise-3.php)
 
 ```sql
 SELECT ord_no, cust_name, orders.customer_id, orders.salesman_id
@@ -529,8 +529,18 @@ AND orders.salesman_id = salesman.salesman_id;
 ```
 
 不等号<>
+```sql
+今天在写sql语句的时候，想确认下mysql的不等于运算符是用什么符号表示的
+经过测试发现mysql中用<>与!=都是可以的，但sqlserver中不识别!=,所以建议用<>
 
-# Write a SQL statement that shorts out the customer and their grade who made an order. Each of the customers must have a grade and served by at least a salesman, who belongs to a city.
+selece * from jbxue where id<>45
+
+sql 里 符号<> 于 != 的区别
+
+<> 与!=都是不等于的意思，但是一般都是用<>来代码不等于因为<>在任何SQL中都起作用但是!=在sql2000中用到，则是语法错误，不兼容的 
+```
+
+# [Write a SQL statement that shorts out the customer and their grade who made an order. Each of the customers must have a grade and served by at least a salesman, who belongs to a city.](https://www.w3resource.com/sql-exercises/sql-quering-on-multiple-table-exercise-5.php)
 
 ```sql
 SELECT customer.cust_name AS "Customer",
@@ -550,7 +560,7 @@ concat , +, '||' 跟excel很像
 
 
 
-# Write a query in SQL to display job ID for those jobs that were done by two or more for more than 300 days.
+# [*记住* rite a query in SQL to display job ID for those jobs that were done by two or more for more than 300 days.](https://www.w3resource.com/sql-exercises/sorting-and-filtering-hr/sql-sorting-and-filtering-hr-exercise-24.php)
 
 ```mysql
 # 错误
@@ -566,7 +576,7 @@ SELECT job_id
 			GROUP BY job_id 
 				HAVING COUNT(*)>=2;
 ```
-
+count 的目的是为了 筛选出哪些由两人以上完成的工作。
 
 
 # [group by注意事项](https://blog.csdn.net/haiross/article/details/50440176)
@@ -584,7 +594,7 @@ GROUP BY：告诉数据库如何将查询出的数据进行分组，然后数据
 
 
 
-# Write a query in SQL to display those departments where any manager is managing 4 or more employees.
+# [*记住* Write a query in SQL to display those departments where any manager is managing 4 or more employees.](https://www.w3resource.com/sql-exercises/sorting-and-filtering-hr/sql-sorting-and-filtering-hr-exercise-30.php)
 
 ```mysql
 # 错误
@@ -614,7 +624,7 @@ DISTINCT 关键词用于返回唯一不同的值。
 
 # 多表查询
 
-Write a SQL statement to make a list with order no, purchase amount, customer name and their cities for those orders which order amount between 500 and 2000.
+[Write a SQL statement to make a list with order no, purchase amount, customer name and their cities for those orders which order amount between 500 and 2000.](https://www.w3resource.com/sql-exercises/sql-joins-exercise-2.php)
 
 ```mysql
 SELECT orders.ord_no, orders.purch_amt, customer.cust_name, customer.city 
@@ -702,7 +712,8 @@ CROSS JOIN customer b;
 
 
 
-# [Write a SQL query to display the name of each company along with the ID and price for their most expensive product.](https://www.w3resource.com/sql-exercises/sql-joins-exercise-25.php)
+# [*记住* Write a SQL query to display the name of each company along with the ID and price for their most expensive product.](https://www.w3resource.com/sql-exercises/sql-joins-exercise-25.php)
+记住子查询的位置
 
 ```sql
 SELECT A.pro_name, A.pro_price, F.com_name
