@@ -1010,7 +1010,8 @@ having count(c.salesman_id) >1;
 
 
 
-# [14.Write a query to find the sums of the amounts from the orders table, grouped by date, eliminating all those dates where the sum was not at least 1000.00 above the maximum amount for that date.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-14.php)
+# [*记住* 14.Write a query to find the sums of the amounts from the orders table, grouped by date, eliminating all those dates where the sum was not at least 1000.00 above the maximum amount for that date.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-14.php)
+用join实现一次
 
 ```sql
 SELECT ord_date, SUM (purch_amt)
@@ -1023,7 +1024,7 @@ HAVING SUM (purch_amt) >
 
 ```
 
-# [15. Write a query to extract the data from the customer table if and only if one or more of the customers in the customer table are located in London.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-15.php)完全读不懂
+# [*理解* 15. Write a query to extract the data from the customer table if and only if one or more of the customers in the customer table are located in London.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-15.php)完全读不懂
 
 ```sql
 SELECT customer_id,cust_name, city
@@ -1052,7 +1053,7 @@ EXISTS用于检查子查询是否至少会返回一行数据，该子查询实�
 　-->如果查询的两个表大小相当，那么用in和exists差别不大。
 　-->***如果两个表中一个较小，一个是大表，则子查询表大的用exists，子查询表小的用in***
 
-# [16. Write a query to find the salesmen who have multiple customers.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-16.php)完全不懂
+# [*记住* 16. Write a query to find the salesmen who have multiple customers.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-16.php)完全不懂
 
 ```sql
 SELECT * 
@@ -1072,10 +1073,11 @@ WHERE a.salesman_id = b.salesman_id
 GROUP BY 1, 2
 HAVING COUNT(*) >= 2;
 ```
+性能问题
+https://segmentfault.com/q/1010000000134455
 
 
-
-# 子查询中 EXISTS IN ANY ALL的用法
+# *要去理解* 子查询中 EXISTS IN ANY ALL的用法
 
 https://blog.csdn.net/tjuyanming/article/details/77015427
 
@@ -1110,6 +1112,7 @@ WHERE column_name operator ALL
 (SELECT column_name FROM table_name WHERE condition)
 
 ```
+有null的时候用exists 会返回null 而 in 不会
 
 in 和 =any 即满足一个即可
 
@@ -1155,7 +1158,7 @@ https://www.cnblogs.com/wangshenhe/archive/2012/11/28/2792093.html
 
 
 
-# [Write a query to display all the information of an employee whose salary and reporting person id is 3000 and 121 respectively.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-7.php)
+# [*记住* Write a query to display all the information of an employee whose salary and reporting person id is 3000 and 121 respectively.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-7.php)
 
 分别符合某些条件
 
@@ -1168,7 +1171,7 @@ WHERE (salary,manager_id)=
 
 
 
-# [31.Write a query which is looking for the names of all employees whose salary is greater than 50% of their department’s total salary bill.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-31.php)
+# [*记住* 31.Write a query which is looking for the names of all employees whose salary is greater than 50% of their department’s total salary bill.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-31.php)
 
 ```sql
 --我的错误解答
