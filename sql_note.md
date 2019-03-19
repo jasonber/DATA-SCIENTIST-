@@ -862,7 +862,7 @@ GROUP BY country_name,city;
 
 
 
-# *[25. Write a query in SQL to display full name(first and last name), job title, starting and ending date of last jobs for those employees with worked without a commission percentage.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-25.php)*
+# [*记住* 25. Write a query in SQL to display full name(first and last name), job title, starting and ending date of last jobs for those employees with worked without a commission percentage.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-25.php)
 
 ```sql
 SELECT CONCAT(e.first_name, ' ', e.last_name) AS Employee_name,
@@ -890,7 +890,22 @@ JOIN
           department_id
    FROM employees
    GROUP BY department_id) e USING (department_id);
+
+#不用子查询
+select d.department_name, d.department_id, count(d.department_id)
+from departments d join employees e on d.department_id=e.department_id
+group by d.department_id, d.department_name;
+
+#错误答案，因为group by的字段没有出现在select
+select d.department_name, d.department_id, count(d.department_id)
+from departments d join employees e on d.department_id=e.department_id
+group by e.department_id, d.department_name;
+
 ```
+
+[group by 使用方法](https://blog.csdn.net/fly_fly_fly_pig/article/details/81325116)
+group by 哪些字段 要看分组后的组合值 是否唯一
+https://blog.csdn.net/haiross/article/details/50440176
 
 # 子查询的意义
 
@@ -912,15 +927,9 @@ Order by
 Limit
 ```
 
-子查询与join都是多表查询，他们的区别在哪里？
+[子查询与join都是多表查询，他们的区别在哪里？](https://www.cnblogs.com/wangshenhe/archive/2012/11/28/2792093.html)
+嵌套SELECT语句也叫子查询，一个 SELECT 语句的查询结果能够作为另一个语句的输入值。子查询不但能够出现在Where子句中，也能够出现在from子句中，作为一个临时表使用，也能够出现在select list中，作为一个字段值来返回。
 
-子查询用于多重条件？什么的什么的数据，子查询查询的是第一个什么的。
-
-子查询用于展示的内容来源于一个table，而展示条件却需要用到其他table的情况。子查询生成的view。
-
-join用于展示的内容来源于多个table。
-
-FROM没有子查询
 
 # [3. Write a query to find all the orders issued against the salesman who works for customer whose id is 3007.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-3.php)
 
@@ -950,6 +959,14 @@ HAVING grade >
      FROM customer
      WHERE city = 'New York');
 
+```
+having的运算符量表必须要有一个是值
+```sql
+SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name
+HAVING aggregate_function(column_name) operator value
 ```
 
 # 子查询与JOIN的转换
@@ -984,6 +1001,11 @@ WHERE 1 <
     (SELECT COUNT(*) 
      FROM customer 
      WHERE salesman_id=a.salesman_id);
+
+select s.name, count(c.salesman_id), s.salesman_id
+from salesman s join customer c on s.salesman_id=c.salesman_id
+group by s.name, s.salesman_id
+having count(c.salesman_id) >1;
 ```
 
 
