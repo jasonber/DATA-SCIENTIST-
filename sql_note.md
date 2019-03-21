@@ -1283,7 +1283,7 @@ Deallocate MyCursor
 
 
 
-# [48. Write a query in SQL to display the the details of those departments which max salary is 7000 or above for those employees who already done one or more jobs.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-48.php)
+# [*经典* 48. Write a query in SQL to display the the details of those departments which max salary is 7000 or above for those employees who already done one or more jobs.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-48.php)
 
 ```sql
 SELECT *
@@ -1300,8 +1300,8 @@ WHERE DEPARTMENT_ID IN
      HAVING MAX(SALARY) > 7000);
 ```
 
-# [52.Write a query in SQL to display all the infromation about those employees who earn second lowest salary of all the employees.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-52.php)
-
+# [*记住* 52.Write a query in SQL to display all the infromation about those employees who earn second lowest salary of all the employees.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-52.php)
+第几高
 ```sql
 --我的答案
 SELECT * 
@@ -1323,7 +1323,7 @@ WHERE  2 = (SELECT COUNT(DISTINCT salary )
 
 
 
-# [54. Write a query in SQL to display the department ID, full name (first and last name), salary for those employees who is highest salary drawar in a department.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-54.php)
+# [*记住* 54. Write a query in SQL to display the department ID, full name (first and last name), salary for those employees who is highest salary drawar in a department.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-54.php)
 
 ```sql
 SELECT department_id, first_name || ' ' || last_name AS Employee_name, salary 
@@ -1366,7 +1366,8 @@ WHERE city='London')
 
 
 
-# [4. Write a query to make a report of which salesman produce the largest and smallest orders on each date.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-4.php)
+# [*研究*4. Write a query to make a report of which salesman produce the largest and smallest orders on each date.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-4.php)
+
 
 ```sql
 SELECT a.salesman_id, name, ord_no, 'highest on', ord_date
@@ -1389,7 +1390,7 @@ AND b.purch_amt=
 
 UNION相当于将两个查询结果拼接在一起了。
 
-# [6. Write a query to list all the salesmen, and indicate those who do not have customers in their cities, as well as whose who do.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-6.php)
+# [*研究* 6. Write a query to list all the salesmen, and indicate those who do not have customers in their cities, as well as whose who do.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-6.php)
 
 ```sql
 SELECT salesman.salesman_id, name, cust_name, commission
@@ -1432,7 +1433,7 @@ LINES TERMINATED BY '\n'；
 
 # [事务](http://www.runoob.com/mysql/mysql-transaction.html)
 
-# [新的练习](https://zhuanlan.zhihu.com/p/38354000)
+# *使用 hive 做一遍* [新的练习](https://zhuanlan.zhihu.com/p/38354000)
 
 # case when
 ```sql
@@ -1703,7 +1704,7 @@ from 185_Employee e left join 185_Department d
 on e.DepartmentId=d.Id
 where 
 (select count(distinct e1.Salary)
-from 185_Employee e1 join 185_Employee e2  --这里有一个链接
+from 185_Employee e1 join 185_Employee e2  --这里有一个联结
 on e1.DepartmentId = e2.DepartmentId
 where e2.Salary>e1.Salary)<=3
 
@@ -1742,7 +1743,7 @@ UPDATE table_name SET field1=new-value1, field2=new-value2
 [WHERE Clause]
 ```
 
-# [MySQL 数据区间分组](https://www.cnblogs.com/lazyx/p/5577105.html)
+# [*记住* MySQL 数据区间分组](https://www.cnblogs.com/lazyx/p/5577105.html)
 https://www.cnblogs.com/shea/archive/2017/04/25/6760381.html
 elt , interval
 ELT(n,str1,str2,str3,...) ：如果n=1，则返回str1,如果n=2，则返回str2,依次类推。如果n小于1或大于参数个数，返回NULL
