@@ -14,3 +14,7 @@ https://www.cnblogs.com/zhengna/p/9376325.html
 # 进入图形界面
 主要原因是profile 修改错误
 https://blog.csdn.net/tengdazhang770960436/article/details/79056165
+
+# dbeaver连接hive
+1、[启动hiveserver2](https://my.oschina.net/u/2000675/blog/869508) 
+2、[建立dbeaver连接](https://www.cnblogs.com/bugsbunny/p/7016019.html)
