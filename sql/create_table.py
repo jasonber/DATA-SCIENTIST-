@@ -2,7 +2,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os
 
-conn = create_engine("mysql+pymysql://root:ztzz910327@localhost:3306/review")
+conn = create_engine("mysql+pymysql://root:******@localhost:3306/review")
 path = '/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-/sql'
 root = []
 dir = []
