@@ -37,6 +37,8 @@ Limit 7
 ```
 
 # mysql的取数过程 
+sql的语句解析过程
+http://www.cnblogs.com/myprogram/archive/2013/01/24/2874666.html
 是一个循环。遍历所有表看看是否满足where的条件。按照where的条件，制作出一个表，在表内进行分组，筛选，然后再用select 从表中提取字段。这时会获得一个目标表，在这个表上进行排序等操作。
 
 # 展现字符串
@@ -152,7 +154,7 @@ ORDER BY column_name,column_name ASC|DESC;
 ORDER BY 列号
 ```
 
-# *记住* 找出所有的1970获奖者，按照subject和获奖者姓名排序，其中Economic和Chemistry 按照升序排列在最后
+# [*记住* 找出所有的1970获奖者，按照subject和获奖者姓名排序，其中Economic和Chemistry 按照升序排列在最后](https://www.w3resource.com/sql-exercises/sql-retrieve-exercise-24.php)
 
 
 ```mysql
@@ -762,7 +764,7 @@ CROSS join：笛卡尔积，全部数据结合在一起，不是乘除，而是�
 
 
 
-# *记住* 7. Write a query in SQL to display the first and last name and salary for those employees who earn less than the employee earn whose number is 182.
+# [*记住* 7. Write a query in SQL to display the first and last name and salary for those employees who earn less than the employee earn whose number is 182.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-7.php)
 
 ```sql
 SELECT E.first_name, E.last_name, E.salary 
@@ -1298,6 +1300,12 @@ WHERE DEPARTMENT_ID IN
           HAVING COUNT(EMPLOYEE_ID) > 1)
      GROUP BY DEPARTMENT_ID
      HAVING MAX(SALARY) > 7000);
+
+select a.* 
+from departments a join employees b on  a.department_id = b.department_id 
+join job_history c on b.employee_id = c.employee_id
+group by b.employee_id, b.department_id
+having count(b.employee_id)>1 and max(b.salary)>7000;
 ```
 
 # [*记住* 52.Write a query in SQL to display all the infromation about those employees who earn second lowest salary of all the employees.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-52.php)
@@ -1765,3 +1773,19 @@ sum(c3) as total
 from tx
 group by c1 with rollup;
 ```
+
+# [修改表名](https://blog.51cto.com/linux521/767546)
+http://www.splaybow.com/post/mysql-table-change-cloumn-datatype.html
+```sql
+# 修改表名
+alter table old_name rename to new_name;
+# 修改列名
+alter table 表名 change column 字段名 新字段名
+# 修改列类型
+alter table table_name change 字段 字段 data_type
+```
+# cast 和 convert()
+https://www.cnblogs.com/conanwang/p/5917416.html
+
+# change 和 modify 
+https://www.jianshu.com/p/e9338da60a61
