@@ -599,6 +599,7 @@ GROUP BY：告诉数据库如何将查询出的数据进行分组，然后数据
 
 # [*记住* Write a query in SQL to display those departments where any manager is managing 4 or more employees.](https://www.w3resource.com/sql-exercises/sorting-and-filtering-hr/sql-sorting-and-filtering-hr-exercise-30.php)
 分组的顺序如何确定?
+这里要查的是每个部门下的每个经理管理的人数，所有要先部门再经理
 ```mysql
 # 错误
 SELECT DISTINCT department_id
@@ -767,6 +768,7 @@ CROSS join：笛卡尔积，全部数据结合在一起，不是乘除，而是�
 
 # [*记住* 7. Write a query in SQL to display the first and last name and salary for those employees who earn less than the employee earn whose number is 182.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-7.php)
 两个表关系如何理解，相同的字段该怎么用？为什么是E>S,而不能反过来？
+因为条件限制了是s中的182，所以要e < S。含义是E中的薪资大于S中182的薪资 
 ```sql
 SELECT E.first_name, E.last_name, E.salary 
   FROM employees E 
@@ -1012,7 +1014,8 @@ having count(c.salesman_id) >1;
 # [*记住* 14.Write a query to find the sums of the amounts from the orders table, grouped by date, eliminating all those dates where the sum was not at least 1000.00 above the maximum amount for that date.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-14.php)
 用join实现一次
 
-为什么子查询里要a.ord_date=b.ord.date?
+为什么子查询里要a.ord_date=b.ord.date? 
+这相当于分组限制最大值来自于主表的同一天，如果不加限制，则会选出b中所有日期中purch——amt最大的值，而不是每个日期中的最大值
 ```sql
 SELECT ord_date, SUM (purch_amt)
 FROM orders a
@@ -1026,6 +1029,7 @@ HAVING SUM (purch_amt) >
 
 # [*理解* 15. Write a query to extract the data from the customer table if and only if one or more of the customers in the customer table are located in London.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-15.php)完全读不懂
 
+exists的作用机制
 ```sql
 SELECT customer_id,cust_name, city
 FROM customer
@@ -1400,7 +1404,7 @@ AND b.purch_amt=
 UNION相当于将两个查询结果拼接在一起了。
 
 # [*研究* 6. Write a query to list all the salesmen, and indicate those who do not have customers in their cities, as well as whose who do.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-6.php)
-***这个 'no match‘是什么意思***
+***这个 'no match‘是什么意思？UNION不是应该所以字段一致吗？***
 
 ```sql
 SELECT salesman.salesman_id, name, cust_name, commission
