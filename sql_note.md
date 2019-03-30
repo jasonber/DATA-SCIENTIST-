@@ -562,7 +562,8 @@ concat , +, '||' 跟excel很像
 
 
 
-# [*记住* rite a query in SQL to display job ID for those jobs that were done by two or more for more than 300 days.](https://www.w3resource.com/sql-exercises/sorting-and-filtering-hr/sql-sorting-and-filtering-hr-exercise-24.php)
+# [*记住* write a query in SQL to display job ID for those jobs that were done by two or more for more than 300 days.](https://www.w3resource.com/sql-exercises/sorting-and-filtering-hr/sql-sorting-and-filtering-hr-exercise-24.php)
+这个错误是因为条件不能那样嵌套，count(*)的作用是记录条数类似len（）
 
 ```mysql
 # 错误
@@ -597,7 +598,7 @@ GROUP BY：告诉数据库如何将查询出的数据进行分组，然后数据
 
 
 # [*记住* Write a query in SQL to display those departments where any manager is managing 4 or more employees.](https://www.w3resource.com/sql-exercises/sorting-and-filtering-hr/sql-sorting-and-filtering-hr-exercise-30.php)
-
+分组的顺序如何确定?
 ```mysql
 # 错误
 SELECT DISTINCT department_id
@@ -765,7 +766,7 @@ CROSS join：笛卡尔积，全部数据结合在一起，不是乘除，而是�
 
 
 # [*记住* 7. Write a query in SQL to display the first and last name and salary for those employees who earn less than the employee earn whose number is 182.](https://www.w3resource.com/sql-exercises/joins-hr/sql-joins-hr-exercise-7.php)
-
+两个表关系如何理解，相同的字段该怎么用？为什么是E>S,而不能反过来？
 ```sql
 SELECT E.first_name, E.last_name, E.salary 
   FROM employees E 
@@ -820,10 +821,6 @@ FROM employees E
 LEFT JOIN employees M
 ON E.manager_id = M.employee_id
 And M.manager_id IS NULL;
---正确
-SELECT first_name
-FROM employees E
-WHERE manager_id  = 0;
 ```
 
 # [JOIN USING](https://stackoverflow.com/questions/13750152/using-keyword-vs-on-clause-mysql)
@@ -1015,6 +1012,7 @@ having count(c.salesman_id) >1;
 # [*记住* 14.Write a query to find the sums of the amounts from the orders table, grouped by date, eliminating all those dates where the sum was not at least 1000.00 above the maximum amount for that date.](https://www.w3resource.com/sql-exercises/subqueries/sql-subqueries-inventory-exercise-14.php)
 用join实现一次
 
+为什么子查询里要a.ord_date=b.ord.date?
 ```sql
 SELECT ord_date, SUM (purch_amt)
 FROM orders a
@@ -1174,6 +1172,7 @@ WHERE (salary,manager_id)=
 
 
 # [*记住* 31.Write a query which is looking for the names of all employees whose salary is greater than 50% of their department’s total salary bill.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-31.php)
+为什么子查询里要做这种联结操作？
 
 ```sql
 --我的错误解答
@@ -1286,6 +1285,7 @@ Deallocate MyCursor
 
 
 # [*经典* 48. Write a query in SQL to display the the details of those departments which max salary is 7000 or above for those employees who already done one or more jobs.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-48.php)
+***如何选择确定改用哪个表里的相同字段?***
 
 ```sql
 SELECT *
@@ -1310,6 +1310,7 @@ having count(b.employee_id)>1 and max(b.salary)>7000;
 
 # [*记住* 52.Write a query in SQL to display all the infromation about those employees who earn second lowest salary of all the employees.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-52.php)
 第几高
+***为什么要等于2***
 ```sql
 --我的答案
 SELECT * 
@@ -1332,6 +1333,7 @@ WHERE  2 = (SELECT COUNT(DISTINCT salary )
 
 
 # [*记住* 54. Write a query in SQL to display the department ID, full name (first and last name), salary for those employees who is highest salary drawar in a department.](https://www.w3resource.com/sql-exercises/sql-subqueries-exercise-54.php)
+***为什么还可以这样链接?为什么要这样链接***
 
 ```sql
 SELECT department_id, first_name || ' ' || last_name AS Employee_name, salary 
@@ -1376,7 +1378,6 @@ WHERE city='London')
 
 # [*研究*4. Write a query to make a report of which salesman produce the largest and smallest orders on each date.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-4.php)
 
-
 ```sql
 SELECT a.salesman_id, name, ord_no, 'highest on', ord_date
 FROM salesman a, orders b
@@ -1399,6 +1400,7 @@ AND b.purch_amt=
 UNION相当于将两个查询结果拼接在一起了。
 
 # [*研究* 6. Write a query to list all the salesmen, and indicate those who do not have customers in their cities, as well as whose who do.](https://www.w3resource.com/sql-exercises/union/sql-union-exercise-6.php)
+***这个 'no match‘是什么意思***
 
 ```sql
 SELECT salesman.salesman_id, name, cust_name, commission
@@ -1441,7 +1443,8 @@ LINES TERMINATED BY '\n'；
 
 # [事务](http://www.runoob.com/mysql/mysql-transaction.html)
 
-# *使用 hive 做一遍* [新的练习](https://zhuanlan.zhihu.com/p/38354000)
+# *使用 hive 做一遍* 
+[新的练习](https://zhuanlan.zhihu.com/p/38354000)
 
 # case when
 ```sql
