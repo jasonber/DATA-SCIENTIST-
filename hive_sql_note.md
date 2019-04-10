@@ -22,3 +22,11 @@ https://blog.csdn.net/tengdazhang770960436/article/details/79056165
 
 # hive写入数据
 https://blog.csdn.net/qq_26442553/article/details/80380590
+
+# 数据导入
+load
+https://blog.csdn.net/qq_26790807/article/details/80764820
+导入数据的结果 为null
+
+# 批量删除表
+https://blog.csdn.net/big_data1/article/details/81989793
