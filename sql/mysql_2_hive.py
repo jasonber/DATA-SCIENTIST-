@@ -34,5 +34,3 @@ command.iloc[:, 1] = command.iloc[:, 1].map(format_hive)
 # command.replace(r'COLLATE.*?NULL|ENGINE.*|PRIMARY.*(?=\))|DEFAULT.*?NULL', '', regex=True, inplace=True)
 save = '/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-/sql/'
 command.to_csv(save+'create_tables.csv', index=False)
-
-

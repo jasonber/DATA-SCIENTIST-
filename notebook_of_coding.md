@@ -2046,3 +2046,6 @@ NameError: name 'df' is not defined
 18     63     DLm         OK
 19     88     YxF      Great
 ```
+
+# joblib多线程
+https://joblib.readthedocs.io/en/latest/

@@ -30,3 +30,8 @@ https://blog.csdn.net/qq_26790807/article/details/80764820
 
 # 批量删除表
 https://blog.csdn.net/big_data1/article/details/81989793
+
+# 别名
+必须使用 as
+https://blog.csdn.net/u010022051/article/details/53127758
+https://blog.csdn.net/wiborgite/article/details/80778079
