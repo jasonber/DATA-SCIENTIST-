@@ -377,6 +377,7 @@ WHERE (purch_amt BETWEEN 500 AND 4000)
 AND NOT purch_amt IN(948.50,1983.43);
 
 # 这是什么鬼。。。
+完全错误
 SELECT *
 FROM orders
 WHERE

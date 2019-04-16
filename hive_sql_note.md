@@ -35,3 +35,10 @@ https://blog.csdn.net/big_data1/article/details/81989793
 必须使用 as
 https://blog.csdn.net/u010022051/article/details/53127758
 https://blog.csdn.net/wiborgite/article/details/80778079
+
+# join的优化
+https://www.jianshu.com/p/fa45fa537c91
+set hive.auto.convert.sortmerge.join=true;
+set hive.optimize.bucketmapjoin = true;
+set hive.optimize.bucketmapjoin.sortedmerge = true;
+set hive.auto.convert.sortmerge.join.noconditionaltask=true;
