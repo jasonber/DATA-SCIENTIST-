@@ -2049,3 +2049,9 @@ NameError: name 'df' is not defined
 
 # joblib多线程
 https://joblib.readthedocs.io/en/latest/
+
+# 随机生成字符串
+https://www.cnblogs.com/zqifa/p/python-random-1.html
+
+# 装饰器@
+https://www.cnblogs.com/cccy0/p/8799491.html
