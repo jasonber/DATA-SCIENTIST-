@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/joblib.py" line="103" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a08369da-d1fb-4696-bba3-b74f48343dd7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../notebook_of_coding.md" beforeDir="false" afterPath="$PROJECT_DIR$/../notebook_of_coding.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/joblib.py" beforeDir="false" afterPath="$PROJECT_DIR$/joblib.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sql/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sql/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sql/mysql_2_hive.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sql/mysql_2_hive.py" afterDir="false" />
     </list>
@@ -14,12 +16,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/joblib.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="68" column="9" lean-forward="true" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
+            <state relative-caret-position="288">
+              <caret line="136" column="6" lean-forward="true" selection-start-line="136" selection-start-column="6" selection-end-line="136" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -130,8 +132,8 @@
     <entry file="file://$PROJECT_DIR$/pandas_exercises/python&amp;mysql.py" />
     <entry file="file://$PROJECT_DIR$/joblib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="68" column="9" lean-forward="true" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
+        <state relative-caret-position="288">
+          <caret line="136" column="6" lean-forward="true" selection-start-line="136" selection-start-column="6" selection-end-line="136" selection-end-column="6" />
         </state>
       </provider>
     </entry>

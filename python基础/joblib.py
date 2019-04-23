@@ -69,3 +69,69 @@ def g(x):
 def h(x):
     print('A second long-running calculation, using g(x)')
     return np.vander(x)
+
+# 如果使用数组调用函数h并传给函数g，那么h不再重复运行
+a = g(3)
+b = h(a)
+b2 = h(a)
+np.allclose(b, b2)
+'''
+使用memmapping
+Memapping内存中使用map，当加载较大的numpy数组时，加速缓存查询
+'''
+cachedir2 = 'your_cachedir2_location'
+memory2 = Memory(cachedir2, mmap_mode='r')
+square = memory2.cache(np.square)
+a = np.vander(np.arange(3)).astype(np.float)
+square(a)
+'''
+提示：在上述例子中进行debug需要注意。对于追踪那些被重复执行流程，以及消耗的时间
+'''
+'''
+如果square使用相同的参数，那么它返回的值将通过memmapping从磁盘中加载
+'''
+# memory 感觉更像是存储在硬盘上的函数
+res = square(a)
+print(repr(res))
+'''
+在windows中，memmap必须关闭以避免文件被锁；使用 del 关闭numpy.memmap这会在磁盘作出变化
+'''
+del res
+'''
+提示：
+如果memory mapping模式使用r，就像上面的例子，数组将只能读取，而不能修改
+另一方面，使用‘r+’或者‘w+’将能改变数组，但这一改变会发生在硬盘上，将破坏缓存。如果
+你想在内存中改变数组，我们建议你使用‘c’：写入时进行备份。
+'''
+'''搁置：为缓存中的值设置引用
+在一些例子中，为缓存设置引用非常有用，这可以替代调用结果本身。一个经典的例子，把一个大的数组
+分发给不同的工作者：引用可以代替数据本身在网络上传递，向joblib的缓存中发送一个引用，让工作者
+从网络的文件系统中读取数据，也能潜在的节省一些系统级别的内存。
+’‘’
+‘’‘
+使用方法call_and_shelve为包装好的函数设置引用
+'''
+result = g.call_and_shelve(4)
+result
+'''
+一旦计算，g的输出结果将保存在硬盘上， 并且从内存中删除。
+获取相关的值可以使用方法 get。
+'''
+result.get()
+'''
+可以使用方法clear清除这个值的缓存。调用clear会清楚硬盘上的值。任何get的调用将引发
+关键错误
+'''
+result.clear()
+result.get()
+'''
+一个MemorizedResult 实例 包含所有它读取缓存所需的所有内容。该实例可以被处理以进行传输或存储，
+并且可以被打印，甚至复制到其他的python解释器中
+'''
+'''
+当缓存不可用时，使用搁置
+当缓存不可用时（如Memory（None）），call_and_shelve将返回NotMemorizeResult实例，
+将存储所有的函数输出，而不仅仅是引用（因为没有指向任何内存）。除了复制粘贴功能之外，上诉
+所有功能都是有效的
+'''
+''''''
