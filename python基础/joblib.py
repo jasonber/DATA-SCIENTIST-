@@ -134,4 +134,93 @@ result.get()
 将存储所有的函数输出，而不仅仅是引用（因为没有指向任何内存）。除了复制粘贴功能之外，上诉
 所有功能都是有效的
 '''
-''''''
+'''
+陷阱
+在session之间，通过函数名来识别函数
+因此如果对不同的函数赋予相同的名字，那么他们将会互相覆盖缓存（如名称冲突），并且会发生
+不希望出现的重复运行
+'''
+@memory.cache
+def func(x):
+    print('Running func(%s)'%x)
+
+func2 = func
+
+@memory.cache
+def func(x):
+    print('Running a different func(%s)'%x)
+
+# jobib8.0及以上在调用相同的session时,尽管joblib会警告你，不会发生名称冲突
+func(1)
+func2(1)
+
+# 一旦相同的session被调用，就不再进行重复计算了。
+func(1)
+func2(1)
+
+'''lambda 函数
+注意在python2.7中lambda函数是不能被分开的'''
+def my_print(x):
+    print(x)
+f = memory.cache(lambda:my_print(1))
+g = memory.cache(lambda:my_print(2))
+f()
+f()
+g()
+g()
+f()
+
+'''在某些复杂的对象上，不可能使用memory，如可调用对象a__call__'''
+# 然而，它可以在numpy上运行
+sin = memory.cache(np.sin)
+print(sin(0))
+
+'''缓存方法：memory是为纯函数设计的，并且不推荐它在methond上使用
+如果想在class中使用cache，建议对纯函数使用cache，并在class中使用，如下所示：
+'''
+@memory.cache
+def compute_func(arg1, arg2, arg3):
+    return result
+
+class Foo(object):
+    def __inti__(self, args):
+        self.data = None
+
+    def compute(self):
+        self.data = compute_func(self.arg1,self.arg2, 4)
+
+'''
+不推荐对方法使用Memory，从维护的角度来讲并且存在一些缺陷。因为在软件升级的时候，很容易
+忘记这些警告。如果不能避免，那么请记住下面这些缺陷：
+'''
+# 1、一个方法不能在class定义时被decorated，因为实例化一个class时，第一个参数被限制为
+# self，它不能轻易的成为Memory的对象。下面的代码不能运行：
+class Foo(object):
+
+    @memory.cache # wrong
+    def method(self, args):
+        pass
+# 在实例化时decorate的正确方法：
+class Foo(object):
+
+    def __init__(self, args):
+        self.method = memory.cache(self.method)
+
+    def method(self,...):
+        pass
+# 2、cache方法有一个self参数。这意味着如果变换self，那么结果将会重复计算。例如
+# 如果self.attr变为调用self.method, 那么即使self.method不使用self.attr，也会
+# 重新计算结果。结果是，在后面的调用中，不会再使用self.method创建的cache。如果知道
+# self.method的结果并不依赖self,那么可以通过
+# self.method = memory.cache(self.method, ignore=['self'])来解决这个问题。
+
+'''
+忽略某些参数
+当某些参数改变时（如调式标志），忽略参数可能对不进行重复计算是有用的。
+'''
+@memory.cache(ignore=['debug'])
+def my_func(x, debug=True):
+    print('Called with x= %s'%x)
+my_func(0)
+my_func(0, debug=False)
+my_func(0, debug=True)

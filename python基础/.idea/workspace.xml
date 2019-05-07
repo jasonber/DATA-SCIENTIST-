@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a08369da-d1fb-4696-bba3-b74f48343dd7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/joblib.py" beforeDir="false" afterPath="$PROJECT_DIR$/joblib.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sql/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sql/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sql/mysql_2_hive.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sql/mysql_2_hive.py" afterDir="false" />
@@ -20,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/joblib.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="136" column="6" lean-forward="true" selection-start-line="136" selection-start-column="6" selection-end-line="136" selection-end-column="6" />
+            <state relative-caret-position="268">
+              <caret line="226" lean-forward="true" selection-start-line="226" selection-end-line="226" />
             </state>
           </provider>
         </entry>
@@ -132,8 +133,8 @@
     <entry file="file://$PROJECT_DIR$/pandas_exercises/python&amp;mysql.py" />
     <entry file="file://$PROJECT_DIR$/joblib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="136" column="6" lean-forward="true" selection-start-line="136" selection-start-column="6" selection-end-line="136" selection-end-column="6" />
+        <state relative-caret-position="268">
+          <caret line="226" lean-forward="true" selection-start-line="226" selection-end-line="226" />
         </state>
       </provider>
     </entry>
