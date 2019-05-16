@@ -2055,3 +2055,13 @@ https://www.cnblogs.com/zqifa/p/python-random-1.html
 
 # 装饰器@
 https://www.cnblogs.com/cccy0/p/8799491.html
+
+# python类的可见与不可见
+https://blog.csdn.net/u012279631/article/details/81363929
+
+# cls 和 self
+https://blog.csdn.net/daijiguo/article/details/78499422
+
+# python的异常处理
+https://segmentfault.com/a/1190000007736783
+ 
