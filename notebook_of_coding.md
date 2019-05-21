@@ -2065,3 +2065,20 @@ https://blog.csdn.net/daijiguo/article/details/78499422
 # python的异常处理
 https://segmentfault.com/a/1190000007736783
  
+# Lazy evalutaion p39（高效python）
+1. 避免不必要的计算: or表达式，可能性高的True放在前面，and则放在后面
+提升50%
+```python
+if w == b and w == c:
+
+```
+2. 节省空间
+生成器的使用: yield
+yield的使用：https://blog.csdn.net/mieleizhi0522/article/details/82142856
+功能等同于return，只是执行流程不同，是一步一步的执行。使用next执行下一个参数在生成器中的运行，send是传参用的。
+
+# 使用工厂函数 保证类型符合要求
+
+# is 和 ==
+is 用来判断存储空间是否一致
+== 用来判断相等
