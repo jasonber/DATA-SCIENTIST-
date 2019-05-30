@@ -2,8 +2,8 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os
 
-conn = create_engine("mysql+pymysql://root:******@localhost:3306/review")
-path = '/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-/sql'
+conn = create_engine("mysql+pymysql://root:123456zz@localhost:3306/review")
+path = 'C:/Users/zhang/Documents/my_git/DATA-SCIENTIST-/sql'
 root = []
 dir = []
 file = []
@@ -19,6 +19,6 @@ for f in file[0]:
     n = os.path.splitext(file[0][m])
     if n[1] == '.csv':
         print(f)
-        df = pd.read_csv('/home/zhangzhiliang/Documents/my_git/DATA-SCIENTIST-/sql/{}'.format(file[0][m]))
+        df = pd.read_csv(path + '/' + '{}'.format(file[0][m]))
         df.to_sql('{}'.format(n[0]), con=conn, if_exists='replace', index=False)
     m += 1
