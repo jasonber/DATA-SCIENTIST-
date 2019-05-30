@@ -1,7 +1,7 @@
 # 我的学习笔记
 主要是我在工作学习中遇到的问题的记录，方便自己随时复习，帮助自己成长
 ## 数据库
-[mysql笔记](https://github.com/jasonber/DATA-SCIENTIST-/blob/master/sql_note.md)  
+[mysql笔记](https://github.com/jasonber/DATA-SCIENTIST-/blob/master/sql_notebook.md)  
 [hive sql笔记](https://github.com/jasonber/DATA-SCIENTIST-/blob/master/hive_sql_note.md)  
 [sql笔记对应的数据库](https://github.com/jasonber/DATA-SCIENTIST-/tree/master/sql)
 ## python
