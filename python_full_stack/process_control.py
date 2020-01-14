@@ -123,3 +123,77 @@ s_list[8:11] = 'a'
 s_str = "".join(s_list)
 print(s_str)
 
+# 长度的测量
+st = '我爱北京天安门'
+
+lst = list(st)
+
+len(st)
+
+len(lst)
+
+# 字典 setdefault()
+'''
+setdefault()相当于执行两个操作
+1. 判断原来的字典中有没有这个key，如果没有，执行新增
+2. 用这个key去字典中查询，返回查到的key对应的value
+'''
+dic = {'及时雨':'宋江', '易大师':'剑圣'}
+ret = dic.setdefault('及时雨','西门庆')
+ret2 = dic.setdefault('黑旋风','李逵')
+
+print(dic)
+print(dic.get('及时雨'))
+print(ret)
+print(ret2)
+
+# 结构， 解包：列表和元组可以通过多个变量同时赋值，拿到里面的值
+# 同理dict中的item也可以使用这种方式来取到
+a, b = (1, 2)
+print(a, b)
+
+a, b = [1, 2]
+print(a, b)
+
+a = 1, 2 # 等价于a = (1, 2)
+a, b = (1, 2), (3, 4)
+print(a)
+
+dic = {'及时雨':'宋江'， '易大师':'剑圣', '薇恩':'暗影猎手'}
+dic.keys()
+dic.values()
+dic.items()
+
+for item in dic.items():
+    k, v = item
+    print(k, v)
+
+for k, v in dic.items():
+    print(k, v)
+
+# 编码 encode 解码decode
+s = "你好"
+bs = s.encode("gbk") # 我们这样可以获取到GBK的⽂文字
+# 把GBK转换成UTF-8
+# ⾸首先要把GBK转换成unicode. 也就是需要解码
+s = bs.decode("gbk") # 解码
+# 然后需要进⾏行行重新编码成UTF-8
+bss = s.encode("UTF-8") # 重新编码
+print(bss)
+
+# 列表清空
+lst = ["周杰伦", "无间道", "霸王别姬", "宋江"]
+
+for i in lst:  # list的循环的时候，是对index的循环，且会自增，所以不会实现clear（）的功能
+    lst.remove(i)
+
+print(lst)
+
+del_lst = []
+for i in lst:
+    del_lst.append(i)
+
+for a in del_lst:
+    lst.remove(a)
+
+print(lst)
