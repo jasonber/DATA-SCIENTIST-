@@ -238,3 +238,57 @@ print(a[1])
 dic = {'a':'123'}
 s = dic.fromkeys("王健林", "思聪")
 print(s)
+
+# 文件读取
+doc = open('file_control.txt', mode='r', encoding='utf-8')
+content = doc.read()
+doc.close()
+print(content)
+
+# 路径
+# 相对路径：相对于当前目录的路径，便于拷贝
+# 绝对路径: 从根目录开始的路径，url地址
+
+# 文件写入 file.write(content)写入时可以文件不存在，会自动新建。
+# 写入操作中要加flush
+# w模式。写完之后自动存入 
+doc = open('file_control2.txt', mode='w', encoding='utf-8') # w模式 会覆盖原来的内容，
+doc.write('写入w模式\n')
+content = doc.read()
+print(content)
+doc.flush()
+doc.close()
+
+# w模式追加 
+doc = open('file_control2.txt', mode='a', encoding='utf-8') # w模式 会清空文件，再写入
+doc.write('追加\n')
+# content = doc.read()
+print(content)
+# doc.flush() 
+doc.close()
+ 
+# b模式, 写字节模式。rb 读字节，wb写字节
+# w、r、a 对文本操作，wb、rb、ab处理的是非文本
+doc = open('file_control2.txt', mode='rb') 
+# doc.write('追加\n')
+content = doc.read()
+print(content.decode('utf-8'))
+# doc.flush()
+doc.close()
+
+# 读写模式r+ 默认情况下光标在文件的开头，必须先读后写
+doc = open('file_control2.txt', mode='r+', encoding='utf-8') 
+content = doc.read()
+doc.write('追加\n')
+print(content.decode('utf-8'))
+doc.flush()
+doc.close()
+
+# 写读模式w+ 不用。读写操作与光标位置有关，从光标之后开始操作
+
+# 光标，seek()。移动的是字节，移动到某个位置。
+# r+写入：无操作时在开头写，有光标操作后在文件末尾写入。所有写入都是覆盖操作
+ 
+ # 文件修改内容，读出内容，修改内容，写入新文件，删除原文件，新文件改名
+ # with open('path',mode, encodding) as var_name, open('paht2', mode, encodeing) as var_name2:
+ #     操作内容
