@@ -197,3 +197,44 @@ for a in del_lst:
     lst.remove(a)
 
 print(lst)
+
+# set增删改查
+
+s = {'刘嘉玲', '关之琳', '王祖贤'}
+
+s.add('郑裕玲') # 按照
+print(s)
+
+s.add('郑裕玲')
+print(s)
+
+s.update("马化腾") # 按照list的方式来更新，添加时随机的
+print(s)
+
+s.update(['张曼玉', '李若彤', '李若彤'])
+print(s)
+
+s.remove("刘嘉玲")
+
+s.add("赵本山")
+print(s)
+
+# 深浅拷贝
+# 直接赋值相当于授予了一个变量对该地址的操作权
+# 拷贝是对内存的操作，并将新建的内存的操作权赋予相应的变量
+# 浅拷贝 拷贝的是内存的值
+lst1 = ["赵本三", "刘能", "赵四"]
+lst2 = lst1.copy()
+lst2 = lst1[:] # 切片产生新的内存数据
+# 深拷贝 拷贝的是内存的所有内容
+import copy
+lst3 = copy.deepcopy(lst1)
+
+a = [1, 2]
+a[1] = a
+print(a[1])
+
+# fromkeys
+dic = {'a':'123'}
+s = dic.fromkeys("王健林", "思聪")
+print(s)
