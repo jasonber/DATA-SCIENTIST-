@@ -292,3 +292,116 @@ doc.close()
  # 文件修改内容，读出内容，修改内容，写入新文件，删除原文件，新文件改名
  # with open('path',mode, encodding) as var_name, open('paht2', mode, encodeing) as var_name2:
  #     操作内容
+
+
+ # 三元表达式：返回a的条件是 a > b，否则返回b
+def get_big(a, b):
+    c = a if a > b else b
+    return c
+
+print(get_big(6,9))
+
+# 动态传参
+# *var_name 位置传参，形成tuple
+# **var_name 关键字传参，形成dict
+
+# global 在局部命名空间中将局部变量声明为全局变量
+# nonlocal 在局部命名空间将局部变量声明为非本局部的局部变量
+
+# 函数名可看作变量来用，变量的操作均可用在函数名中
+# 当作数据结构的元素
+# 可以向其他函数传参
+# 可当作返回值
+
+# 迭代器 可迭代对象 不是一回事
+# 使用dir()查看对象所具有的方法，如果有__iter__则为iterabel对象。
+# 如果有__next__则为迭代器
+
+# 生成器就是迭代器, 内置的生成器叫做迭代器，生成器是编写出来的
+# 生成器跟函数一样只是把return 换成了yield
+
+# reserved
+st = '我爱北京天安门' 
+r_st = reversed(st)
+r_l = list(r_st)
+st2 = "".join(list(r_st))
+stt3 = "".join(r_l)
+
+# bit_length() 
+a = 10 
+a.bit_length()
+
+# 字符串判断
+a = '123_45.6'
+b = 'abc'
+c = '_abc!@' 
+d = '123abc'
+e = '123'
+f = '一壹123'
+g = '1.23'
+print(a.isalnum())
+print(d.isalnum())
+print(b.isalpha())
+print(f.isnumeric())
+print(g.isdigit())
+
+# list声明
+a = list('123')
+
+# list.extend() 
+lst = ["王志⽂文", "张⼀一⼭山", "苦海海⽆无涯"]
+lst.extend(["麻花藤", "麻花不不疼"])
+print(lst)
+lst.pop(2)
+
+# 步长修改
+lst = ["太⽩白", "太⿊黑", "五⾊色", "银王", "⽇日天"]
+lst[1] = "太污" # 把1号元素修改成太污
+print(lst)
+lst[1:4:3] = ["麻花藤", "哇靠"] # 切⽚片修改也OK. 如果步⻓长不不是1, 要注意. 元素的个
+print(lst)
+
+lst.index('银王')
+
+# dict复习
+dct = {'teacher':'mrs wang', 'student':'xiao bai', 'girl':'xiao hu'}
+dct.keys()
+dct.values()
+dct.items()
+dct.items()
+# dict
+
+li = "⻩黄花⼤大闺⼥女女"
+s = "_".join(li)
+print(s)
+
+a = [1, 2]
+a[1] = a
+print(a[1])
+
+a = 100
+def func():
+    global a # 加了了个global表示不不再局部创建这个变量量了了. ⽽而是直接使⽤用全局的a
+    a = 28
+    print(a)
+func()
+print(a)
+
+def eat():
+    print("我吃什什么啊")
+    a = yield "馒头"
+    print("a=",a)
+    b = yield "⼤大饼"
+    print("b=",b)
+    c = yield "⾲韭菜盒⼦子"
+    print("c=",c)
+    yield "GAME OVER"
+gen = eat() # 获取⽣生成器器
+ret1 = gen.__next__()
+print(ret1)
+ret2 = gen.send("胡辣汤")
+print(ret2)
+ret3 = gen.send("狗粮")
+print(ret3)
+ret4 = gen.send("猫粮")
+print(ret4)
