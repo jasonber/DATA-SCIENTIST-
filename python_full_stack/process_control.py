@@ -247,8 +247,7 @@ print(content)
 
 # 路径
 # 相对路径：相对于当前目录的路径，便于拷贝
-# 绝对路径: 从根目录开始的路径，url地址
-
+# 绝对路径: 从根目录开始的路径，url地址 
 # 文件写入 file.write(content)写入时可以文件不存在，会自动新建。
 # 写入操作中要加flush
 # w模式。写完之后自动存入 
@@ -405,3 +404,29 @@ ret3 = gen.send("狗粮")
 print(ret3)
 ret4 = gen.send("猫粮")
 print(ret4)
+
+st = "⼤大家好, 我是麻花藤"
+s = slice(1, 5, 2)
+print(st[s])
+
+'''
+类和方法的区别 https://www.py.cn/jishu/jichu/13133.html
+1、函数要手动传self，方法不用传self。
+2、如果是一个函数，用类名去调用，如果是一个方法，用对象去调用。
+'''
+class Foo(object):
+    def __init__(self):
+        self.name="haiyan"
+    def func(self):
+        print(self.name)
+
+obj = Foo()
+obj.func()
+Foo.func(obj)
+
+from types import FunctionType,MethodType
+obj = Foo()
+print(isinstance(obj.func,FunctionType))  #False
+print(isinstance(obj.func,MethodType))   #True   #说明这是一个方法
+print(isinstance(Foo.func,FunctionType))  #True   #说明这是一个函数。
+print(isinstance(Foo.func,MethodType))  #False
