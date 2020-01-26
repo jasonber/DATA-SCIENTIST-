@@ -430,3 +430,30 @@ print(isinstance(obj.func,FunctionType))  #False
 print(isinstance(obj.func,MethodType))   #True   #说明这是一个方法
 print(isinstance(Foo.func,FunctionType))  #True   #说明这是一个函数。
 print(isinstance(Foo.func,MethodType))  #False
+
+# class
+class Person:
+    '''类体:两部分:变量部分,方法(函数)部分'''
+    mind = '有思想'  # 变量,静态变量,静态字段
+    animal = '高级动物'
+    faith = '有信仰'
+
+    def __init__(self,name,age,hobby):
+        print(666)
+        self.name = name  #  Person.money = '运用货币'
+        self.age = age
+        self.hobby = hobby
+
+    def work(self):  # 方法,函数,动态变量
+
+        print('%s都会工作...' %self.name)
+    def shop(self):
+
+        print('人类可以消费....')
+
+ret1 = Person
+print(ret1.__dict__)
+
+ret2 = Person('test', 18, 'xxx')
+
+print(ret2.__dict__)
