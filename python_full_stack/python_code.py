@@ -457,3 +457,37 @@ print(ret1.__dict__)
 ret2 = Person('test', 18, 'xxx')
 
 print(ret2.__dict__)
+
+# object
+object
+
+# 可变变量和不可变变量的操作
+## 可变变量 list: 当 name = 【】实际是在内存中建立了一个空间，list类型在实例中不能修改，但该
+## list空间里的内容是可以变的，这是list的属性，也可以把这种看作一个list的实例，我们可以调用
+## list类的方法
+class A:
+    name = []
+
+p1 = A()
+p2 = A()
+p1.name.append(1)
+
+p1.age = 12
+p1.name，p2.name，A.name 分别又是什么？为什么？
+print(p1.age)
+print(p2.age)
+print(A.age)
+p1.name，p2.name，A.name 分别是什么？
+print(p1.name)
+print(p2.name)
+print(A.name)
+
+## 不可变变量的，不能变 
+class A:
+    name = 'alex'
+
+p1 = A()
+p2 = A()
+p1.name = 'wusir'
+print(p1.name)
+print(A.name
