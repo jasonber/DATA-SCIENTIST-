@@ -490,4 +490,28 @@ p1 = A()
 p2 = A()
 p1.name = 'wusir'
 print(p1.name)
-print(A.name
+print(A.name）
+
+# 狭义封装
+class Parent:
+    def __func(self):
+        print('in Parent func')
+
+    def __init__(self):
+        self.__func()
+
+class Son(Parent):
+    def __func(self):
+        print('in Son func')
+
+son1 = Son()
+
+class Test: 
+    def func(self): 
+        print("Is testing")
+
+    def __init__(self, a): 
+        self.func() # 在类中—__init__会执行代码
+        self.a = a
+
+test = Test(10)
