@@ -515,3 +515,24 @@ class Test:
         self.a = a
 
 test = Test(10)
+
+# *的意义
+def star(*args, **kwargs):
+    print(args)
+    print(*args) # 函数的执行，print的执行
+    print(kwargs)
+    print(*kwargs)
+    print(**kwargs) # print中没有关键字错误，所以报错
+
+star(1, 2, 3, var1=4, var2=5 , var3=6)
+
+print(*{"var1":1, "var2":2, "var3":3}))
+print(*[1, 2, 3])
+
+star([1, 2, 3], [4, 5, 6])
+star(*[1, 2, 3], *[4, 5, 6])
+
+print(a = 1) # **kwargs的print，print中并没有a这个关键字
+
+# _的作用，分割数字
+print(10_000_000)
