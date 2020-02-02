@@ -536,3 +536,188 @@ print(a = 1) # **kwargs的print，print中并没有a这个关键字
 
 # _的作用，分割数字
 print(10_000_000)
+
+# 面向对象总结
+## type
+class A:
+    # def __new__(cls)
+    pass
+a = A()
+type(a)
+type(A)
+type(object)
+
+## 类的加载顺序
+class Person:
+    ROLE = "China"
+    print(ROLE)
+
+## 在任何类中调用的方法,都要自习分辨一下这个self到低是谁的对象
+class Foo:
+    print("In Foo")
+    def __init__(self):
+        self.func()
+
+    def func(self):
+        print("IN Foo.func")
+
+class Son(Foo):
+    def func(self):
+        print("IN Son.func")
+
+s = Son()
+
+# 广度优先,super及mro演示
+class A:
+    def func(self):
+        print("In A")
+
+class B(A):
+    def func(self):
+        super().func()
+        print("In B")
+
+class C(A):
+    def func(self):
+        super().func()
+        print("In C")
+
+class D(B, C):
+    def func(self):
+        super().func()
+        print("In D")
+
+d = D()
+d.func()
+b = B()
+b.func()
+D.mro()
+
+## 反射
+class Student:
+    ROLE = "STUDENT"
+    def __init__(self, name):
+        self.name = name
+    @classmethod
+    def check_course(self):
+        print("check_course")
+    def chose_course(self):
+        print("chose_course")
+    def choosed_coures(self):
+        print("查看已选择的课程")
+    @staticmethod
+    def login():
+        print("登录")
+
+st = Student("alex")
+name = getattr(st, "name")
+getattr(st, "login")()
+getattr(Student, "login")()
+getattr(Student, "ROLE")
+getattr(Student, "check_course")
+
+command = input(">>>>>")
+if hasattr(st, command):
+    getattr(st, command)()
+
+## 装饰器
+import time 
+
+# 为函数增加功能：改变了源代码, 也改变了调用方式，不是func()
+def func(): 
+    time.sleep(2)
+    print("睡着了")
+
+def func2():
+    start_time = time.time()
+    time.sleep(2)
+    print('睡着了')
+    end_time = time.time()
+    run_time = end_time - start_time
+    print("持续了{}秒".format(run_time))
+
+
+func2()
+
+# 方法二 使用其他函数 为函数增加功能，不修改源代码，但是调用方式改变了
+import time
+
+def func(): 
+    time.sleep(2)
+    print("睡着了")
+
+def timer(func):
+    start_time = time.time()
+    func()
+    end_time = time.time()
+    run_time = end_time - start_time
+    print("持续了{}秒".format(run_time))
+
+timer(func) # 本身的调用方式为func()
+
+# func = timer
+# func() 报错达到了递归的极限，为什么
+
+# 方法三 没修改源码 加了功能 且 调用方式不变，但结果不对
+import time
+
+def func(): 
+    time.sleep(2)
+    print("睡着了")
+
+def timer(func):
+    start_time = time.time()
+    func()
+    end_time = time.time()
+    run_time = end_time - start_time
+    print("持续了{}秒".format(run_time))
+    return func
+
+func = timer(func)
+func()
+
+# 方法四 实现了目的
+import time
+
+def func(): 
+    time.sleep(2)
+    print("睡着了")
+
+def timer(func):
+    def wrapper():
+        start_time = time.time()
+        func()
+        end_time = time.time()
+        run_time = end_time - start_time
+        print("持续了{}秒".format(run_time))
+    return wrapper
+
+func = timer(func)
+func()
+
+# 新要求：为非func函数增加功能
+import time
+
+def func(): 
+    time.sleep(2)
+    print("睡着了")
+
+def timer(func):
+    def wrapper(*args, **kwargs): # 通过动态参数，将不同函数的函数传入
+        start_time = time.time()
+        res = func(*args, **kwargs) # 原函数的功能
+        end_time = time.time()
+        run_time = end_time - start_time
+        print("持续了{}秒".format(run_time))
+        return res # 返回func的结果
+    return wrapper
+
+func = timer(func)
+func()
+
+@timer  # 等价于 func2 = timer(func2) func2()
+def func2():
+    time.sleep(3)
+    print("睡着了")
+
+func2()
