@@ -721,3 +721,96 @@ def func2():
     print("睡着了")
 
 func2()
+
+# 语法糖
+class Myclass:
+    def __init__(self,string):
+        self.string = string
+    
+    def __add__(self, other): # 计算两个字符串中有多少个*
+        res = self.string.count("*") + other.string.count("*")
+        return res
+
+obj1 = Myclass("123***456***")
+obj2 = Myclass("12**34**")
+star_count = obj1 + obj2
+star_count2 = obj1.__add__(obj2)
+print("语法糖：{}\n普通方法：{}".format(star_count, star_count2))
+
+# 双下call方法
+class T_call:
+    def __call__(self, *args, **kwargs):
+        print('执行call方法')
+
+a = T_call()
+a() # 相当于调用__call__方法
+a.__call__()
+
+# 内置方法__len__
+class mylist:
+    def __init__(self):
+        self.lst = [1,2,3,4,5,6]
+        self.name = 'alex'
+        self.age = 83
+    def __len__(self):
+        print('执行__len__了')
+        return len(self.__dict__) # self.__dict__返回的使一个dict，这里相当于调用了dict的len
+
+l = mylist()
+print(len(l))
+
+class String:
+    def __init__(self, string):
+        self.string = string
+    
+    def __len__(self):
+        return len(self.string)
+
+string = String("1234567")
+len(string)
+
+# __new__
+class Test:
+    def __new__(cls, *args, **kwargs):
+        obj = object.__new__(cls) 
+        print("在new方法中", obj)
+        return obj # 将开辟的空间返回，意味着把obj传入到了self中，如果没有return，那么就不会进行init
+    
+    def __init__(self):
+        print("在inint中", self)
+
+test = Test()
+
+# 单例类
+class Single:
+    ROM = None
+    def __new__(cls, *args, **kwargs):
+        if not cls.ROM:
+            cls.ROM = object.__new__(cls)
+            # cls.ROM = True 这里不饿能这么实现，因为__new__的返回值必须是个空间地址
+        return cls.ROM
+    
+    def __init__(self, name):
+        self.name = name
+        print("内存空间{}".format(self.name), self)
+
+single = Single("single")
+single2 = Single("single2")
+
+
+class Single:
+    ROM = None
+    def __new__(cls, *args, **kwargs):
+        if not cls.ROM:
+            obj = object.__new__(cls)
+            # cls.ROM = object.__new__(cls)
+            cls.ROM = not None 
+        return obj # 这里不能这么实现，因为第一次创建对象之后，ROM变为非空，
+                   # 所以第二次创建的时候就不会执行object.__new__, 所以obj不会被赋值
+    
+    def __init__(self, name):
+        self.name = name
+        print("内存空间{}".format(self.name), self)
+
+single = Single("single")
+single2 = Single("single2")
