@@ -814,3 +814,41 @@ class Single:
 
 single = Single("single")
 single2 = Single("single2")
+
+# 一个类
+# 对象的属性 : 姓名 性别 年龄 部门
+# 员工管理系统
+# 内部转岗 python开发 - go开发
+# 姓名 性别 年龄 新的部门
+# alex None 83 python
+# alex None 85 luffy
+
+# 1000个员工
+# 如果几个员工对象的姓名和性别相同,这是一个人
+# 请对这1000个员工做去重
+
+class Employee:
+    # 因为set中也包含hash和eq方法，所以通过定义类的hash和eq就可以完成去重
+    # 当set中的hash和eq被调用时，因为Employee类中也有这些方法，按照属性调用顺序按照命名空间的原则，
+    # 会先调用Employee的hash和eq
+    def __init__(self, name, sex, age, partment):
+        self.name = name
+        self.sex = sex
+        self.age = age
+        self.partment = partment
+    def __hash__(self): # 自定义hash，使hash对员工的姓名和性别进行hash
+        return hash("{name}{sex}".format(name = self.name, sex = self.sex))
+    def __eq__(self, other): # 自定义eq, 确保员工的姓名和性别除了hash一致外，值也相等
+        if self.name == other.name and self.sex == other.sex:
+            return True 
+
+employee_lst = []
+
+for i in range(200):
+    employee_lst.append(Employee("alex", "male", i, "python"))
+for i in range(200):
+    employee_lst.append(Employee("wusir", "male", i, "python"))
+for i in range(200):
+    employee_lst.append(Employee("taibai", "female", i, "python"))
+
+lst_clear = set(employee_lst)
