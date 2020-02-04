@@ -852,3 +852,4 @@ for i in range(200):
     employee_lst.append(Employee("taibai", "female", i, "python"))
 
 lst_clear = set(employee_lst)
+print(__name__)
