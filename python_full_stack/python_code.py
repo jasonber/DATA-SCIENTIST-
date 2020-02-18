@@ -815,7 +815,7 @@ class Single:
 single = Single("single")
 single2 = Single("single2")
 
-# 一个类
+# 一个类 去重
 # 对象的属性 : 姓名 性别 年龄 部门
 # 员工管理系统
 # 内部转岗 python开发 - go开发
@@ -853,3 +853,28 @@ for i in range(200):
 
 lst_clear = set(employee_lst)
 print(__name__)
+
+# 网络编程
+# 服务端
+import socket
+server = socket.socket()
+IP_PORT = ("127.0.0.1",8000)
+server.bind(IP_PORT)
+server.listen()
+conn, addr = server.accept()
+# 执行的程序
+data = conn.recv(1024)
+# 关闭连接
+conn.close()
+# 关闭服务
+server.close()
+
+# 客户端
+import socket
+client = socket.socket()
+IP_PORT = ("127.0.0.1", 8000)
+client.connect(IP_PORT)
+# 执行的程序
+client.send()
+# 关闭连接
+client.close()
