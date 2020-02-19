@@ -878,3 +878,13 @@ client.connect(IP_PORT)
 client.send()
 # 关闭连接
 client.close()
+
+# 考试题
+a = "abcdef"
+b = a[::-1]
+print(b)
+
+lst = [lambda : x for x in range(10)]
+print(lst[0](1))
+print(lst[0])
+
