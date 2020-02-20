@@ -23,26 +23,28 @@ def client_conn(setting_dic, lisetn=5):
     client.connect(IP_PORT)
     return client
 
-def chat(client):
+def chat(client, send_data):
     #? 开始聊天
     flag = 0
     if flag == 0:
-        data = client.recv().encode('utf-8')
+        data = client.recv(1024).decode('utf-8')
         print(data)
-    data = input('>>>>')
-    data = client.recv(1024).encoding("utf-8")
-    return data
+        flag += 1
+    client.send(send_data.encode('utf-8'))
+    revc_data = client.recv(1024).decode("utf-8")
+    return revc_data
 
 def working():
     #? 循环聊天
     setting_dic = get_settings()
     client = client_conn(setting_dic)
     while True:
-        data,request = chat(server)
-        if data == "exit":
+        send_data = input('>>>>')
+        revc_data = chat(client, send_data)
+        if send_data == "exit":
             break
         else:
-            print(data)
+            print(revc_data)
     client.close()
     print('over')
 

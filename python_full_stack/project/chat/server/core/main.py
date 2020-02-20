@@ -25,15 +25,14 @@ def set_server(setting_dic, lisetn=5):
     print(setting_dic["WORKING_MSG"])
     return server
 
-def chat(server):
+def chat(request, client_address):
     #? 开始聊天
     flag = 0
-    request, client_address = server.accept()
     if flag == 0:
-        request.send('连接成功'.decode('utf-8'))
+        request.send('连接成功'.encode('utf-8'))
         flag += 1 
-    data = request.recv(1024).encoding("utf-8")
-    request.send('收到'.decode("utf-8"))
+    data = request.recv(1024).decode("utf-8")
+    request.send('收到'.encode("utf-8"))
     return data, request
 
 def working():
@@ -41,14 +40,15 @@ def working():
     setting_dic = get_settings()
     server = set_server(setting_dic)
     while True:
-        data,request = chat(server)
-        if data == "exit":
-            break
-        else:
-            print(data)
-    
-    request.close()
-    print('over')
+        request, client_address = server.accept()
+        while True:
+            data, request = chat(request, client_address)
+            if data == "exit":
+                break
+            else:
+                print(data)
+        request.close()
+        print('over')
 
 
 if __name__ == '__main__':

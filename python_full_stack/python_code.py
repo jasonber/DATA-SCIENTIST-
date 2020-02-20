@@ -898,3 +898,8 @@ class My_server(socketserver.BaseRequestHandler):
 server = socketserver.ThreadingTCPServer(('',8000, ), My_server)
 #?? 调用TTS类中的serve_forever方法
 server.serve_forever()
+
+
+#? str的编码与解码
+a = '中国'.encode('utf-8')
+b = a.decode('utf-8')
