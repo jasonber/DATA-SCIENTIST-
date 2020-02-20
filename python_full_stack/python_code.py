@@ -888,3 +888,13 @@ lst = [lambda : x for x in range(10)]
 print(lst[0](1))
 print(lst[0])
 
+# socketserver
+import socketserver
+#? 按照解释顺序，类会加载完成后，
+class My_server(socketserver.BaseRequestHandler):
+    def handle(self):
+        pass
+#? socketsever模块名称，ThreadingTCPServer是类名称，这里创建了一个TTS类
+server = socketserver.ThreadingTCPServer(('',8000, ), My_server)
+#? 调用TTS类中的serve_forever方法
+server.serve_forever()
