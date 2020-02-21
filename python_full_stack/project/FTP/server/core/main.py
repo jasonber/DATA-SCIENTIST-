@@ -11,16 +11,16 @@ def pack_header(path, module='i', oper=1):
     header = struct.pack(module, data_size)
     return header
 
-def unpack_header(request, longth=4):
+def unpack_header(request, longth=4, module='i'):
     header = request.recv(longth)
-    data_size = struct.unpack(header)
+    data_size = struct.unpack(module, header)
     return data_size
 
 
 def recv_file(request):
     request.send('请输入您要保存的地址:'.encode('utf-8'))
-    save_path = request.recv(1024).decode('utf-8')
-    data_size = unpack_header(request)
+    save_path = request.recv(1024).decode('unicode')
+    data_size = unpack_header(request)[0]
     recv_size = 0
     with open(save_path, 'wb') as f:
         while recv_size < data_size:
@@ -48,9 +48,9 @@ def get_settings():
     setting_dic = json.loads(setting_json)
     return setting_dic    
 
-def trans_data(command, path, request):
+def trans_data(command, request):
     if command == '接收':
-        send_file(path, request)
+        send_file(request)
     if command == '发送':
-        recv_file(path, request)
+        recv_file(request)
 

@@ -19,9 +19,8 @@ IP_PORT = (setting_dic['IP'], setting_dic['PORT'])
 
 class My_server(socketserver.BaseRequestHandler):
     def handle(self):
-        data = self.request.recv(1024).decode('utf-8')
-        command, path = data.split(' ')
-        main.trans_data(command, path, self.request)
+        command = self.request.recv(1024).decode('utf-8')
+        main.trans_data(command, self.request)
 
 server = socketserver.ThreadingTCPServer(IP_PORT, My_server)
 server.serve_forever()
