@@ -1,10 +1,14 @@
 import socket
 import json
 import os
+import socketserver
+
+
 
 file_path = '/'.join(__file__.split('/')[:-1])
 os.chdir(file_path)
 os.getcwd()
+
 
 def get_settings():
     #? 读取配置文件
@@ -15,6 +19,7 @@ def get_settings():
     setting_dic = json.loads(setting_json)
     return setting_dic
 
+
 def set_server(setting_dic, lisetn=5):
     #? 配置服务器信息
     IP_PORT = (setting_dic["IP"], setting_dic['PORT'])
@@ -23,6 +28,7 @@ def set_server(setting_dic, lisetn=5):
     server.listen(5)
     print(setting_dic["WORKING_MSG"])
     return server
+
 
 def chat(request, client_address):
     #? 开始聊天
@@ -33,6 +39,7 @@ def chat(request, client_address):
     data = request.recv(1024).decode("utf-8")
     request.send('收到'.encode("utf-8"))
     return data, request
+
 
 def working():
     #? 循环聊天
@@ -49,15 +56,31 @@ def working():
         request.close()
         print('over')
 
+class My_server(socketserver.BaseRequestHandler):
+    def handle(self):
+        while True:
+            data, request = chat(self.request, self.client_address)
+            if data == "exit":
+                break
+            else:
+                print(data)
+        request.close()
+        print('over')
+
+def working2():
+    setting_dic = get_settings() 
+    server = socketserver.ThreadingTCPServer((setting_dic["IP"], setting_dic['PORT']), My_server)
+    print(setting_dic["WORKING_MSG"])
+    server.serve_forever()
+
 
 if __name__ == '__main__':
-    working()
+    working2()
 
 
 
 
 
 
-#? 结束
-# request.close()
-# server.close()
+
+
