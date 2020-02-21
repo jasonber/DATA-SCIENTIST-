@@ -4,7 +4,7 @@ import os
 import struct
 
 print("文件地址",__file__)
-file_path = "\\".join(__file__.split(r'/')[:-1])
+file_path = "/".join(__file__.split('/')[:-1])
 print("修改文件地址", file_path)
 os.chdir(file_path)
 
@@ -14,9 +14,9 @@ def pack_header(path, module='i'):
     header = struct.pack(module, data_size)
     return header
 
-def unpack_header(request, longth=4):
+def unpack_header(request, longth=4, module='i'):
     header = request.recv(longth)
-    data_size = struct.unpack(header)
+    data_size = struct.unpack(module, header)
     return data_size
 
 
@@ -25,7 +25,7 @@ def recv_file(request):
     file_path = input(">>>")
     request.send(file_path.encode('utf-8'))
     save_path = input('请输入本地保存地址:')
-    data_size = unpack_header(request)
+    data_size = unpack_header(request)[0]
     recv_size = 0
     with open(save_path, 'wb') as f:
         while recv_size < data_size:
@@ -38,7 +38,7 @@ def send_file(request):
     local_path = input('请输入要发送的文件地址:')
     print(request.recv(1024).decode('utf-8'))
     save_path = input('>>>')
-    request.send(save_path.encode('utf-8'))
+    request.send(save_path.encode('unicode'))
     header = pack_header(local_path)
     request.send(header)
     with open(local_path, 'rb') as f:
@@ -55,8 +55,8 @@ def get_settings():
     setting_dic = json.loads(setting_json)
     return setting_dic    
 
-def trans_data(command, path, request):
+def trans_data(command, request):
     if command == '发送':
-        send_file(path, request)
+        send_file(request)
     if command == '接收':
-        recv_file(path, request)
+        recv_file(request)

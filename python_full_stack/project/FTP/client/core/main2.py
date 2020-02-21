@@ -2,14 +2,14 @@ import socket
 import json
 import os
 import struct
-file_path = '\\'.join(__file__.split(r'/')[:-1])
+file_path = '/'.join(__file__.split(r'/')[:-1])
 os.chdir(file_path)
 import sys
 sys.path.append(file_path)
 import file_oper
 
 setting_json = ""
-with open(r'..\conf\settings.json', 'r', encoding='utf-8') as f:
+with open('../conf/settings.json', 'r', encoding='utf-8') as f:
     for line in f.read():
         setting_json += line
 
@@ -21,6 +21,7 @@ client.connect(IP_PORT)
 
 while True:
     command = input('命令：')
+    client.send(command.encode('utf-8'))
     file_oper.trans_data(command, client)
 
 
