@@ -2,11 +2,14 @@ import socket
 import json
 import os
 import struct
-file_path = '/'.join(__file__.split('/')[:-1])
+
+print("文件地址",__file__)
+file_path = "\\".join(__file__.split(r'/')[:-1])
+print("修改文件地址", file_path)
 os.chdir(file_path)
 
 
-def pack_header(path, module='i', oper=1):
+def pack_header(path, module='i'):
     data_size = os.path.getsize(path)
     header = struct.pack(module, data_size)
     return header
@@ -18,8 +21,10 @@ def unpack_header(request, longth=4):
 
 
 def recv_file(request):
-    request.send('请输入您要保存的地址:'.encode('utf-8'))
-    save_path = request.recv(1024).decode('utf-8')
+    print(request.recv(1024).decode('utf-8'))
+    file_path = input(">>>")
+    request.send(file_path.encode('utf-8'))
+    save_path = input('请输入本地保存地址:')
     data_size = unpack_header(request)
     recv_size = 0
     with open(save_path, 'wb') as f:
@@ -30,11 +35,13 @@ def recv_file(request):
     print("接收完成, OK")
 
 def send_file(request):
-    request.send('请输入您要下载的文件地址:'.encode('utf-8'))
-    file_path = request.recv(1024).decode('utf-8')
-    header = pack_header(file_path)
+    local_path = input('请输入要发送的文件地址:')
+    print(request.recv(1024).decode('utf-8'))
+    save_path = input('>>>')
+    request.send(save_path.encode('utf-8'))
+    header = pack_header(local_path)
     request.send(header)
-    with open(file_path, 'rb') as f:
+    with open(local_path, 'rb') as f:
         for lines in f:
             # data = lines
             request.send(lines)        
@@ -49,8 +56,7 @@ def get_settings():
     return setting_dic    
 
 def trans_data(command, path, request):
-    if command == '接收':
-        send_file(path, request)
     if command == '发送':
+        send_file(path, request)
+    if command == '接收':
         recv_file(path, request)
-
