@@ -31,7 +31,7 @@ def main():
             while 1:
                 #? 等待客户端的命令
                 command = self.request.recv(1024).decode('utf-8')
-                server_cmd.server_cmd(command, self.request)
+                server_cmd.server_cmd(self.request)
 
     server = socketserver.ThreadingTCPServer(IP_PORT, My_server)
     #? 提示服务启动

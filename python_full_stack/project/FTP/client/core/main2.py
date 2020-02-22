@@ -8,6 +8,8 @@ import sys
 sys.path.append(file_path)
 import file_oper
 import homepage
+import cmd_res
+
 
 setting_json = ""
 with open('../conf/settings.json', 'r', encoding='utf-8') as f:
@@ -26,6 +28,9 @@ while 1:
     client.send(command.encode('utf-8'))
     if command in ['接收', '发送']:
         file_oper.trans_data(command, client)
+    else:
+        cmd_res.cmd_res(client)
+
 
 
 
