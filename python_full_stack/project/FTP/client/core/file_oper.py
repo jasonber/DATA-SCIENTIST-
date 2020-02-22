@@ -32,7 +32,7 @@ def recv_file(request):
             data = request.recv(1024)
             f.write(data)
             recv_size += len(data) 
-    print("接收完成, OK")
+    print("接收完成")
 
 def send_file(request):
     local_path = input('请输入要发送的文件地址:')
