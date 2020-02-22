@@ -7,6 +7,7 @@ os.chdir(file_path)
 import sys
 sys.path.append(file_path)
 import file_oper
+import homepage
 
 setting_json = ""
 with open('../conf/settings.json', 'r', encoding='utf-8') as f:
@@ -19,10 +20,12 @@ IP_PORT = (setting_dic['IP'], setting_dic['PORT'])
 client = socket.socket()
 client.connect(IP_PORT)
 
-while True:
-    command = input('命令：')
+homepage.homepage(client)
+while 1:
+    command = input('请输入命令：')
     client.send(command.encode('utf-8'))
-    file_oper.trans_data(command, client)
+    if command in ['接收', '发送']:
+        file_oper.trans_data(command, client)
 
 
 

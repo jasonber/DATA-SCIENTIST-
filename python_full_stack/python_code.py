@@ -903,3 +903,6 @@ server.serve_forever()
 #? str的编码与解码
 a = '中国'.encode('utf-8')
 b = a.decode('utf-8')
+
+#! python 调用命令行命令
+https://www.aiuai.cn/aifarm949.html

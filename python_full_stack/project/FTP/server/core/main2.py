@@ -8,6 +8,9 @@ sys.path.append(file_path)
 import login
 import regist 
 import trans_data
+import homepage
+import server_cmd
+
 
 def main():
     setting_json = ""
@@ -21,8 +24,15 @@ def main():
     #? 创建并发服务器
     class My_server(socketserver.BaseRequestHandler):
         def handle(self):
-            command = self.request.recv(1024).decode('utf-8')
-            main.trans_data(command, self.request)
+            #? 提示服务启动
+            print("Server is working.....")
+            #? 进入主页
+            homepage.homepage(self.request)
+            #? 与客户端通讯
+            while 1:
+                #? 等待客户端的命令
+                command = self.request.recv(1024).decode('utf-8')
+                server_cmd.server_cmd(command, self.request)
 
     server = socketserver.ThreadingTCPServer(IP_PORT, My_server)
     server.serve_forever()

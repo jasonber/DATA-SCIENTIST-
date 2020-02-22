@@ -31,16 +31,18 @@ def get_user_data():
             user_data[user_id] = user_pwd[:-1]
     return user_data
 
-def verify(user):
-    user_id = input('请输入用户名：')
-    user_pwd = input('请输入密码：')
+def verify(user, request):
+    request.send("请输入用户名：".encode('utf-8'))
+    user_id = request.recv(1024).decode('utf-8')
+    request.send("请输入密码：".encode('utf-8'))
+    user_pwd = request.recv(1024).decode('utf-8')
     usr_md5 = hashlib.md5()
     usr_md5.update(user_pwd.encode('utf-8'))
     md_pwd = usr_md5.hexdigest()
     if user_id in user.keys() and md_pwd == user[user_id]:
-        print('登录成功')
+        request.send('登录成功'.encode('utf-8'))
     else:
-        print('用户名或秘密错误，请重新输入')
+        request.send('用户名或秘密错误，请重新输入'.encode('utf-8'))
     return user_id
 
 def switch_usr_dir(user_id):
@@ -48,10 +50,9 @@ def switch_usr_dir(user_id):
     os.chdir("../user_dir/" + user_id)    
 
 
-def login():
-    print("欢迎光临")
+def login(request):
     user_data = get_user_data()
-    user_id = verify(user_data)
+    user_id = verify(user_data, request)
     switch_usr_dir(user_id)
 
 if __name__ == '__main__':

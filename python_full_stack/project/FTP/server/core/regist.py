@@ -37,15 +37,17 @@ def get_user_data():
             user_data[user_id] = user_pwd[:-1]
     return user_data
 
-def create_usr(usr_dic):
+def create_usr(usr_dic, request):
     #! 用户名重复验证
-    new_id = input('请输入用户名:')
+    request.send("请输入用户名：".encode('utf-8'))
+    new_id = request.recv(1024).decode('utf-8')
     while new_id in usr_dic.keys():
-        print("用户名重复")
-        new_id = input("请输入用户名:")
+        request.send("用户名重复".encode('utf-8'))
+        new_id = request.recv(1024).decode('utf-8')
 
     #! 密码加密
-    new_pwd = input('请输入密码:')
+    request.send("请输入密码：".encode('utf-8'))
+    new_pwd = request.recv(1024).decode('utf-8')
     new_md5 = hashlib.md5()
     new_md5.update(new_pwd.encode('utf-8'))
     md_pwd = new_md5.hexdigest()
@@ -56,14 +58,15 @@ def create_usr(usr_dic):
         f.write(new_usr)
 
     print("注册成功！")
+    request.send("注册成功!".encode('utf-8'))
 
     #! 创建用户根目录
     cmd = 'mkdir ../user_dir/' + new_id
     bash.bash(cmd)
     print("创建用户目录")
 
-def regist():
-    create_usr(get_user_data())
+def regist(request):
+    create_usr(get_user_data(), request)
 
 
 if __name__ == '__main__':
