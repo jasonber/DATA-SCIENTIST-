@@ -3,7 +3,7 @@ import os
 
 file_path = '/'.join(__file__.split('/')[:-1])
 os.chdir(file_path)
-import bash
+import server_cmd
 # usr_dic = {}
 # with open(r'/mnt/d/个人目标/my_git_hub/DATA-SCIENTIST-/python_full_stack/project/FTP/server/DB/user', 'r', encoding='utf-8') as f:
 #     for line in f.readlines():

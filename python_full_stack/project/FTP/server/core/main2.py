@@ -24,8 +24,7 @@ def main():
     #? 创建并发服务器
     class My_server(socketserver.BaseRequestHandler):
         def handle(self):
-            #? 提示服务启动
-            print("Server is working.....")
+
             #? 进入主页
             homepage.homepage(self.request)
             #? 与客户端通讯
@@ -35,6 +34,8 @@ def main():
                 server_cmd.server_cmd(command, self.request)
 
     server = socketserver.ThreadingTCPServer(IP_PORT, My_server)
+    #? 提示服务启动
+    print("Server is working.....")
     server.serve_forever()
 
 
