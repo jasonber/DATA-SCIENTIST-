@@ -4,7 +4,7 @@ import hashlib
 file_path = '/'.join(__file__.split('/')[:-1])
 os.chdir(file_path)
 
-print("欢迎光临")
+
 # user = {}
 # with open(r'/mnt/d/个人目标/my_git_hub/DATA-SCIENTIST-/python_full_stack/project/FTP/server/DB/user', 'r', encoding='utf-8', newline=None) as f:
 #     for line in f.readlines():
@@ -25,13 +25,13 @@ print("欢迎光临")
 
 def get_user_data():
     user_data = {}
-    with open(r'../server/DB/user', 'r', encoding='utf-8', newline=None) as f:
+    with open(r'../DB/user', 'r', encoding='utf-8', newline=None) as f:
         for line in f.readlines():
             user_id, user_pwd = line.split(" ")
             user_data[user_id] = user_pwd[:-1]
     return user_data
 
-def login(user_data):
+def verify(user):
     user_id = input('请输入用户名：')
     user_pwd = input('请输入密码：')
     usr_md5 = hashlib.md5()
@@ -41,3 +41,20 @@ def login(user_data):
         print('登录成功')
     else:
         print('用户名或秘密错误，请重新输入')
+    return user_id
+
+def switch_usr_dir(user_id):
+    #! 进入用户的目录
+    os.chdir("../user_dir/" + user_id)    
+
+
+def login():
+    print("欢迎光临")
+    user_data = get_user_data()
+    user_id = verify(user_data)
+    switch_usr_dir(user_id)
+
+if __name__ == '__main__':
+    #? 测试账户:jj 密码:iiikkk
+    login()
+    print(os.getcwd())

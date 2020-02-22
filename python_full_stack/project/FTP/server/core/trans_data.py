@@ -54,3 +54,5 @@ def trans_data(command, request):
     if command == '发送':
         recv_file(request)
 
+if __name__ == '__main__':
+    trans_data()
