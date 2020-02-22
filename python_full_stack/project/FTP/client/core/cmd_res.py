@@ -2,7 +2,7 @@ import struct
 
 def cmd_res(request):
     cmd_header = request.recv(4)
-    cmd_size = struct.unpack('i', cmd_header)
+    cmd_size = struct.unpack('i', cmd_header)[0]
     recv_size = 0
     res = ""
     while recv_size < cmd_size:

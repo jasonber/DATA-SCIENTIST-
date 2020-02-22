@@ -20,12 +20,12 @@ def bash(cmd, request):
         err_size = len(res)
         header_res = struct.pack('i', err_size)
         request.send(header_res)
-        request.send(err)
+        request.send(err.encode('utf-8'))
     else: 
         res_size = len(res)
         header_res = struct.pack('i', res_size)
         request.send(header_res)
-        request.send(res)
+        request.send(res.encode('utf-8'))
 
 def server_cmd(request):
     command = request.recv(1024).decode('utf-8')
@@ -37,17 +37,20 @@ def server_cmd(request):
         if cmd == "查看":
             # request.send(os.getcwd().decode('utf-8'))
             cmd_lst = "ls" + " " + directory
-            bash(cmd_lst)
+            bash(cmd_lst, request)
         elif cmd == "新建":
             cmd_lst = 'mkdir -p' + " " + directory
-            bash(cmd_lst)
+            bash(cmd_lst, request)
         elif cmd == "删除":
             cmd_lst = "rm" + " " + directory
-            bash(cmd_lst)
+            bash(cmd_lst, request)
         elif cmd == "切换":
-            cmd_lst = "cd" + " " + directory
-            os.chdir(directory)
-            request.send("当前目录：{}".format(os.getcwd()).decode('utf-8'))
+            try:
+                cmd_lst = "cd" + " " + directory
+                os.chdir(directory)
+                request.send("当前目录：{}".format(os.getcwd()).decode('utf-8'))
+            except Exception as e:
+                request.send(e.encode('utf-8'))
         elif cmd == '发送':
             trans_data.recv_file(request)
         elif cmd == "接收":
