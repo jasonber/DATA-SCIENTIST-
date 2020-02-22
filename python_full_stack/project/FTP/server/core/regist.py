@@ -42,7 +42,7 @@ def create_usr(usr_dic, request):
     request.send("请输入用户名：".encode('utf-8'))
     new_id = request.recv(1024).decode('utf-8')
     while new_id in usr_dic.keys():
-        request.send("用户名重复".encode('utf-8'))
+        request.send("用户名重复：".encode('utf-8'))
         new_id = request.recv(1024).decode('utf-8')
 
     #! 密码加密
@@ -62,7 +62,8 @@ def create_usr(usr_dic, request):
 
     #! 创建用户根目录
     cmd = 'mkdir ../user_dir/' + new_id
-    bash.bash(cmd)
+    server_cmd.bash(cmd, request)
+    os.chdir("../user_dir/" + new_id)
     print("创建用户目录")
 
 def regist(request):

@@ -30,7 +30,7 @@ def main():
             #? 与客户端通讯
             while 1:
                 #? 等待客户端的命令
-                command = self.request.recv(1024).decode('utf-8')
+                # command = self.request.recv(1024).decode('utf-8')
                 server_cmd.server_cmd(self.request)
 
     server = socketserver.ThreadingTCPServer(IP_PORT, My_server)
