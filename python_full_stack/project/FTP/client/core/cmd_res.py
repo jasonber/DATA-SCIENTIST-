@@ -5,11 +5,13 @@ def cmd_res(cmd, request):
     # ?有结果：成功有结果（1）、，错误报错（1）。无结果：成功无结果（0）
     # ?其中成功无结果无法发送，所以发送指定内容
     # ?发送和接收有他们固定的方式
-    flag = request.recv(1).decode('utf-8')
+    flag = request.recv(3).decode('utf-8')
+    # print(a)
+    # flag = a.decode('utf-8')
     
     if cmd in ['查看', '新建', '删除']:
-        if flag:   
-            cmd_header = request.recv()
+        if flag == "有":   
+            cmd_header = request.recv(4)
             cmd_size = struct.unpack('i', cmd_header)[0]
             recv_size = 0
             res = ""
@@ -18,7 +20,7 @@ def cmd_res(cmd, request):
                 res += data
                 recv_size += len(data)
             print(res)
-        else:
+        elif flag == "无":
             #? mkdir 和 rm 都没有结果返回，所以
             print(request.recv(12).decode('utf-8'))
     if cmd == "切换":

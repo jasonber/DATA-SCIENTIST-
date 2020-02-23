@@ -29,7 +29,7 @@ while 1:
     try:
         cmd, directory = command.split(" ")
     except ValueError:
-        print('''命令错误\n请按照"命令 目录"的格式输入命令'''.encode('utf-8'))
+        print('''命令错误\n请按照"命令 目录"的格式输入命令''')
         continue
     if cmd not in ['查看', '新建', '删除', '切换', '接收', '传送']:
         print('命令错误')
