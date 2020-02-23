@@ -1,9 +1,12 @@
-import os
+import subprocess
 
-print("文件地址", __file__)
-file_path = "\\".join(__file__.split(r'/')[:-1])
-print("修改文件地址", file_path)
-os.chdir(file_path)
-print("当前地址", os.getcwd())
+cmd = input(">>>")
 
-import temp
+res = subprocess.Popen(cmd, 
+                       stdout=subprocess.PIPE, 
+                       stderr=subprocess.PIPE, 
+                       stdin=subprocess.PIPE, 
+                       shell=True)
+
+print("err:",res.stderr.read())
+print("out:",res.stdout.read())

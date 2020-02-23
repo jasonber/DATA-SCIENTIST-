@@ -1,6 +1,7 @@
 import subprocess
 import os
 file_path ="/".join(__file__.split('/')[:-2])
+#? 保证用户的命令只能在服务器的文件存储位置处操作
 usr_path = file_path + '/user_dir'
 os.chdir(usr_path)
 import trans_data
@@ -13,26 +14,35 @@ def bash(cmd, request):
                             stderr=subprocess.PIPE, 
                             shell=True)
 
-    res = proc.stdout.read().decode('utf-8')
-    err = proc.stderr.read().decode('utf-8')
-
+    res = proc.stdout.read()
+    err = proc.stderr.read()
+    
+    #? 不同的命令输出的结果不同，发送与接收的模式也不同
+    # ?有结果：成功有结果（1）、，错误报错（1）。无结果：成功无结果（0）
+    # ?其中成功无结果无法发送，所以发送指定内容
     if err:
+        request.send(b'1')
         err_size = len(res)
         header_res = struct.pack('i', err_size)
         request.send(header_res)
-        request.send(err.encode('utf-8'))
-    else: 
+        request.send(err)
+    elif res: 
+        request.send(b'1')
         res_size = len(res)
         header_res = struct.pack('i', res_size)
         request.send(header_res)
-        request.send(res.encode('utf-8'))
+        request.send(res)
+    else:
+        request.send(b'0')
+        request.send("操作成功".encode('utf-8'))
+
 
 def server_cmd(request):
     command = request.recv(1024).decode('utf-8')
     try:
         cmd, directory = command.split(" ")
     except ValueError:
-        request.send('''命令错误\n请按照"命令 目录"的格式输入命令'''.encode('utf-8'))
+        print('''命令错误\n请按照"命令 目录"的格式输入命令'''.encode('utf-8'))
     try:
         if cmd == "查看":
             # request.send(os.getcwd().decode('utf-8'))
