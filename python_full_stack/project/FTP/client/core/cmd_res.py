@@ -5,7 +5,6 @@ def cmd_res(cmd, request):
     # ?有结果：成功有结果（1）、，错误报错（1）。无结果：成功无结果（0）
     # ?其中成功无结果无法发送，所以发送指定内容
     # ?发送和接收有他们固定的方式
-<<<<<<< HEAD
     flag = request.recv(3).decode('utf-8')
     # print(a)
     # flag = a.decode('utf-8')
@@ -13,13 +12,6 @@ def cmd_res(cmd, request):
     if cmd in ['查看', '新建', '删除']:
         if flag == "有":   
             cmd_header = request.recv(4)
-=======
-
-    if cmd in ['查看', '新建', '删除']:
-        flag = request.recv(1).decode('utf-8')
-        if flag:   
-            cmd_header = request.recv()
->>>>>>> 242d17f3cf9e1d99b346a8601116def150428251
             cmd_size = struct.unpack('i', cmd_header)[0]
             recv_size = 0
             res = ""
