@@ -6,6 +6,7 @@ usr_path = file_path + '/user_dir'
 os.chdir(usr_path)
 import trans_data
 import struct
+import time
 
 def bash(cmd, request):
     proc = subprocess.Popen(cmd, 
@@ -21,28 +22,33 @@ def bash(cmd, request):
     # ?有结果：成功有结果（1）、，错误报错（1）。无结果：成功无结果（0）
     # ?其中成功无结果无法发送，所以发送指定内容
     if err:
-        request.send(b'1')
+        #! 这里为什么不能发送数字的编码和解码？
+        #! 信息过短 出现了粘包现象，暂时不知道怎么解决
+        request.send('有'.encode('utf-8'))
         err_size = len(res)
         header_res = struct.pack('i', err_size)
         request.send(header_res)
         request.send(err)
     elif res: 
-        request.send(b'1')
+        request.send('有'.encode('utf-8'))
         res_size = len(res)
         header_res = struct.pack('i', res_size)
         request.send(header_res)
         request.send(res)
     else:
-        request.send(b'0')
+        request.send('无'.encode('utf-8'))
         request.send("操作成功".encode('utf-8'))
 
 
 def server_cmd(request):
     command = request.recv(1024).decode('utf-8')
+    print(command)
+    # time.sleep(2)
     try:
         cmd, directory = command.split(" ")
-    except ValueError:
-        print('''命令错误\n请按照"命令 目录"的格式输入命令'''.encode('utf-8'))
+    except ValueError as v:
+        print("接收命令处的错误",v)
+        print('''命令错误\n请按照"命令 目录"的格式输入命令''')
     try:
         if cmd == "查看":
             # request.send(os.getcwd().decode('utf-8'))
@@ -56,16 +62,19 @@ def server_cmd(request):
             bash(cmd_lst, request)
         elif cmd == "切换":
             try:
-                cmd_lst = "cd" + " " + directory
+                # cmd_lst = "cd" + " " + directory
                 os.chdir(directory)
-                request.send("当前目录：{}".format(os.getcwd()).decode('utf-8'))
+                msg = "当前目录：{}".format(os.getcwd())
+                request.send(msg.encode('utf-8'))
             except Exception as e:
+                print(e)
                 request.send(e.encode('utf-8'))
         elif cmd == '发送':
             trans_data.recv_file(request)
         elif cmd == "接收":
             trans_data.send_file(request)
-    except UnboundLocalError: 
+    except UnboundLocalError as u: 
+        # print("执行命令时的错误", u)
         pass
 
 def run():
