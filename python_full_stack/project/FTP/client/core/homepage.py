@@ -1,5 +1,5 @@
 import os 
-file_path = '/'.join(__file__.split('/'))
+file_path = '/'.join(__file__.split('/')[:-1])
 os.chdir(file_path)
 
 import login
