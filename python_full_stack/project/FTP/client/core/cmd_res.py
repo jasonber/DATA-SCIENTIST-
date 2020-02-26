@@ -10,6 +10,7 @@ def cmd_res(cmd, request):
     # flag = a.decode('utf-8')
     
     if cmd in ['查看', '新建', '删除']:
+        #! 这里的传输存在粘包现象，应该是数据过小跟后面的包黏在一起了
         if flag == "有":   
             cmd_header = request.recv(4)
             cmd_size = struct.unpack('i', cmd_header)[0]
