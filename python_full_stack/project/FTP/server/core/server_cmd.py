@@ -24,6 +24,7 @@ def bash(cmd, request):
     if err:
         #! 这里为什么不能发送数字的编码和解码？
         #! 信息过短 出现了粘包现象，暂时不知道怎么解决
+        #! 没有问题，客户端检查错误时，使用print输出了这个flag
         request.send('有'.encode('utf-8'))
         err_size = len(res)
         header_res = struct.pack('i', err_size)
