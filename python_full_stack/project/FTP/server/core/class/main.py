@@ -15,11 +15,21 @@ def run():
         for line in f.read():
             setting_json += line
 
-    setting_dic = json.loads(setting_json)
+    setting_dic = json.loads(setting_json)   
     IP_PORT = (setting_dic['IP'], setting_dic['PORT'])
 
+
+    class MyServer(socketserver.BaseRequestHandler):
+        def handle(self):
+            act = server_cls.Server()
+            #? 进入主页
+            act.homepage()
+            #? 与客户端交互
+            while 1:
+                act.run_command()
+    
     #? 创建服务器
-    server = socketserver.ThredingTCPServer(IP_PORT, server_cls.Server)
+    server = socketserver.ThreadingTCPServer(IP_PORT, MyServer)
     
     #? 启动服务器
     print("Server is working......")
