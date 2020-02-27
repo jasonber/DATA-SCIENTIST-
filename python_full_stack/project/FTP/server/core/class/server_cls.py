@@ -1,4 +1,4 @@
-import socketserver
+import socket
 import hashlib
 import os
 file_path = '/'.join(__file__.split('/')[:-1])
@@ -8,16 +8,20 @@ import regist
 import server_cmd
 
 
-class Server(socketserver.BaseRequestHandler):
+# !继承关系有点复杂暂时放弃，随后看看答案
+# !尽力了
+
+
+class Server(socket.socket):
 
     #? 服务器的运行流程, 继承于BaseRequestHandler
     #? 这里定义了服务实际运行的流程
     def handle(self):
         #? 进入主页
-        self.homepage(self)
+        self.homepage(self.request)
         #? 与客户端交互
         while 1:
-            self.run_command(self)
+            self.run_command(self.request)
 
     #? 登录
     @staticmethod
@@ -52,3 +56,7 @@ class Server(socketserver.BaseRequestHandler):
         elif flag == '2':
             regist.regist(self.request)
     
+if __name__ == '__main__':
+    test_ser = socketserver.ThreadingTCPServer(("192.168.3.9", 8000), Server)
+    print("Server is working......")
+    test_ser.serve_forever()
