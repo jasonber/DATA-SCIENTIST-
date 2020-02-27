@@ -4,12 +4,14 @@ import os
 import file_oprt
 import client_cmd
 
-
+# !原来客户端的类也是错的，类的继承好复杂
+# !看答案再说吧
 class Client(socket.socket):
     #? 这是一个客户端需要与服务端通信，所以要继承socket类
     # def __init__(self, ip_port):
         # ? 需要初始化一
-        # self = self.connect(ip_port)
+
+        # self.request = super().accept(ip_port)
 
     #? 主页
     def homepage(self):
@@ -19,10 +21,10 @@ class Client(socket.socket):
             flag = input("1 登录\n2 注册\n>>>")
             self.send(flag.encode('utf-8'))
             if flag == "1":
-                self.login(self)
+                self.login(self.request)
                 a = 0
             elif flag == "2":
-                self.regist(self)
+                self.regist(self.request)
                 a = 0
             else:
                 print("输入错误， 请重新输入")

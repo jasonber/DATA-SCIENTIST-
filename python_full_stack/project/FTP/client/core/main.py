@@ -8,7 +8,7 @@ import sys
 sys.path.append(file_path)
 import client_cls
 
-def run():
+def run():  
     setting_json = ""
     with open('../conf/settings.json', 'r', encoding='utf-8') as f:
         for line in f.read():
