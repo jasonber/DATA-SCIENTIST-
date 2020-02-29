@@ -8,29 +8,18 @@ import sys
 sys.path.append(file_path)
 from client_act import Action
 
-HOME_OPT = {'登录': 'login', '注册': 'regist'}
-
-CMD_CODE = {
-    '查看': 'check_dir',
-    '新建': 'make_dir',
-    '删除': 'dele_dir',
-    '切换': 'swithc_dir',
-    '上传': 'uplod',
-    '下载': 'download'
-}
-
 
 def run():
-    #? 获取配置
+    # todo 获取配置
     setting_json = ""
     with open('../conf/settings.json', 'r', encoding='utf-8') as f:
         for line in f.read():
             setting_json += line
-
     setting_dic = json.loads(setting_json)
     IP_PORT = (setting_dic['IP'], setting_dic['PORT'])
+    CMD_CODE = setting_dic["CMD_CODE"]
 
-    #? 连接服务器
+    # todo 连接服务器
     client = socket.socket()
     client.connect(IP_PORT)
 
@@ -44,8 +33,8 @@ def run():
             print("%s %s" % (num, i))
         flag = input("请选择1 or 2：")
         act.send(flag.encode('utf-8'))
-        if hasattr(Action, HOME_OPT[home_flag[flag-1]]):
-            getattr(Action, HOME_OPT[home_flag[flag-1]])()
+        if hasattr(Action, CMD_CODE[home_flag[flag - 1]]):
+            getattr(Action, CMD_CODE[home_flag[flag - 1]])()
             a = 0
         else:
             print("输入错误， 请重新输入")

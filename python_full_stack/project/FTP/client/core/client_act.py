@@ -1,23 +1,23 @@
 import struct
+import json
 import os
-import file_oprt
+file_path = '/'.join(__file__.split(r'/')[:-1])
+os.chdir(file_path)
 import client_cmd
 
 
 class Action:
-    CMD_CODE = {
-        '查看': 'check_dir',
-        '新建': 'make_dir',
-        '删除': 'dele_dir',
-        '切换': 'swithc_dir',
-        '上传': 'upload',
-        '下载': 'download'
-    }
+
+    __setting_json = ""
+    with open('../conf/settings.json', 'r', encoding='utf-8') as f:
+        for line in f.read():
+            __setting_json += line
+    setting_dic = json.loads(__setting_json)
+    __CMD_CODE = setting_dic["CMD_CODE"]
 
     def __init__(self, request):
         # todo 获得通信的能力
         self.request = request
-
 
     # todo 注册
     def regist(self):
@@ -50,6 +50,6 @@ class Action:
     # todo 命令执行
     def run_cmd(self, command):
         if command in ['上传', '下载']:
-            hasattr(client_cmd, CMD_CODE[command])(self.request)
+            hasattr(client_cmd, __CMD_CODE[command])(self.request)
         else:
             client_cmd.cmd_res(command, self.request)

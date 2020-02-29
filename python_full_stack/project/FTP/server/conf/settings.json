@@ -1,8 +1,24 @@
 {
-    "IP":"192.168.3.9",
-    "PORT":8000,
-    "LISTENT":5,
-    "WORKING_MSG":"Server is working.......",
-    "CON_CLOSE":"Connecting closes",
-    "SERVER_CLOSE":"Server coses"
+    "IP": "192.168.3.9",
+    "PORT": 8000,
+    "LISTENT": 5,
+    "WORKING_MSG": "Server is working.......",
+    "CON_CLOSE": "Connecting closes",
+    "SERVER_CLOSE": "Server coses",
+    "CMD_CODE": {
+        "查看": "check_dir",
+        "新建": "make_dir",
+        "删除": "dele_dir",
+        "切换": "swithc_dir",
+        "上传": "uplod",
+        "下载": "download",
+        "登录": "login",
+        "注册": "regist"
+    }
+    "trans_code": {
+        "0010": "文件不存在",
+        "0011": "文件已存在",
+        "0020": "一致性校验成功",
+        "0021": "一致性校验失败"
+    }
 }

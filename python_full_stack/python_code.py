@@ -906,3 +906,12 @@ b = a.decode('utf-8')
 
 #! python 调用命令行命令
 https://www.aiuai.cn/aifarm949.html
+
+#!timetime
+import time
+total = 100
+for i in range(101):
+    per = i/100 *100
+    print('\r进度:{} {:.2f}%'.format('*'*int(per),per), end='') #? \r回车符号，也就新起一行开始打印，配合end不换行，就是在同一行打印
+    time.sleep(0.2)
+
