@@ -3,12 +3,23 @@ import os
 import file_oprt
 import client_cmd
 
+<<<<<<< HEAD:python_full_stack/project/FTP/client/core/history/version2/client_cls.py
 
 class Action():
+=======
+# !原来客户端的类也是错的，类的继承好复杂
+# !看答案再说吧
+class Client(socket.socket):
+>>>>>>> 4f185f75ee6397228269610797629977cba9e91d:python_full_stack/project/FTP/client/core/client_cls.py
     #? 这是一个客户端需要与服务端通信，所以要继承socket类
     def __init__(self, request):
         # ? 需要初始化一
+<<<<<<< HEAD:python_full_stack/project/FTP/client/core/history/version2/client_cls.py
         self.request = request
+=======
+
+        # self.request = super().accept(ip_port)
+>>>>>>> 4f185f75ee6397228269610797629977cba9e91d:python_full_stack/project/FTP/client/core/client_cls.py
 
     #? 主页
     def homepage(self):
@@ -18,10 +29,10 @@ class Action():
             flag = input("1 登录\n2 注册\n>>>")
             self.send(flag.encode('utf-8'))
             if flag == "1":
-                self.login(self)
+                self.login(self.request)
                 a = 0
             elif flag == "2":
-                self.regist(self)
+                self.regist(self.request)
                 a = 0
             else:
                 print("输入错误， 请重新输入")
