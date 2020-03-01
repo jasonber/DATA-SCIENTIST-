@@ -20,11 +20,11 @@ def run():
     CMD_CODE = setting_dic["CMD_CODE"]
 
     # todo 连接服务器
-    client = socket.socket()
-    client.connect(IP_PORT)
+    act = Action()
+    act.connect(IP_PORT)
 
     # todo 主页
-    act = Action(client.request)
+    # act = Action(client)
     print(act.recv(1024).decode('utf-8'))
     a = 1
     while a:
@@ -32,12 +32,19 @@ def run():
         for num, i in enumerate(home_flag, 1):
             print("%s %s" % (num, i))
         flag = input("请选择1 or 2：")
-        act.send(flag.encode('utf-8'))
-        if hasattr(Action, CMD_CODE[home_flag[flag - 1]]):
-            getattr(Action, CMD_CODE[home_flag[flag - 1]])()
+        act.sendall(flag.encode('utf-8'))
+        if hasattr(Action, CMD_CODE[home_flag[int(flag) - 1]]):
+            login_res = getattr(Action, CMD_CODE[home_flag[int(flag) - 1]])(act) #! 用对象当作参数，等于将self传入
+            if login_res == "0030":
+                print("登录成功")
+            else:
+                print("用户名或密码错误，请重新输入")
+                continue
             a = 0
         else:
             print("输入错误， 请重新输入")
+
+        
 
     while 1:
         command = input('请输入命令：')
@@ -52,13 +59,13 @@ def run():
             print('命令错误')
             continue
 
-        client.send(command.encode('utf-8'))
-        act.run_cmd(command)
+        act.send(command.encode('utf-8'))
+        act.run_cmd(cmd)
 
         if cmd == '离开':
             break
 
-    client.close()
+    act.close()
 
 
 if __name__ == '__main__':
