@@ -6,13 +6,12 @@ os.chdir(file_path)
 import server_cmd
 
 
-def get_user_data():
-    user_data = {}
-    with open(r'../DB/user', 'r', encoding='utf-8', newline=None) as f:
-        for line in f.readlines():
-            user_id, user_pwd = line.split(" ")
-            user_data[user_id] = user_pwd[:-1]
-    return user_data
+user_data = {}
+with open(r'../DB/user', 'r', encoding='utf-8', newline=None) as f:
+    for line in f.readlines():
+        user_id, user_pwd = line.split(" ")
+        user_data[user_id] = user_pwd[:-1]
+
 
 def create_usr(usr_dic, request):
     #! 用户名重复验证
@@ -44,7 +43,7 @@ def create_usr(usr_dic, request):
     print("创建用户目录")
 
 def regist(request):
-    create_usr(get_user_data(), request)
+    create_usr(user_data, request)
 
 
 if __name__ == '__main__':

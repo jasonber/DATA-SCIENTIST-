@@ -14,20 +14,21 @@ def get_user_data():
     return user_data
 
 def verify(user, request):
-    user_info = request.recv(1024).decode('uft-8')
+    user_info = request.recv(1024).decode('utf-8')
     user_id, user_pwd =  user_info.split(" ")
     usr_md5 = hashlib.md5()
     usr_md5.update(user_pwd.encode('utf-8'))
     md_pwd = usr_md5.hexdigest()
     if user_id in user.keys() and md_pwd == user[user_id]:
-        request.send('登录成功'.encode('utf-8'))
+        #? 登录的状态码 0030登录成功，0031登录失败
+        request.send('0030'.encode('utf-8'))
     else:
-        request.send('用户名或秘密错误，请重新输入'.encode('utf-8'))
+        request.send('0031'.encode('utf-8'))
     return user_id
 
 def switch_usr_dir(user_id):
     #! 进入用户的目录
-    os.chdir("../user_dir/" + user_id)    
+    os.chdir("/mnt/d/个人目标/my_git_hub/DATA-SCIENTIST-/python_full_stack/project/FTP/server/user_dir/" + user_id)    
 
 
 def login(request):

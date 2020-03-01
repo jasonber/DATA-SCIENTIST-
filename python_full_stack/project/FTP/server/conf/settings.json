@@ -1,6 +1,6 @@
 {
     "IP": "192.168.3.9",
-    "PORT": 8000,
+    "PORT": 9000,
     "LISTENT": 5,
     "WORKING_MSG": "Server is working.......",
     "CON_CLOSE": "Connecting closes",
@@ -14,7 +14,7 @@
         "下载": "download",
         "登录": "login",
         "注册": "regist"
-    }
+    },
     "trans_code": {
         "0010": "文件不存在",
         "0011": "文件已存在",
