@@ -219,7 +219,9 @@ def get_settings():
 
 def run_cmd(request):
     command = request.recv(1024).decode('utf-8')
-    print(command)
+    # import time
+    # print(command)
+    # time.sleep(5)
     my_file = sys.modules[__name__]
     try:
         cmd_key, directory = command.split(" ")
@@ -230,5 +232,7 @@ def run_cmd(request):
         if hasattr(my_file, CMD_CODE[cmd_key]):
             getattr(my_file, CMD_CODE[cmd_key])(request, directory)
     except UnboundLocalError as u:
-        # print("执行命令时的错误", u)
+        print("执行命令时的错误", u)
         pass
+    if command == '离开':
+        request.close()

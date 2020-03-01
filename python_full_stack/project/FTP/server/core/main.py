@@ -24,13 +24,13 @@ def run():
 
     class MyServer(socketserver.BaseRequestHandler):
         def handle(self):
-            act = Action(self.request)
+            act = Action(self.request, self.client_address)
             # todo 主页
             self.request.send("欢迎光临".encode('utf-8'))
-            flag = self.request.recv(4).decode('utf-8')
+            flag = int(self.request.recv(4).decode('utf-8'))
             home_flag = ['登录', '注册']
             if hasattr(Action, HOME_OPT[home_flag[flag-1]]):
-                getattr(Action, HOME_OPT[home_flag[flag-1]])()
+                getattr(Action, HOME_OPT[home_flag[flag-1]])(act)
             #? 与客户端交互
             while 1:
                 act.run_cmd()

@@ -23,8 +23,9 @@ def run():
     client = socket.socket()
     client.connect(IP_PORT)
 
-    # todo 主页
     act = Action(client.request)
+
+    # todo 主页
     print(act.recv(1024).decode('utf-8'))
     a = 1
     while a:
@@ -32,7 +33,7 @@ def run():
         for num, i in enumerate(home_flag, 1):
             print("%s %s" % (num, i))
         flag = input("请选择1 or 2：")
-        act.send(flag.encode('utf-8'))
+        act.sendall(flag.encode('utf-8'))
         if hasattr(Action, CMD_CODE[home_flag[flag - 1]]):
             getattr(Action, CMD_CODE[home_flag[flag - 1]])()
             a = 0
@@ -50,15 +51,11 @@ def run():
 
         if cmd not in ['查看', '新建', '删除', '切换', '上传', '下载', '离开']:
             print('命令错误')
-            continue
-
-        client.send(command.encode('utf-8'))
-        act.run_cmd(command)
+            client.sendall(command.encode('utf-8'))
+            act.run_cmd(command)
 
         if cmd == '离开':
-            break
-
-    client.close()
+            client.close()
 
 
 if __name__ == '__main__':

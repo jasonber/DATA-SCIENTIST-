@@ -24,15 +24,15 @@ class Action:
         #! 因为注册要验证用户名是否重复，所以不能打包注册信息
         # todo 接收输入用户名提示
         new_id = input("请输入用户名：")
-        self.request.send(new_id.encode('utf-8'))
+        self.request.sendall(new_id.encode('utf-8'))
         # todo 注册用户名是否重复
         id_res = self.request.recv(1024).decode('utf-8')
         print(id_res)
         while id_res == "用户名重复":
             new_id = input("请输入用户名")
-            self.request.send(new_id.encode('utf-8'))
+            self.request.sendall(new_id.encode('utf-8'))
         new_pwd = input("请输入密码")
-        self.request.send(new_pwd.encode('utf-8'))
+        self.request.sendall(new_pwd.encode('utf-8'))
         # todo 接收注册结果
         print(self.request.recv(1024).decode('utf-8'))
 
@@ -43,7 +43,7 @@ class Action:
         user_pwd = input("请输入密码：")
         # todo 打包用户信息
         user_info = user_id + " " + user_pwd
-        self.request.send(user_info.encode('utf-8'))
+        self.request.sendall(user_info.encode('utf-8'))
         # todo 接收登录结果
         print(self.request.recv(1024).decode('utf-8'))
 
