@@ -915,3 +915,7 @@ for i in range(101):
     print('\r进度:{} {:.2f}%'.format('*'*int(per),per), end='') #? \r回车符号，也就新起一行开始打印，配合end不换行，就是在同一行打印
     time.sleep(0.2)
 
+#! os.path.splitext
+import os
+a = '/d/个人目标/my_git_hub/DATA-SCIENTIST-/python_full_stack/python_code.py'
+b = os.path.basename(a)
