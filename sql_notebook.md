@@ -1765,3 +1765,119 @@ sum(c3) as total
 from tx
 group by c1 with rollup;
 ```
+
+# 尚硅谷作业题目
+## 查询出公司所有manager的详细信息
+```
+SELECT *
+FROM employees e JOIN employees m
+ON m.`employee_id` = e.`manager_id`
+GROUP BY m.employee_id;
+
+SELECT * 
+FROM employees
+WHERE employee_id IN (
+SELECT DISTINCT(manager_id)
+FROM employees
+)
+```
+
+## 查询平均工资最低的部门信息和该部门的平均工资
+借助排序可以更简单的完成
+```
+SELECT 
+  d.*,
+  AVG(e.salary) 
+FROM
+  departments d 
+  JOIN employees e 
+    ON d.`department_id` = e.`department_id` 
+WHERE d.department_id = 
+  (SELECT 
+    department_id 
+  FROM
+    employees 
+  GROUP BY department_id 
+  HAVING AVG(salary) = 
+    (SELECT 
+      MIN(av) 
+    FROM
+      (SELECT 
+        AVG(salary) av,
+        department_id 
+      FROM
+        employees 
+      GROUP BY department_id) avg_sa)) ;
+
+
+SELECT 
+  d.*,
+  AVG(e.salary) 
+FROM
+  departments d 
+  JOIN employees e 
+    ON d.`department_id` = e.`department_id` 
+WHERE d.department_id = 
+  (SELECT 
+    department_id 
+  FROM
+    employees 
+  GROUP BY department_id 
+  ORDER BY AVG(salary) 
+  LIMIT 1) 
+GROUP BY e.`department_id`
+```
+## 查询每个专业得男生人数和女生人数分别是多少
+```
+SELECT 
+  m.`majorname`,
+  SUM(IF(sex = '男', 1, 0)) 男,
+  SUM(IF(sex = '女', 1, 0)) 女 
+FROM
+  student s 
+  JOIN major m 
+    ON s.`majorid` = m.`majorid` 
+GROUP BY s.majorid ;
+
+
+
+SELECT 
+  m.`majorname`,
+  (SELECT 
+    COUNT(*) 
+  FROM
+    student 
+  WHERE sex = "男" 
+    AND majorid = s.majorid) 男,
+  (SELECT 
+    COUNT(*) 
+  FROM
+    student 
+  WHERE sex = "女" 
+    AND majorid = s.majorid) 女 
+FROM
+  student s 
+  JOIN major m 
+    ON s.`majorid` = m.`majorid` 
+GROUP BY s.majorid ;
+```
+## 查询没有成绩得学生人数
+```
+错误答案
+SELECT 
+  COUNT(*) 
+FROM
+  student s 
+  JOIN result r 
+    ON s.`studentno` = r.`studentno` 
+WHERE r.`score` IS NULL ;
+
+正确
+SELECT 
+  COUNT(*) 
+FROM
+  student s 
+  LEFT JOIN result r 
+    ON s.`studentno` = r.`studentno` 
+WHERE r.`score` IS NULL ;
+```
