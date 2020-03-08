@@ -1881,3 +1881,22 @@ FROM
     ON s.`studentno` = r.`studentno` 
 WHERE r.`score` IS NULL ;
 ```
+## 插入值
+````
+INSERT INTO my_employees
+(Id,First_name, Last_name, Userid, Salary)
+VALUES
+(1,"patel", "Ralph","Rpatel", 895),
+(2,"Dancs", "Betty","Bdancs", 860),
+(3,"Biri","BEN", "Bbiri",1100),
+(4,"Newman","Chad","Cnewman", 750),
+(5,"Ropeburn","Audrey","Aropebur",1550); 
+
+通过子查询插入值
+INSERT INTO my_employees
+SELECT 1,'patel','Ralph','Rpatel',895 UNION
+SELECT 2,'Dancs','Betty','Bdancs',860 UNION
+SELECT 3,'Biri','Ben','Bbiri',1100 UNION
+SELECT 4,'Newman','Chad','Cnewman',750 UNION
+SELECT 5,'Ropeburn','Audrey','Aropebur',1550
+````
