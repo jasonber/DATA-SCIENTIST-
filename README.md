@@ -5,7 +5,7 @@
 [hive sql笔记](https://github.com/jasonber/DATA-SCIENTIST-/blob/master/hive_sql_note.md)  
 [sql笔记对应的数据库](https://github.com/jasonber/DATA-SCIENTIST-/tree/master/sql)
 ## python
-[python全栈](https://github.com/jasonber/DATA-SCIENTIST-/tree/master/python_full_stack) 
+[python全栈](https://github.com/jasonber/DATA-SCIENTIST-/tree/master/python_full_stack)  
 [python笔记](https://github.com/jasonber/DATA-SCIENTIST-/blob/master/notebook_of_coding.md)  
 [python报错记录](https://github.com/jasonber/DATA-SCIENTIST-/blob/master/error_of_python.md)
 ## 机器学习
