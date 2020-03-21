@@ -1,8 +1,0 @@
-{
-    "IP":"192.168.3.9",
-    "PORT":8000,
-    "LISTENT":5,
-    "WORKING_MSG":"Server is working.......",
-    "CON_CLOSE":"Connecting closes",
-    "SERVER_CLOSE":"Server coses"
-}
