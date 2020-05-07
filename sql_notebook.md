@@ -1610,8 +1610,6 @@ ORDER BY Score DESC
  ) AS c
 ON S.Score = c.Score
 ORDER BY Score DESC;
-
-
 ```
 https://www.cnblogs.com/genialx/p/5932558.html
 @ 变量 声明自定义变量
@@ -1621,6 +1619,36 @@ https://blog.csdn.net/lili625/article/details/80252420
 行号的使用
 
 :=的作用 为变量赋值， = 的作用是用于比较的
+
+## [连续出现的数字](https://leetcode-cn.com/problems/consecutive-numbers/)
+```sql
+--变量法
+select distinct Num as ConsecutiveNums
+from (
+  select Num, 
+    case 
+      when @prev = Num then @count := @count + 1
+      when (@prev := Num) is not null then @count := 1
+    end as CNT
+  from Logs, (select @prev := null,@count := null) as t
+) as temp
+where temp.CNT >= 3
+
+--官方答案
+SELECT DISTINCT
+    l1.Num AS ConsecutiveNums
+FROM
+    Logs l1,
+    Logs l2,
+    Logs l3
+WHERE
+    l1.Id = l2.Id - 1
+    AND l2.Id = l3.Id - 1
+    AND l1.Num = l2.Num
+    AND l2.Num = l3.Num;
+```
+
+
 ## 四种rank的方法
 With Variables: 841 ms
 
