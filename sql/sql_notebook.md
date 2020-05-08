@@ -1928,3 +1928,12 @@ SELECT 3,'Biri','Ben','Bbiri',1100 UNION
 SELECT 4,'Newman','Chad','Cnewman',750 UNION
 SELECT 5,'Ropeburn','Audrey','Aropebur',1550
 ````
+
+# [181. 超过经理收入的员工](https://leetcode-cn.com/problems/employees-earning-more-than-their-managers)
+[自连接的逻辑](https://www.cnblogs.com/jpfss/p/9167464.html)
+```sql
+select e.* 
+From employee e inner join employee m
+on e.ManagerId = m.Id
+and e.Salary>m.Salary;
+```
