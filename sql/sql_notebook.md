@@ -1931,9 +1931,28 @@ SELECT 5,'Ropeburn','Audrey','Aropebur',1550
 
 # [181. 超过经理收入的员工](https://leetcode-cn.com/problems/employees-earning-more-than-their-managers)
 [自连接的逻辑](https://www.cnblogs.com/jpfss/p/9167464.html)
+通过笛卡尔积就可以很好的理解，注意主表 副表。主表会把副表中每条记录与整个表整体匹配
+https://leetcode-cn.com/problems/employees-earning-more-than-their-managers/solution/chao-guo-jing-li-shou-ru-de-yuan-gong-by-leetcode/
 ```sql
 select e.* 
 From employee e inner join employee m
 on e.ManagerId = m.Id
 and e.Salary>m.Salary;
+```
+
+# [182. 查找相同email的员工](https://leetcode-cn.com/problems/duplicate-emails/)
+```sql
+对要求的多角度理解
+select mail from Person group by email having count(email)>1;
+```
+
+# [183. 从不订购的客户](https://leetcode-cn.com/problems/customers-who-never-order/)
+
+# [184. 部门工资最高的员工](https://leetcode-cn.com/problems/department-highest-salary/)
+```sql
+select d.Name as Department, e.name as Employee, salary as Salary
+from Employee e join Department d 
+on e.DepartmentId = d.Id
+where( d.id ,e.salary) in (select DepartmentId ,max(salary) from Employee group by DepartmentId);
+--这里把id也加入判断条件是为了避免出现只用工资会出现，其他部门员工也有相同的工资但不是最高工资
 ```
