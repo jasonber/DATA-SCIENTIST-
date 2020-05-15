@@ -1956,3 +1956,24 @@ on e.DepartmentId = d.Id
 where( d.id ,e.salary) in (select DepartmentId ,max(salary) from Employee group by DepartmentId);
 --这里把id也加入判断条件是为了避免出现只用工资会出现，其他部门员工也有相同的工资但不是最高工资
 ```
+
+# [185. 部门工资前三高的所有员工](https://leetcode-cn.com/problems/department-top-three-salaries/)
+```sql
+SELECT
+	Department.NAME AS Department,
+	e1.NAME AS Employee,
+	e1.Salary AS Salary 
+FROM
+	Employee AS e1,Department 
+WHERE
+	e1.DepartmentId = Department.Id 
+	AND (SELECT  count( DISTINCT e2.Salary ) 
+			 FROM	Employee AS e2 
+			 WHERE	e1.Salary < e2.Salary 	AND e1.DepartmentId = e2.DepartmentId ) < 3 
+ORDER BY Department.NAME,Salary DESC;
+
+作者：little_bird
+链接：https://leetcode-cn.com/problems/department-top-three-salaries/solution/185-bu-men-gong-zi-qian-san-gao-de-yuan-gong-by-li/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
