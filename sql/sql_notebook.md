@@ -1977,3 +1977,48 @@ ORDER BY Department.NAME,Salary DESC;
 来源：力扣（LeetCode）
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```
+
+
+# 数据分析笔试题目，sql
+## [拼多多笔试题](https://zhuanlan.zhihu.com/p/80835787)
+
+第一题：活动运营数据分析
+
+表1——订单表orders，大概字段有（user_id‘用户编号’, order_pay‘订单金额’ , order_time‘下单时间’）。
+
+表2——活动报名表act_apply，大概字段有（act_id‘活动编号’, user_id‘报名用户’,act_time‘报名时间’）
+
+需求：
+```sql
+1. 统计每个活动对应所有用户在报名后产生的总订单金额，总订单数。（每个用户限报一个活动,题干默认用户报名后产生的订单均为参加活动的订单）。
+
+select  t2.act_id,count(t1.order_time) as num_order,sum(order_pay) as sum_order as num
+from (
+    select user_id,order_pay,order_time  from orders
+)t1
+inner join (
+    select user_id,act_id,act_time
+    from act_apply
+)t2
+on t1.user_id=t2.user_id
+where t1.order_time>=t2.act_time --满足报名后的条件
+group by t2.act_id
+
+
+2. 统计每个活动从开始后到当天（考试日）平均每天产生的订单数，活动开始时间定义为最早有用户报名的时间。（涉及到时间的数据类型均为：datetime）。
+
+select t1.act_id,count(order_time)/datediff(now(),min(t1.begin_time))--group by 聚合键，都得用到聚合函数
+from (
+    select act_id, user_id,act_time,min(act_time) over(partition by act_id) as begin_time
+    from act_apply
+)t1
+inner join (
+    select user_id,order_time
+    from orders
+)t2
+on t1.user_id=t2.user_id
+where t1.act_time between t1.begin_time and now()
+and t2.order_time >= t1.act_time --补充条件 @Ethan
+group by t1.act_id
+```
+[窗口函数](https://blog.csdn.net/weixin_39010770/article/details/87862407)
